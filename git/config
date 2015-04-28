@@ -1,0 +1,15 @@
+[color]
+	ui = true
+[core]
+	autocrlf = input
+	editor = emacsclient -cqta=
+	pager = less -+F -+X
+	whitespace = blank-at-eof,blank-at-eol
+[init]
+	templatedir = ~/.config/git/template
+[push]
+	default = simple
+[user]
+	email = zmwangx@gmail.com
+	name = Zhiming Wang
+	signingkey = 110044B8

@@ -1,0 +1,80 @@
+##############################
+# Compilation/build products #
+##############################
+build/
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.a
+*.so
+*.pyc
+*.aux
+*.dvi
+*.pdf
+
+######################
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+############
+# Archives #
+############
+*.7z
+*.bz2
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.xz
+*.zip
+
+######################
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.TemporaryItems
+.DocumentRevisions-V100
+.fseventsd
+.VolumeIcon.icns
+Icon?
+Icon
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+#################
+# Network files #
+#################
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+#####################
+# Language specific #
+#####################
+
+Python
+######
+venv
+venv2
+venv3
+.coverage
+
+#################
+# Miscellaneous #
+#################
+*~
