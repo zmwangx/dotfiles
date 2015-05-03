@@ -36,6 +36,8 @@ There are projects that insist on living in the home directory and are either ha
 
 * matplotlib. According to the [FAQ](http://matplotlib.org/faq/environment_variables_faq.html#envvar-MPLCONFIGDIR), matplotlib puts its config as well as caches in a single directory, `MPLCONFIGDIR`, which is far from XDG conformant. Fortunately I rarely use matplotlib and don't have any personal customizations, so the directory is simply dropped to `$XDG_CACHE_HOME/matplotlib` (see `env/env.d/matplotlib`).
 
+* mutt. The `FILES` section of `man 1 mutt` says: `~/.muttrc` or `~/.mutt/muttrc`, User configuration file.
+
 * GNU Parallel. `$ENV{'HOME'} . "/.parallel/foo"` appears everywhere in the Perl source.
 
 * PyPI. According to [the docs](https://docs.python.org/3/distutils/packageindex.html#pypirc), the path of the config file has to be `$HOME/.pypirc`.

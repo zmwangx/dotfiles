@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export MAIL=/var/mail/zmwang
