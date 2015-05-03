@@ -10,9 +10,11 @@ destination[parallel]=.parallel
 destination[pypi/pypirc]=.pypirc
 destination[tmux/tmux.conf]=.tmux.conf
 destination[zsh/zshenv]=.zshenv
+destination[zsh/zprofile]=.zprofile
 destination[zsh/zshrc]=.zshrc
 destination[zsh/zlogin]=.zlogin
 destination[zsh/zlogout]=.zlogout
+destination[zsh/prezto]=.zprezto
 
 # This function symlinks source to destination (so that the destination is
 # eventually a symlink pointing to source), backing up destination if it

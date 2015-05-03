@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+# -*- mode: sh; -*-
 
 # print available disk space on OS X
 if [[ $OSTYPE == darwin* ]]; then

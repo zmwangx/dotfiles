@@ -4,7 +4,7 @@
 # directories themselves, and nonexistent directories are silently ignored).
 
 data_dirs=(aspell ipython less pry pylint zsh)
-cache_dirs=(fontconfig gem grip matplotlib npm zsh)
+cache_dirs=(fontconfig gem grip matplotlib npm)
 for dir in ${data_dirs[@]}; do
     mkdir -p "${XDG_DATA_HOME}/${dir}"
 done

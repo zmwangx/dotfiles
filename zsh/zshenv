@@ -1,0 +1,4 @@
+# -*- mode: sh; -*-
+
+# get global env
+source ~/.config/env/env
