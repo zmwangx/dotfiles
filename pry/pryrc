@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+if ENV.include?('XDG_DATA_HOME')
+  Pry.config.history.file = "#{ENV['XDG_DATA_HOME']}/pry/history"
+else
+  Pry.config.history.file = "~/.local/share/pry/history"
+end

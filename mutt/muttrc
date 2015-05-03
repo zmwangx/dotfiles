@@ -1,0 +1,2 @@
+set folder="$HOME/Documents/Mail"
+set allow_ansi = yes

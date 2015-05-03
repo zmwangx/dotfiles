@@ -1,0 +1,16 @@
+# -*- mode: conf -*-
+# See https://docs.python.org/3/distutils/packageindex.html#pypirc
+[distutils]
+index-servers=
+    pypi
+    pypitest
+
+[pypitest]
+repository = https://testpypi.python.org/pypi
+username = XXXXXX
+password = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+[pypi]
+repository = https://pypi.python.org/pypi
+username = XXXXXX
+password = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

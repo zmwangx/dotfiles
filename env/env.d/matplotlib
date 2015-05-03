@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export MPLCONFIGDIR=$XDG_CACHE_HOME/matplotlib

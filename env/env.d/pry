@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export PRYRC=$XDG_CONFIG_HOME/pry/pryrc

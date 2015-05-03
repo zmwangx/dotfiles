@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Create data and cache dirs (some programs are not smart enough to create
+# directories themselves, and nonexistent directories are silently ignored).
+
+data_dirs=(aspell ipython less pry pylint zsh)
+cache_dirs=(fontconfig gem grip matplotlib npm zsh)
+for dir in ${data_dirs[@]}; do
+    mkdir -p "${XDG_DATA_HOME}/${dir}"
+done
+for dir in ${cache_dirs[@]}; do
+    mkdir -p "${XDG_CACHE_HOME}/${dir}"
+done
+
+# Change mode of all directories in $XDG_CONFIG_HOME, $XDG_DATA_HOME, and
+# $XDG_CACHE_HOME to 700.
+
+for dir in "${XDG_CONFIG_HOME}"/*/ "${XDG_DATA_HOME}"/*/ "${XDG_CACHE_HOME}"/*/; do
+    chmod 700 "${dir}"
+done

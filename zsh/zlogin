@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# print available disk space on OS X
+if [[ $OSTYPE == darwin* ]]; then
+    echo "${BLUE}available disk space:  ${BOLD}${RED}$(df -h | awk '/\/dev\/disk1/ {print $4" / "$2}')${RESET}"
+fi
