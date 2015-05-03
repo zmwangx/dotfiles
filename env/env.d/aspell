@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export ASPELL_CONF="home-dir $XDG_DATA_HOME/aspell; backup false;"

@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem/specs

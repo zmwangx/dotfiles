@@ -1,0 +1,2 @@
+# -*- mode: sh -*-
+export DVDCSS_CACHE=$XDG_CACHE_HOME/dvdcss

@@ -1,0 +1,2 @@
+# -*- mode:sh -*-
+export GRIPHOME=$XDG_CONFIG_HOME/grip

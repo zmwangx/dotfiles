@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Symlink uncustomizable XDG offenders to $HOME.
+
+declare -A destination
+destination[colordiff/colordiffrc]=.colordiffrc
+destination[gnupg/gpg.conf]=.gnupg/gpg.conf
+
+# This function symlinks source to destination (so that the destination is
+# eventually a symlink pointing to source), backing up destination if it
+# already exists.
+#
+# It takes two positional arguments, src and dst, and performs the following:
+#
+# * If src does not exist, report error and do nothing;
+# * If dst already exists:
+#   * If dst is directory, report error and do nothing;
+#   * Append .bak to the existing dst if it is not a symlink;
+# * Force symlink src to dst.
+#
+# Note that src should either be an absolute path or relative to dst. Absolute
+# path is recommended.
+function backup_and_symlink
+{
+    src=$1
+    dst=$2
+    [[ -e ${src} ]] || { echo "${RED}error: '${src}' does not exist${RESET}" >&2; return 1; }
+    [[ -d ${dst} ]] && { echo "${RED}error: not overwriting destination directory '${dst}'${RESET}" >&2; return 1; }
+    [[ -e ${dst} && ! -h ${dst} ]] && mv "${dst}" "${dst}.bak"
+    echo "${src} <== ${dst}" >&2
+    ln -sf "${src}" "${dst}"
+}
+
+success_count=0
+failure_count=0
+for src in "${!destination[@]}"; do
+    dst=${destination[${src}]}
+    if backup_and_symlink "${XDG_CONFIG_HOME}/${src}" "${HOME}/${dst}"; then
+        ((success_count++))
+    else
+        ((failure_count++))
+    fi
+done
+echo "${GREEN}successfully linked ${success_count} items, failed on ${failure_count} items${RESET}" >&2
+exit $((failure_count > 0))

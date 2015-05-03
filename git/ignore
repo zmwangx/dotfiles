@@ -73,6 +73,7 @@ venv
 venv2
 venv3
 .coverage
+.tox
 
 #################
 # Miscellaneous #
