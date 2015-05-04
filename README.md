@@ -4,7 +4,9 @@ I'm striving to declutter my home directory (following [XDG Base Directory Speci
 
 ```zsh
 git clone https://github.com/zmwangx/dotfiles ~/.config
-source ~/.config/env/env
+
+# Set up global environment.
+source ~/.config/env
 
 # Create data and cache dirs (some programs are not smart enough to
 # create directories themselves, and nonexistent directories are
@@ -16,7 +18,7 @@ source ~/.config/env/env
 ~/.config/link
 ```
 
-Also, `source ~/.config/env/env` should go into `.bashrc`, `.zshenv`, and its equivalent should go into the rc for other noninteractive shells (the `export` builtin is required).
+Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv`, and its equivalent should go into the rc for other noninteractive shells (the `export` builtin is required and the `export var=val` syntax must be supported).
 
 Note that config files with credentials have been excluded from the directory, and their `.template` counterparts have been committed in. Replace the redacted credentials (generally in the form `XXXXXX`) with the actual values.
 
@@ -49,3 +51,5 @@ There are projects that insist on living in the home directory and are either ha
 * tox. tox has no global configuration file, and unless one enforces one's own preferences for `distshare` on other developers by setting `distshare` in `tox.ini`, it defaults to `{homedir}/.tox/distshare`. See [docs](http://codespeak.net/tox/config.html). (And the stupid thing is, I don't really need to access build artifects between runs. I guess `~/.tox/distshare` — serving no purpose at all in my case — has to be routinely wiped.)
 
 * tmux. The `FILEs` section of `man 1 tmux` makes it clear that `~/.tmux.conf` is not customizable.
+
+* Z shell. In principle we can use the `ZDOTDIR` environment variable. In practice, there's no way to set the per-user `ZDOTDIR` before `${ZDOTDIR:-$HOME}/.zshenv` is read except by directly hacking from `launchd`. Moreover, even then the runcoms need to be dot prefixed within `${ZDOTDIR}`.
