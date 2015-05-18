@@ -36,6 +36,8 @@ There are projects that insist on living in the home directory and are either ha
 
 * GnuPG. Configs, data, and even sockets all live in `$GNUPGHOME`, making it hard to follow the base directory spec; worse yet, GPGTools (the OS X GUI suite) won't work if `~/.gnupg` is not present, even when `$GNUPGHOME` is set.
 
+* Heroku toolbelt. I see no way to customize the path `~/.heroku`. See [heroku/toolbelt#115](https://github.com/heroku/toolbelt/issues/115).
+
 * matplotlib. According to the [FAQ](http://matplotlib.org/faq/environment_variables_faq.html#envvar-MPLCONFIGDIR), matplotlib puts its config as well as caches in a single directory, `MPLCONFIGDIR`, which is far from XDG conformant. Fortunately I rarely use matplotlib and don't have any personal customizations, so the directory is simply dropped to `$XDG_CACHE_HOME/matplotlib` (see `env/env.d/matplotlib`).
 
 * mutt. The `FILES` section of `man 1 mutt` says that the user configuration file is either `~/.muttrc` or `~/.mutt/muttrc`.

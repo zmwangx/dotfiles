@@ -1,0 +1,18 @@
+client:
+  access_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  access_token_secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  consumer_key: XXXXXXXXXXXXXXXXXXXXXXXXX
+  consumer_secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+grep:
+- patterns:
+  - pattern1
+  - pattern2
+  screen_name: username1
+  since_id: XXXXXXXXXXXXXXXXXX
+  user_id: XXXXXXXXX
+- patterns:
+  - pattern3
+  - pattern4
+  screen_name: username2
+  since_id: XXXXXXXXXXXXXXXXXX
+  user_id: XXXXXXXXX

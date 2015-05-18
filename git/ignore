@@ -69,11 +69,10 @@ Temporary Items
 
 Python
 ######
-venv
-venv2
-venv3
+venv*
 .coverage
 .tox
+*.egg-info
 
 #################
 # Miscellaneous #
