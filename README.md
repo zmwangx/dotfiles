@@ -52,6 +52,8 @@ There are projects that insist on living in the home directory and are either ha
 
 * tox. tox has no global configuration file, and unless one enforces one's own preferences for `distshare` on other developers by setting `distshare` in `tox.ini`, it defaults to `{homedir}/.tox/distshare`. See [docs](http://codespeak.net/tox/config.html). (And the stupid thing is, I don't really need to access build artifects between runs. I guess `~/.tox/distshare` — serving no purpose at all in my case — has to be routinely wiped.)
 
+* Travis CI CLI client. [#219](https://github.com/travis-ci/travis.rb/issues/219) is precisely about the `$XDG_CONFIG_HOME` issue. No word thus far.
+
 * tmux. The `FILEs` section of `man 1 tmux` makes it clear that `~/.tmux.conf` is not customizable.
 
 * Z shell. In principle we can use the `ZDOTDIR` environment variable. In practice, there's no way to set the per-user `ZDOTDIR` before `${ZDOTDIR:-$HOME}/.zshenv` is read except by directly hacking from `launchd`. Moreover, even then the runcoms need to be dot prefixed within `${ZDOTDIR}`.
