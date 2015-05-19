@@ -33,6 +33,7 @@ alias ip3='ipython3'
 alias syspip3='/usr/local/bin/pip3'
 
 ##################################### MISC #####################################
+alias ga='git add'
 alias notify='terminal-notifier -message'
 alias onedrive-cli='onedrive-cli --config ${XDG_CONFIG_HOME:-$HOME/.config}/onedrive/python-onedrive.yml'
 alias pl='parallel'
