@@ -1,4 +1,4 @@
-I'm striving to declutter my home directory (following [XDG Base Directory Specification](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)) and put configs into version control. This is a work in progress, and the configs of more projects will be factored into this repo in the near future, probably including `zsh`/`bash` and `emacs` customizations (which are fundamental) as well as `cron` maintenance scripts.
+I'm striving to declutter my home directory (following the [XDG Base Directory Specification](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)) and put configs into version control. This is a work in progress, and the configs of more projects will be factored into this repo in the near future, probably including `emacs` init scripts as well as `cron` maintenance scripts.
 
 ## Getting started
 
@@ -8,14 +8,8 @@ git clone https://github.com/zmwangx/dotfiles ~/.config
 # Set up global environment.
 source ~/.config/env
 
-# Create data and cache dirs (some programs are not smart enough to
-# create directories themselves, and nonexistent directories are
-# silently ignored). Also, change modes of config, data, and cache
-# directories to 700 for security.
-~/.config/dirs
-
-# Link some of the offenders (discussed below) to $HOME.
-~/.config/link
+# Create data/cache directories and link some dotfiles or dot directories to HOME.
+~/.config/dirs/setup
 ```
 
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv`, and its equivalent should go into the rc for other noninteractive shells (the `export` builtin is required and the `export var=val` syntax must be supported).
@@ -45,6 +39,8 @@ There are projects that insist on living in the home directory and are either ha
 * GNU Parallel. `$ENV{'HOME'} . "/.parallel/foo"` appears everywhere in the Perl source.
 
 * Prezto. Prezto's init script explicitly loads from `${ZDOTDIR:-$HOME}/.zprezto/modules/`.
+
+* pyenv. Like RVM, pyenv contains all the binaries that don't fit anyware.
 
 * PyPI. According to [the docs](https://docs.python.org/3/distutils/packageindex.html#pypirc), the path of the config file has to be `$HOME/.pypirc`.
 
