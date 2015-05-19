@@ -1,2 +1,0 @@
-# -*- mode: sh; -*-
-export PYENV_VERSION=3.4.3:3.5.0a4:system:pypy3-2.4.0

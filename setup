@@ -35,6 +35,7 @@ destination[colordiff/colordiffrc]=.colordiffrc
 destination[gnupg/gpg.conf]=.gnupg/gpg.conf
 destination[mutt/muttrc]=.muttrc
 destination[parallel]=.parallel
+destination[pyenv/version]=.pyenv/version
 destination[pypi/pypirc]=.pypirc
 destination[tmux/tmux.conf]=.tmux.conf
 destination[zsh/zshenv]=.zshenv
