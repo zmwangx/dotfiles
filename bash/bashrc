@@ -1,0 +1,17 @@
+# -*- mode: sh; -*-
+
+# get global env
+source ~/.config/env
+
+# history facilities
+HISTFILE=${XDG_DATA_HOME:-$HOME/.local/share}/bash/history
+HISTSIZE=10000
+HISTTIMEFORMAT=%s
+PROMPT_COMMAND='history -a'
+
+# deduplicate PATH
+PATH=$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++')
+
+# aliases
+alias l='ls -1A --color=auto'
+alias path='echo $PATH | tr -s ":" "\n"'
