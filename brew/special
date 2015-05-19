@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+### link apps
+echo "${BOLD}${BLUE}brew linkapps emacs${RESET}" >&2
+brew linkapps emacs
+echo "${BOLD}${BLUE}brew linkapps mpv${RESET}" >&2
+brew linkapps mpv
+echo "${BOLD}${BLUE}brew linkapps terminal-notifier${RESET}" >&2
+brew linkapps terminal-notifier
+
+### keg-only
+echo "${BOLD}${BLUE}mkdir -p ~/dev/bin${RESET}" >&2
+mkdir -p ~/dev/bin
+# curl
+curl_bin="$(brew --prefix curl)/bin"
+echo "${BOLD}${BLUE}ln -sf '$curl_bin'/* ~/dev/bin${RESET}" >&2
+ln -sf "$curl_bin"/* ~/dev/bin
+# gnu-getopt
+gnu_getopt_bin="$(brew --prefix gnu-getopt)/bin"
+echo "${BOLD}${BLUE}ln -sf '$gnu_getopt_bin'/* ~/dev/bin${RESET}" >&2
+ln -sf "$gnu_getopt_bin"/* ~/dev/bin
+
+### permissions
+# htop
+htop="$(brew --prefix htop-osx)/bin/htop"
+echo "${BOLD}${BLUE}sudo chown root:wheel '$htop'${RESET}" >&2
+sudo chown root:wheel "$htop"
+echo "${BOLD}${BLUE}sudo chmod u+s '$htop'${RESET}" >&2
+sudo chmod u+s "$htop"

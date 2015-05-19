@@ -1,0 +1,78 @@
+asciidoc --with-docbook-xsl
+asciinema
+aspell --with-lang-en
+autoconf
+automake
+bash
+bazaar
+bfg
+bibutils
+brew-cask
+brew-desc
+cb2bib
+chrome-cli
+cmake
+colordiff
+commonmark
+coreutils
+curl --with-gssapi --with-libidn --with-libssh2 --with-rtmpdump
+daemonize
+diceware
+dos2unix
+duti
+emacs --cocoa --with-d-bus --with-gnutls --with-imagemagick --with-librsvg --with-mailutils
+exiftool
+fdupes
+ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libbluray --with-libcaca --with-libquvi --with-libvidstab --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265
+findutils --with-default-names
+flac --with-libogg
+fontconfig
+fpp
+freetype
+gawk
+gcc
+git
+gnu-getopt
+gnu-sed --with-default-names
+gnu-tar --with-default-names
+go
+grep --with-default-names
+htop-osx
+hub
+imagemagick --with-fontconfig --with-librsvg --with-libtiff --with-webp
+jpeg
+jq
+libmagic --with-python
+lsdvd --with-libdvdcss
+mercurial
+most
+mpv --with-libaacs --with-libbluray --with-libbs2b --with-libcaca --with-libdvdnav --with-libdvdread --with-official-libass --with-vapoursynth
+mutt --with-s-lang
+node
+ohcount
+optipng
+p7zip
+pandoc
+parallel
+pv
+pyenv
+python
+python3
+rar
+reattach-to-user-namespace
+rsync
+rtmpdump
+ruby
+safe-rm
+shellcheck
+sponge
+terminal-notifier
+tidy-html5
+tmux
+trans
+vim --override-system-vi
+vobcopy
+wdiff
+wget --with-iri
+xz
+youtube-dl

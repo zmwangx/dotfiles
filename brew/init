@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+here="$(dirname "$(realpath "$0")")"
+
+# install Homebrew base system
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# taps
+while read -r tap; do
+    echo "${BOLD}${BLUE}brew tap $tap${RESET}" >&2
+    brew tap $tap
+    { echo; echo; echo; } >&2
+done < "$here/taps"
+
+# formulas
+while read -r optstring; do
+    echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
+    brew install $optstring
+    { echo; echo; echo; } >&2
+done < "$here/formulas"
+
+# specials
+"$here/special"
