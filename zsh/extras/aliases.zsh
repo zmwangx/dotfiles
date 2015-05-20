@@ -11,6 +11,7 @@ alias empty_trash='rm -rf ~/.Trash'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias dev='cd ~/dev/src'
+alias scpt='cd ~/dev/scripts'
 alias tmp='cd /tmp'
 
 alias finance='hdiutil attach -stdinpass ~/confidential/finance.sparsebundle'
