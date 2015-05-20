@@ -1,3 +1,6 @@
 [submodule "zsh/prezto"]
 	path = zsh/prezto
 	url = git@github.com:zmwangx/prezto.git
+[submodule "cron"]
+	path = cron
+	url = git@gitlab.com:zmwangx/cron.git

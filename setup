@@ -9,7 +9,7 @@ shopt -s nullglob
 
 echo "${GREEN}creating program-specific data and cache directories...${RESET}" >&2
 data_dirs=(aspell bash ipython less pry pylint zsh)
-cache_dirs=(fontconfig gem grip matplotlib npm)
+cache_dirs=(cron fontconfig gem grip matplotlib npm)
 for dir in ${data_dirs[@]}; do
     echo "create directory: ${XDG_DATA_HOME}/${dir}" >&2
     mkdir -p "${XDG_DATA_HOME}/${dir}"

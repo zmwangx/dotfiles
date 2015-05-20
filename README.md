@@ -1,9 +1,9 @@
-I'm striving to declutter my home directory (following the [XDG Base Directory Specification](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)) and put configs into version control. This is a work in progress, and the configs of more projects will be factored into this repo in the near future, probably including `emacs` init scripts as well as `cron` maintenance scripts.
+I'm striving to declutter my home directory (following the [XDG Base Directory Specification](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)) and put configs into version control. This is a work in progress, and the configs of more projects will be factored into this repo in the near future when I finish sorting them out. Note that the `cron` submodule is private.
 
 ## Getting started
 
 ```zsh
-git clone https://github.com/zmwangx/dotfiles ~/.config
+git clone --recursive https://github.com/zmwangx/dotfiles ~/.config
 
 # Set up global environment.
 source ~/.config/env
