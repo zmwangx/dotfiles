@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+here="$(dirname "$(realpath "$0")")"
+
+errored=false
+
+# QL plugins
+while read -r qlplugin; do
+    [[ $qlplugin == \#* ]] && continue # skip comments
+    echo "${BOLD}${BLUE}sudo brew cask install $qlplugin${RESET}" >&2
+    sudo brew cask install $qlplugin || errored=true
+    { echo; echo; echo; } >&2
+done < "$here/qlplugins"
+defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
+qlmanage -r
+
+# apps
+while read -r app; do
+    [[ $app == \#* ]] && continue # skip comments
+    echo "${BOLD}${BLUE}sudo brew cask install $app${RESET}" >&2
+    sudo brew cask install $app || errored=true
+    { echo; echo; echo; } >&2
+done < "$here/apps"
+
+# special
+"$here/special" || errored=true
+
+# print notes
+echo "$GREEN" >&2
+cat "$here/notes" >&2
+echo "$RESET" >&2
+
+[[ $errored == false ]]

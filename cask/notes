@@ -1,0 +1,9 @@
+A few things that belongs to neither MAS nor Casks:
+
+* Mathematica: https://user.wolfram.com/portal/
+* Office for Mac 2015 Preview: https://products.office.com/en-us/mac/mac-preview
+* Flvcd: http://download.flvcd.com/
+
+About Dropzone3 licensing: The MAS version needs to be installed and
+run at least once before installing the unsandboxed version using
+brew-cask.

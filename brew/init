@@ -2,22 +2,28 @@
 
 here="$(dirname "$(realpath "$0")")"
 
+errored=false
+
 # install Homebrew base system
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || errored=true
 
 # taps
 while read -r tap; do
+    [[ $tap == \#* ]] && continue # skip comments
     echo "${BOLD}${BLUE}brew tap $tap${RESET}" >&2
-    brew tap $tap
+    brew tap $tap || errored=true
     { echo; echo; echo; } >&2
 done < "$here/taps"
 
 # formulas
 while read -r optstring; do
+    [[ $optstring == \#* ]] && continue # skip comments
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
-    brew install $optstring
+    brew install $optstring || errored=true
     { echo; echo; echo; } >&2
 done < "$here/formulas"
 
 # specials
-"$here/special"
+"$here/special" || errored=true
+
+[[ $errored == false ]]
