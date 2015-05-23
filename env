@@ -1,7 +1,7 @@
 # -*- mode: sh; -*-
 # shell-independent environment variables
 
-export PATH=$HOME/dev/scripts:$HOME/dev/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:$PATH
+export PATH=$HOME/dev/scripts:$HOME/dev/go/bin:$HOME/dev/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:$PATH
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
 export TMPDIR=/tmp

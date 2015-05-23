@@ -1,0 +1,2 @@
+# -*- mode:sh; -*-
+export ASCIINEMA_CONFIG=$XDG_CONFIG_HOME/asciinema/config
