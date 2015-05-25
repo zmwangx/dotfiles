@@ -1,1 +1,2 @@
 cache=${XDG_CACHE_HOME}/npm
+python=python2.7
