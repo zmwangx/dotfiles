@@ -1,0 +1,4 @@
+# token is a personal access token which can be generated at https://github.com/settings/tokens
+oauth:
+  user: zmwangx
+  token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

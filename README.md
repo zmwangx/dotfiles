@@ -46,6 +46,8 @@ There are projects that insist on living in the home directory and are either ha
 
 * RVM. `.rvm` contains all the binaries, so it doesn't fit nicely anywhere. I'll just leave it alone in `$HOME`. (By the way, beware of RVM's stupid install script, which by default litters your every single shell init script, even nonexisting ones — `.mkshrc` WTF?)
 
+* Shout. [Hard-coded](https://github.com/erming/shout/blob/master/src/helper.js).
+
 * tox. tox has no global configuration file, and unless one enforces one's own preferences for `distshare` on other developers by setting `distshare` in `tox.ini`, it defaults to `{homedir}/.tox/distshare`. See [docs](http://codespeak.net/tox/config.html). (And the stupid thing is, I don't really need to access build artifects between runs. I guess `~/.tox/distshare` — serving no purpose at all in my case — has to be routinely wiped.)
 
 * Travis CI CLI client. [#219](https://github.com/travis-ci/travis.rb/issues/219) is precisely about the `$XDG_CONFIG_HOME` issue. No word thus far.

@@ -2,3 +2,6 @@
 
 # get global env
 source ~/.config/env
+
+# remove dupes in paths
+typeset -gU cdpath fpath mailpath path
