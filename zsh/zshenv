@@ -3,5 +3,8 @@
 # get global env
 source ~/.config/env
 
+# source per-host overrides
+[[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostenv ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostenv
+
 # remove dupes in paths
 typeset -gU cdpath fpath mailpath path
