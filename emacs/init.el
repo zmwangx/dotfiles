@@ -98,7 +98,7 @@
   (defun my-prog-mode-hook ()
     (auto-complete-mode 1)
     (hs-minor-mode 1)
-    (setq fill-column 79)
+    (setq-default fill-column 79)
     (bind-key "RET" 'indent-and-newline-and-indent prog-mode-map))
 
   :config
