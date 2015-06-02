@@ -17,5 +17,8 @@ source ~/.zprezto/init.zsh
 # source extras
 for script in ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/extras/*.zsh(N); do source $script; done
 
+# source per-host overrides
+[[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostrc ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostrc
+
 # remove dupes in paths
 typeset -gU cdpath fpath mailpath path
