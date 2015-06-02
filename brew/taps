@@ -2,6 +2,7 @@ caskroom/cask
 caskroom/versions
 homebrew/binary
 homebrew/dupes
+homebrew/x11
 mpv-player/mpv
 telemachus/desc
 zmwangx/tap

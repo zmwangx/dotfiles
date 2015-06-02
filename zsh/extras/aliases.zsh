@@ -36,6 +36,7 @@ alias syspip3='/usr/local/bin/pip3'
 ##################################### MISC #####################################
 alias ga='git add'
 alias git.io='git-hub-shorten-url'
+alias muttd='mutt && rm -f /tmp/.new_mail_notification_sent'
 alias notify='terminal-notifier -message'
 alias onedrive-cli='onedrive-cli --config ${XDG_CONFIG_HOME:-$HOME/.config}/onedrive/python-onedrive.yml'
 alias pl='parallel'
