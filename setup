@@ -10,21 +10,21 @@ shopt -s nullglob
 echo "${GREEN}creating program-specific data and cache directories...${RESET}" >&2
 data_dirs=(aspell bash ipython less pry pylint zsh)
 cache_dirs=(cron fontconfig gem grip matplotlib npm)
-for dir in ${data_dirs[@]}; do
-    echo "create directory: ${XDG_DATA_HOME}/${dir}" >&2
-    mkdir -p "${XDG_DATA_HOME}/${dir}"
+for dir in "${data_dirs[@]}"; do
+    echo "create directory: $XDG_DATA_HOME/$dir" >&2
+    mkdir -p "$XDG_DATA_HOME/$dir"
 done
-for dir in ${cache_dirs[@]}; do
-    echo "create directory: ${XDG_CACHE_HOME}/${dir}" >&2
-    mkdir -p "${XDG_CACHE_HOME}/${dir}"
+for dir in "${cache_dirs[@]}"; do
+    echo "create directory: $XDG_CACHE_HOME/$dir" >&2
+    mkdir -p "$XDG_CACHE_HOME/$dir"
 done
 
 # Change mode of all directories in $XDG_CONFIG_HOME, $XDG_DATA_HOME, and
 # $XDG_CACHE_HOME to 700.
 
 echo "${GREEN}changing program-specific directory modes to 700...${RESET}" >&2
-for dir in "${XDG_CONFIG_HOME}"/*/ "${XDG_DATA_HOME}"/*/ "${XDG_CACHE_HOME}"/*/; do
-    chmod 700 "${dir}"
+for dir in "$XDG_CONFIG_HOME"/*/ "$XDG_DATA_HOME"/*/ "$XDG_CACHE_HOME"/*/; do
+    chmod 700 "$dir"
 done
 
 # Symlink uncustomizable XDG offenders to $HOME.
@@ -63,22 +63,23 @@ function backup_and_symlink
 {
     src=$1
     dst=$2
-    [[ -e ${src} ]] || { echo "${RED}error: '${src}' does not exist${RESET}" >&2; return 1; }
-    [[ -d ${dst} && ! -h ${dst} ]] && \
-        { echo "${RED}error: not overwriting destination directory '${dst}'${RESET}" >&2; return 1; }
-    [[ -e ${dst} && ! -h ${dst} ]] && \
-        { mv "${dst}" "${dst}.bak"; echo "${YELLOW}warning: '${dst}' backed up to '${dst}.bak'${RESET}" >&2; }
-    [[ -h ${dst} ]] && rm "${dst}"
-    echo "${src} <== ${dst}" >&2
-    ln -s "${src}" "${dst}"
+    [[ -e $src ]] || { echo "${RED}error: '$src' does not exist${RESET}" >&2; return 1; }
+    [[ -d $dst && ! -h $dst ]] && \
+        { echo "${RED}error: not overwriting destination directory '$dst'${RESET}" >&2; return 1; }
+    [[ -e $dst && ! -h $dst ]] && \
+        { mv "$dst" "$dst.bak"; echo "${YELLOW}warning: '$dst' backed up to '$dst.bak'${RESET}" >&2; }
+    [[ -h $dst ]] && rm "$dst"
+    echo "$src <== $dst" >&2
+    mkdir -p "$(dirname "$dst")"
+    ln -s "$src" "$dst"
 }
 
 echo "${GREEN}symlinking dotfiles and dot directories...${RESET}" >&2
 success_count=0
 failure_count=0
 for src in "${!destination[@]}"; do
-    dst=${destination[${src}]}
-    if backup_and_symlink "${XDG_CONFIG_HOME}/${src}" "${HOME}/${dst}"; then
+    dst=${destination[$src]}
+    if backup_and_symlink "$XDG_CONFIG_HOME/$src" "$HOME/$dst"; then
         ((success_count++))
     else
         ((failure_count++))
