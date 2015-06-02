@@ -112,7 +112,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BUILTIN PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package abbrev :commands abbrev-mode :diminish abbrev-mode :config
-  (setq abbrev-file-name "~/.emacs.d/local/abbrev_defs")
+  (setq abbrev-file-name (expand-file-name "local/abbrev_defs" user-emacs-directory))
   (if (file-exists-p abbrev-file-name) (quietly-read-abbrev-file)))
 
 (use-package auto-complete :commands auto-complete-mode :diminish auto-complete-mode)
@@ -268,7 +268,7 @@
   :preface
   (auto-insert-mode)
   (setq auto-insert-query nil)
-  (setq auto-insert-directory "~/.emacs.d/local/templates")
+  (setq auto-insert-directory (expand-file-name "local/templates" user-emacs-directory))
 
   ;; LaTeX
   (setq my-amsart-preamble-file
