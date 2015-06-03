@@ -156,7 +156,7 @@
 
 (use-package ruby-mode :mode "\\.rb\\'" :interpreter "ruby")
 
-(use-package sh-script :mode ("\\.zsh\\'" . sh-mode) :config
+(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\)\\'" . sh-mode) :config
   (if (equal mytheme 'solarized-dark)
       (progn
         (set-face-attribute 'sh-heredoc nil :foreground "brightyellow" :weight 'regular)
