@@ -10,6 +10,8 @@
 (eval-and-compile
   (mapc #'(lambda (path) (push (expand-file-name path user-emacs-directory) load-path))
         '("local" "local/use-package")))
+(unless (file-exists-p package-user-dir)
+  (package-refresh-contents))
 (package-initialize)
 
 ;;; use-package init
