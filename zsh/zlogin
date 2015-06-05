@@ -7,3 +7,5 @@ fi
 
 # source per-host overrides
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogin ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogin
+
+true
