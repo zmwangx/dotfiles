@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# This hook is sourced after every virtualenv is activated.
+
+VIRTUAL_ENV_PYTHON_VERSION=$(python --version 2>&1)
+VIRTUAL_ENV_PYTHON_VERSION=${VIRTUAL_ENV_PYTHON_VERSION#Python }

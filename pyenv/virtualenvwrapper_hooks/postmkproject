@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+# This hook is run after a new project is activated.

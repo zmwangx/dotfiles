@@ -1,0 +1,7 @@
+# -*- mode: sh; -*-
+PYENV_HOME=$HOME/.pyenv
+# virtualenvwrapper
+WORKON_HOME=$PYENV_HOME/virtualenvs
+VIRTUALENVWRAPPER_HOOK_DIR=$PYENV_HOME/virtualenvwrapper_hooks
+VIRTUALENVWRAPPER_WORKON_CD=0
+PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV=true

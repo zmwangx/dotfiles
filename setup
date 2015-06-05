@@ -4,6 +4,9 @@
 
 shopt -s nullglob
 
+here=$(dirname "$(readlink -f "$0")")
+source "$here/env"
+
 # Create data and cache dirs (some programs are not smart enough to create
 # directories themselves, and nonexistent directories are silently ignored).
 
@@ -46,6 +49,20 @@ destination[zsh/zlogin]=.zlogin
 destination[zsh/zlogout]=.zlogout
 destination[zsh/prezto]=.zprezto
 
+# virtualenvwrapper hooks
+if [[ -n $VIRTUALENVWRAPPER_HOOK_DIR ]]; then
+    # virtualenvwrapper hook directory relative to HOME
+    venvhookdir=${VIRTUALENVWRAPPER_HOOK_DIR#$HOME/}
+elif [[ -n $WORKON_HOME ]]; then
+    venvhookdir=${WORKON_HOME#$HOME/}
+else
+    venvhookdir=.virtualenvs
+fi
+for hook in "$XDG_CONFIG_HOME"/pyenv/virtualenvwrapper_hooks/*; do
+    hook_name=${hook##*/}
+    destination[pyenv/virtualenvwrapper_hooks/$hook_name]=$venvhookdir/$hook_name
+done
+
 # This function symlinks source to destination (so that the destination is
 # eventually a symlink pointing to source), backing up destination if it
 # already exists.
@@ -78,7 +95,7 @@ function backup_and_symlink
 echo "${GREEN}symlinking dotfiles and dot directories...${RESET}" >&2
 success_count=0
 failure_count=0
-for src in "${!destination[@]}"; do
+for src in "${!destination[@]}"; do echo "$src"; done | sort | while read -r src; do
     dst=${destination[$src]}
     if backup_and_symlink "$XDG_CONFIG_HOME/$src" "$HOME/$dst"; then
         ((success_count++))
