@@ -225,6 +225,8 @@
 
 (use-package crontab-mode :ensure t :mode "/crontab\\(\\.[^/]*\\)?\\'")
 
+(use-package diminish :ensure t)
+
 (use-package fiplr :ensure t :commands (fiplr-find-file fiplr-find-directory)
   :bind (("C-x f" . fiplr-find-file) ("C-x d" . fiplr-find-directory))
   :preface
