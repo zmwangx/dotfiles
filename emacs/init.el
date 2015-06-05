@@ -52,6 +52,7 @@
       (setq-default frame-background-mode 'dark)
       (menu-bar-mode -1)
 
+      (set-face-attribute 'error nil :foreground "red" :weight 'bold)
       (set-face-attribute 'font-lock-builtin-face nil :foreground "blue")
       (set-face-attribute 'font-lock-comment-face nil :foreground "yellow")
       (set-face-attribute 'font-lock-constant-face nil :foreground "green")
@@ -100,7 +101,9 @@
 (use-package prog-mode
   :preface
   (defun my-prog-mode-hook ()
-    (auto-complete-mode 1)
+    (condition-case nil
+        (auto-complete-mode 1)
+      (error nil))
     (hs-minor-mode 1)
     (setq-default fill-column 79)
     (bind-key "RET" 'indent-and-newline-and-indent prog-mode-map))
