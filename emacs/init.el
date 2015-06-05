@@ -26,12 +26,16 @@
 (setq-default require-final-newline t)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;;; interaction
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;;; UI
 (setq-default inhibit-startup-screen t)
 (column-number-mode)
 
 ;;; global keybindings
 (bind-key "C-\\" 'delete-trailing-whitespace)
+(bind-key "C-x C-r" 'revert-buffer)
 (bind-key "C-x C-k" 'server-edit)
 (bind-key "M-s" 'shell-command)
 (bind-key "C--" 'undo)
@@ -136,6 +140,11 @@
         (set-face-attribute 'cperl-hash-face nil :foreground "red" :background "default" :weight 'bold :slant 'normal)
         (set-face-attribute 'cperl-nonoverridable-face nil :foreground "cyan"))))
 
+(use-package ido-mode :defer 0
+  :init
+  (ido-mode)
+  (ido-everywhere 1))
+
 (use-package make-mode :mode ("\\Makefile\\'" . makefile-mode) :config
   (if (equal mytheme 'solarized-dark)
       (set-face-attribute 'makefile-space nil :background "magenta")))
@@ -215,6 +224,13 @@
 (use-package auto-complete :ensure t :defer t)
 
 (use-package crontab-mode :ensure t :mode "/crontab\\(\\.[^/]*\\)?\\'")
+
+(use-package fiplr :ensure t :commands (fiplr-find-file fiplr-find-directory)
+  :bind (("C-x f" . fiplr-find-file) ("C-x d" . fiplr-find-directory))
+  :preface
+  (setq fiplr-ignored-globs
+        '((directories (".git" ".svn" ".tox" "build"))
+          (files ("*.jpg" "*.o" "*.png" "*.pyc")))))
 
 (use-package git-commit-mode :ensure t :defer t :config
   (if (equal mytheme 'solarized-dark)
