@@ -23,6 +23,7 @@ alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias probe='ffprobe'
 alias m='mpv-launcher'
+alias mp='mpv-launcher --playlist'
 alias yd="youtube-dl -o '%(upload_date)s-%(title)s__yt-%(id)s.%(ext)s' --write-sub"
 alias yf='youtube-dl -F'
 alias yt='youtube-dash-dl'
