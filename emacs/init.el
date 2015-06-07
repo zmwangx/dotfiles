@@ -47,6 +47,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL THEMING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'color)
+
 (if (not (window-system))
     ;;; tty mode, colors based on my modified Solarized palatte for iTerm2
     (progn
@@ -63,7 +65,7 @@
       (set-face-attribute 'font-lock-string-face nil :foreground "green")
       (set-face-attribute 'font-lock-type-face nil :foreground "cyan")
       (set-face-attribute 'font-lock-variable-name-face nil :foreground "brightred")
-      (set-face-attribute 'region nil :background "brightcyan"))
+      (set-face-attribute 'region nil :background "brightcyan" :foreground "black"))
 
   ;;; window system mode
   (progn
@@ -124,8 +126,6 @@
   (setq abbrev-file-name (expand-file-name "local/abbrev_defs" user-emacs-directory))
   (if (file-exists-p abbrev-file-name) (quietly-read-abbrev-file)))
 
-(use-package auto-complete :commands auto-complete-mode :diminish auto-complete-mode)
-
 (use-package cc-mode
   :preface
   (defun my-c-mode-common-hook ()
@@ -144,6 +144,10 @@
         (set-face-attribute 'cperl-array-face nil :foreground "red" :background "default" :weight 'bold :slant 'normal)
         (set-face-attribute 'cperl-hash-face nil :foreground "red" :background "default" :weight 'bold :slant 'normal)
         (set-face-attribute 'cperl-nonoverridable-face nil :foreground "cyan"))))
+
+(use-package diff-mode :defer t :config
+  (if (equal mytheme 'solarized-dark)
+      (set-face-attribute 'diff-file-header nil :inherit 'diff-header :background 'unspecified)))
 
 (use-package ido-mode :defer 0
   :init
@@ -226,7 +230,7 @@
            (set-face-attribute 'font-latex-sedate-face nil :foreground "cyan")
            (set-face-attribute 'font-latex-verbatim-face nil :foreground "white")))))
 
-(use-package auto-complete :ensure t :defer t)
+(use-package auto-complete :ensure t :commands auto-complete-mode :diminish auto-complete-mode)
 
 (use-package crontab-mode :ensure t :mode "/crontab\\(\\.[^/]*\\)?\\'")
 
