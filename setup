@@ -36,6 +36,7 @@ declare -A destination
 destination[bash/bashrc]=.bashrc
 destination[colordiff/colordiffrc]=.colordiffrc
 destination[emacs]=.emacs.d
+destination[fontconfig/fonts]=.fonts
 destination[gnupg/gpg.conf]=.gnupg/gpg.conf
 destination[mutt/muttrc]=.muttrc
 destination[parallel]=.parallel
