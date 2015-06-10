@@ -5,11 +5,8 @@ I'm striving to declutter my home directory (following the [XDG Base Directory S
 ```zsh
 git clone --recursive https://github.com/zmwangx/dotfiles ~/.config
 
-# Set up global environment.
-source ~/.config/env
-
 # Create data/cache directories and link some dotfiles or dot directories to HOME.
-~/.config/dirs/setup
+~/.config/setup
 ```
 
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv`, and its equivalent should go into the rc for other noninteractive shells (the `export` builtin is required and the `export var=val` syntax must be supported).
