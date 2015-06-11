@@ -1,0 +1,16 @@
+build-essential
+curl
+git
+libbsd0
+libbsd-dev
+libbz2-dev
+libcurl4-openssl-dev
+libexpat-dev
+libncurses-dev
+libreadline-dev
+libsqlite3-dev
+libssl-dev
+m4
+ruby
+texinfo
+zlib1g-dev

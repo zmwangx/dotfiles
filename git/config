@@ -13,3 +13,7 @@
 	email = zmwangx@gmail.com
 	name = Zhiming Wang
 	signingkey = 110044B8
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true

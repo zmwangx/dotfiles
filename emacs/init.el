@@ -147,7 +147,9 @@
 
 (use-package diff-mode :defer t :config
   (if (equal mytheme 'solarized-dark)
-      (set-face-attribute 'diff-file-header nil :inherit 'diff-header :background 'unspecified)))
+      (progn
+        (set-face-attribute 'diff-header nil :foreground "default" :background "default")
+        (set-face-attribute 'diff-file-header nil :inherit 'diff-header :background 'unspecified))))
 
 (use-package ido-mode :defer 0
   :init
@@ -166,7 +168,7 @@
     (bind-key "RET" 'newline-and-indent python-mode-map)
     ;; jedi
     (setq-default jedi:complete-on-dot t)
-    (setq-default jedi:environment-root "jedi")
+    (setq-default jedi:environment-root "default")
     (jedi:setup))
 
   :config
@@ -251,7 +253,9 @@
 
 (use-package jedi :ensure t :defer t)
 
-(use-package magit :ensure t :defer 3 :diminish magit-auto-revert-mode :init
+(use-package magit :ensure t :defer 0 :diminish magit-auto-revert-mode
+  :bind ("M-m" . magit-status)
+  :init
   (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config

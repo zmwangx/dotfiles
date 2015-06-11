@@ -1,3 +1,6 @@
+[MASTER]
+extension-pkg-whitelist=lxml
+
 [MESSAGES CONTROL]
 disable=locally-disabled
 
