@@ -2,10 +2,6 @@
 
 errored=false
 
-### rename apps
-echo "${BOLD}${BLUE}sudo mv /Applications/百度云同步盘.app /Applications/BaiduCloud.app${RESET}" >&2
-sudo mv /Applications/百度云同步盘.app /Applications/BaiduCloud.app || errored=true
-
 ### move apps into /Applications
 function find_and_move_app
 {
@@ -14,12 +10,12 @@ function find_and_move_app
     [[ -n $paths ]] || { echo "${RED}error: no install found in /opt/homebrew-cask/Caskroom/$1${RESET}" >&2; return 1; }
     src=${paths[-1]}
     dst=/Applications/$3
-    echo "${BOLD}${BLUE}sudo rm -f '$dst'${RESET}" >&2
-    sudo rm -f "$dst" || { echo "${RED}error: '$dst' already exists${RESET}" >&2; return 1; }
-    echo "${BOLD}${BLUE}sudo mv '$src' '$dst'${RESET}" >&2
-    sudo mv "$src" "$dst" || { echo "${RED}error: failed to move into '$dst'${RESET}" >&2; return 1; }
-    echo "${BOLD}${BLUE}sudo ln -s '$dst' '$src'${RESET}" >&2
-    sudo ln -s "$dst" "$src"
+    echo "${BOLD}${BLUE}rm -f '$dst'${RESET}" >&2
+    rm -f "$dst" || { echo "${RED}error: '$dst' already exists${RESET}" >&2; return 1; }
+    echo "${BOLD}${BLUE}mv '$src' '$dst'${RESET}" >&2
+    mv "$src" "$dst" || { echo "${RED}error: failed to move into '$dst'${RESET}" >&2; return 1; }
+    echo "${BOLD}${BLUE}ln -s '$dst' '$src'${RESET}" >&2
+    ln -s "$dst" "$src"
 }
 
 # chromium
@@ -39,5 +35,9 @@ find_and_move_app "google-chrome-dev" "Google Chrome.app" "Google Chrome Dev.app
 find_and_move_app "opera" "Opera.app" "Opera.app" || errored=true
 find_and_move_app "opera-beta" "Opera Beta.app" "Opera Beta.app" || errored=true
 find_and_move_app "opera-developer" "Opera Developer.app" "Opera Developer.app" || errored=true
+
+### swap and rename apps with non-ASCII filenames
+find_and_move_app "baiducloud" "百度云同步盘.app" "BaiduCloud.app" || errored=true
+find_and_move_app "flvcd-bigrats" "硕鼠MAC.app" "BigRats.app" || errored=true
 
 [[ $errored == false ]]

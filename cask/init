@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-here="$(dirname "$(realpath "$0")")"
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
 errored=false
 
 # QL plugins
 while read -r qlplugin; do
     [[ $qlplugin == \#* ]] && continue # skip comments
-    echo "${BOLD}${BLUE}sudo brew cask install $qlplugin${RESET}" >&2
-    sudo brew cask install $qlplugin || errored=true
+    echo "${BOLD}${BLUE}brew cask install $qlplugin${RESET}" >&2
+    brew cask install $qlplugin || errored=true
     { echo; echo; echo; } >&2
 done < "$here/qlplugins"
 defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
@@ -17,8 +17,8 @@ qlmanage -r
 # apps
 while read -r app; do
     [[ $app == \#* ]] && continue # skip comments
-    echo "${BOLD}${BLUE}sudo brew cask install $app${RESET}" >&2
-    sudo brew cask install $app || errored=true
+    echo "${BOLD}${BLUE}brew cask install $app${RESET}" >&2
+    brew cask install $app || errored=true
     { echo; echo; echo; } >&2
 done < "$here/apps"
 

@@ -8,7 +8,6 @@ bazaar
 bfg
 bibutils
 brew-cask
-brew-desc
 cb2bib
 chrome-cli
 cmake
@@ -20,7 +19,7 @@ daemonize
 diceware
 dos2unix
 duti
-emacs --cocoa --with-d-bus --with-gnutls --with-imagemagick --with-librsvg --with-mailutils
+emacs --with-cocoa --with-d-bus --with-gnutls --with-imagemagick --with-librsvg --with-mailutils
 exiftool
 fdupes
 ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libbluray --with-libcaca --with-libquvi --with-libvidstab --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265
@@ -56,6 +55,7 @@ pandoc
 parallel
 pv
 pyenv
+pyenv-virtualenvwrapper
 python
 python3
 rar
@@ -76,3 +76,4 @@ wdiff
 wget --with-iri
 xz
 youtube-dl
+zsh

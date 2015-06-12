@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # This script sets up XDG directories and symlinks certain dotfiles to HOME.
 
-shopt -s nullglob
+setopt NULL_GLOB
 
-here=$(dirname "$(readlink -f "$0")")
-source "$here/env"
+here="$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")"
+source $here/env
 
 # Create data and cache dirs (some programs are not smart enough to create
 # directories themselves, and nonexistent directories are silently ignored).
@@ -13,42 +13,43 @@ source "$here/env"
 echo "${GREEN}creating program-specific data and cache directories...${RESET}" >&2
 data_dirs=(aspell bash ipython less pry pylint zsh)
 cache_dirs=(cron fontconfig gem grip matplotlib npm)
-for dir in "${data_dirs[@]}"; do
+for dir in $data_dirs; do
     echo "create directory: $XDG_DATA_HOME/$dir" >&2
-    mkdir -p "$XDG_DATA_HOME/$dir"
+    mkdir -p $XDG_DATA_HOME/$dir
 done
-for dir in "${cache_dirs[@]}"; do
+for dir in $cache_dirs; do
     echo "create directory: $XDG_CACHE_HOME/$dir" >&2
-    mkdir -p "$XDG_CACHE_HOME/$dir"
+    mkdir -p $XDG_CACHE_HOME/$dir
 done
 
 # Change mode of all directories in $XDG_CONFIG_HOME, $XDG_DATA_HOME, and
 # $XDG_CACHE_HOME to 700.
 
 echo "${GREEN}changing program-specific directory modes to 700...${RESET}" >&2
-for dir in "$XDG_CONFIG_HOME"/*/ "$XDG_DATA_HOME"/*/ "$XDG_CACHE_HOME"/*/; do
-    chmod 700 "$dir"
+for dir in $XDG_CONFIG_HOME/*/ $XDG_DATA_HOME/*/ $XDG_CACHE_HOME/*/; do
+    chmod 700 $dir
 done
 
 # Symlink uncustomizable XDG offenders to $HOME.
 
-declare -A destination
-destination[bash/bashrc]=.bashrc
-destination[colordiff/colordiffrc]=.colordiffrc
-destination[emacs]=.emacs.d
-destination[fontconfig/fonts]=.fonts
-destination[gnupg/gpg.conf]=.gnupg/gpg.conf
-destination[mutt/muttrc]=.muttrc
-destination[parallel]=.parallel
-destination[pyenv/version]=.pyenv/version
-destination[pypi/pypirc]=.pypirc
-destination[tmux/tmux.conf]=.tmux.conf
-destination[zsh/zshenv]=.zshenv
-destination[zsh/zprofile]=.zprofile
-destination[zsh/zshrc]=.zshrc
-destination[zsh/zlogin]=.zlogin
-destination[zsh/zlogout]=.zlogout
-destination[zsh/prezto]=.zprezto
+typeset -A destination
+set -A destination \
+    bash/bashrc .bashrc \
+    colordiff/colordiffrc .colordiffrc \
+    emacs .emacs.d \
+    fontconfig/fonts .fonts \
+    gnupg/gpg.conf .gnupg/gpg.conf \
+    mutt/muttrc .muttrc \
+    parallel .parallel \
+    pyenv/version .pyenv/version \
+    pypi/pypirc .pypirc \
+    tmux/tmux.conf .tmux.conf \
+    zsh/zshenv .zshenv \
+    zsh/zprofile .zprofile \
+    zsh/zshrc .zshrc \
+    zsh/zlogin .zlogin \
+    zsh/zlogout .zlogout \
+    zsh/prezto .zprezto
 
 # virtualenvwrapper hooks
 if [[ -n $VIRTUALENVWRAPPER_HOOK_DIR ]]; then
@@ -59,7 +60,7 @@ elif [[ -n $WORKON_HOME ]]; then
 else
     venvhookdir=.virtualenvs
 fi
-for hook in "$XDG_CONFIG_HOME"/pyenv/virtualenvwrapper_hooks/*; do
+for hook in $XDG_CONFIG_HOME/pyenv/virtualenvwrapper_hooks/*; do
     hook_name=${hook##*/}
     destination[pyenv/virtualenvwrapper_hooks/$hook_name]=$venvhookdir/$hook_name
 done
@@ -86,19 +87,19 @@ function backup_and_symlink
     [[ -d $dst && ! -h $dst ]] && \
         { echo "${RED}error: not overwriting destination directory '$dst'${RESET}" >&2; return 1; }
     [[ -e $dst && ! -h $dst ]] && \
-        { mv "$dst" "$dst.bak"; echo "${YELLOW}warning: '$dst' backed up to '$dst.bak'${RESET}" >&2; }
-    [[ -h $dst ]] && rm "$dst"
+        { mv $dst $dst.bak; echo "${YELLOW}warning: '$dst' backed up to '$dst.bak'${RESET}" >&2; }
+    [[ -h $dst ]] && rm $dst
     echo "$src <== $dst" >&2
-    mkdir -p "$(dirname "$dst")"
-    ln -s "$src" "$dst"
+    mkdir -p "$(dirname $dst)"
+    ln -s $src $dst
 }
 
 echo "${GREEN}symlinking dotfiles and dot directories...${RESET}" >&2
 success_count=0
 failure_count=0
-for src in "${!destination[@]}"; do echo "$src"; done | sort | while read -r src; do
-    dst=${destination[$src]}
-    if backup_and_symlink "$XDG_CONFIG_HOME/$src" "$HOME/$dst"; then
+for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
+    dst=$destination[$src]
+    if backup_and_symlink $XDG_CONFIG_HOME/$src $HOME/$dst; then
         ((success_count++))
     else
         ((failure_count++))

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-here="$(dirname "$(realpath "$0")")"
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
 errored=false
 
@@ -14,6 +14,14 @@ while read -r tap; do
     brew tap $tap || errored=true
     { echo; echo; echo; } >&2
 done < "$here/taps"
+
+# some formulas depend on x11, so install brew-cask and xquartz first
+echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
+brew install brew-cask
+{ echo; echo; echo; } >&2
+echo "${BOLD}${BLUE}sudo brew cask install xquartz${RESET}" >&2
+sudo brew cask install xquartz
+{ echo; echo; echo; } >&2
 
 # formulas
 while read -r optstring; do
