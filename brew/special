@@ -27,3 +27,10 @@ echo "${BOLD}${BLUE}sudo chown root:wheel '$htop'${RESET}" >&2
 sudo chown root:wheel "$htop"
 echo "${BOLD}${BLUE}sudo chmod u+s '$htop'${RESET}" >&2
 sudo chmod u+s "$htop"
+
+# mutt
+mutt="$(brew --prefix mutt)/bin/mutt"
+echo "${BOLD}${BLUE}sudo chown root:mail '$mutt'${RESET}" >&2
+sudo chown root:mail "$mutt"
+echo "${BOLD}${BLUE}sudo chmod u+s '$mutt'${RESET}" >&2
+sudo chmod u+s "$mutt"

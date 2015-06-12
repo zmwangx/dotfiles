@@ -1,2 +1,2 @@
-set folder="$HOME/Documents/Mail"
+set folder=~/.local/share/mail
 set allow_ansi = yes
