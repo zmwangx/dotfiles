@@ -1,5 +1,6 @@
 docutils
 ipython
+pip
 python-onedrive
 PyYAML
 requests

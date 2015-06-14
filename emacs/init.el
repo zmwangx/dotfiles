@@ -151,10 +151,14 @@
         (set-face-attribute 'diff-header nil :foreground "default" :background "default")
         (set-face-attribute 'diff-file-header nil :inherit 'diff-header :background 'unspecified))))
 
+(use-package hideshow :commands hs-minor-mode :diminish hs-minor-mode)
+
 (use-package ido-mode :defer 0
   :init
   (ido-mode)
-  (ido-everywhere 1))
+  (ido-everywhere 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-enable-last-directory-history nil))
 
 (use-package make-mode :mode ("\\Makefile\\'" . makefile-mode) :config
   (if (equal mytheme 'solarized-dark)
@@ -182,9 +186,11 @@
         (set-face-attribute 'sh-heredoc nil :foreground "brightyellow" :weight 'regular)
         (set-face-attribute 'sh-quoted-exec nil :foreground "red"))))
 
-(use-package hideshow :commands hs-minor-mode :diminish hs-minor-mode)
+(use-package vc-hooks :init (setq vc-follow-symlinks t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; PACKAGE.EL PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package ace-jump-mode :ensure t :bind ("M-h" . ace-jump-mode))
 
 (use-package adoc-mode :ensure t :mode "\\.adoc\\'")
 

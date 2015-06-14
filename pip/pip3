@@ -6,6 +6,7 @@ docutils
 ipython
 lxml
 Pillow
+pip
 pipdeptree
 Pygments
 pyimgur
@@ -16,3 +17,4 @@ requests
 tweepy
 virtualenvwrapper
 wheel
+you-get
