@@ -9,7 +9,7 @@
 (setq package-enable-at-startup nil)
 (eval-and-compile
   (mapc #'(lambda (path) (push (expand-file-name path user-emacs-directory) load-path))
-        '("local" "local/use-package")))
+        '("site-lisp" "lisp" "site-lisp/use-package")))
 (unless (file-exists-p package-user-dir)
   (package-refresh-contents))
 (package-initialize)
@@ -20,6 +20,10 @@
   (require 'use-package))
 (require 'bind-key)
 (require 'diminish nil t)
+
+;;; user info
+(setq user-full-name "Zhiming Wang")
+(setq user-mail-address "zmwangx@gmail.com")
 
 ;;; editing and saving
 (setq-default auto-save-default nil)
@@ -36,6 +40,7 @@
 (column-number-mode)
 
 ;;; global keybindings
+(bind-key "C-c ;" 'comment-or-uncomment-region)
 (bind-key "C-\\" 'delete-trailing-whitespace)
 (bind-key "C-x C-r" 'revert-buffer)
 (bind-key "C-x C-k" 'server-edit)
@@ -123,7 +128,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BUILTIN PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package abbrev :commands abbrev-mode :diminish abbrev-mode :config
-  (setq abbrev-file-name (expand-file-name "local/abbrev_defs" user-emacs-directory))
+  (setq abbrev-file-name (expand-file-name "abbrev_defs" user-emacs-directory))
   (if (file-exists-p abbrev-file-name) (quietly-read-abbrev-file)))
 
 (use-package cc-mode
@@ -164,6 +169,8 @@
   (if (equal mytheme 'solarized-dark)
       (set-face-attribute 'makefile-space nil :background "magenta")))
 
+(use-package minibuffer :init (setq completion-cycle-threshold 3))
+
 (use-package python :mode ("\\.py\\'" . python-mode) :interpreter ("python" . python-mode)
   :preface
   (defun my-python-mode-hook ()
@@ -180,7 +187,13 @@
 
 (use-package ruby-mode :mode "\\.rb\\'" :interpreter "ruby")
 
-(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\)\\'" . sh-mode) :config
+(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\)\\'" . sh-mode)
+  :preface
+  (defun my-sh-mode-hook ()
+    (yas-minor-mode 1))
+
+  :config
+  (add-hook 'sh-mode-hook 'my-sh-mode-hook)
   (if (equal mytheme 'solarized-dark)
       (progn
         (set-face-attribute 'sh-heredoc nil :foreground "brightyellow" :weight 'regular)
@@ -285,6 +298,24 @@
 
 (use-package yaml-mode :ensure t :mode "\\.yml\\'")
 
+(use-package yasnippet :ensure t :diminish yas-minor-mode
+  :commands (yas-minor-mode)
+  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :bind (("C-c y s" . yas-insert-snippet) ("C-c y n" . yas-new-snippet) ("C-c y v" . yas-visit-snippet-file))
+  :preface
+  (setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
+  (setq yas-new-snippet-default "\
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: $1
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+# contributor: `user-full-name` <`user-mail-address`>
+# --
+$0")
+
+  :config
+  (yas-load-directory (expand-file-name "snippets" user-emacs-directory))
+  (bind-key "C-i" 'yas-next-field-or-maybe-expand yas-keymap))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; LOCAL PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package pasteboard :defer 0
@@ -305,11 +336,11 @@
   :preface
   (auto-insert-mode)
   (setq auto-insert-query nil)
-  (setq auto-insert-directory (expand-file-name "local/templates" user-emacs-directory))
+  (setq auto-insert-directory (expand-file-name "templates" user-emacs-directory))
 
   ;; LaTeX
   (setq my-amsart-preamble-file
-        (substitute-in-file-name "$HOME/.emacs.d/local/templates/latex/amsart-preamble.tex"))
+        (substitute-in-file-name "$HOME/.emacs.d/templates/latex/amsart-preamble.tex"))
   (define-auto-insert '("\.tex\\'" . "LaTeX skeleton")
     '(nil
       "% " (file-name-nondirectory (buffer-file-name)) \n

@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: case
+# key: case
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+case ${1:word} in
+    $2
+    *) ;;
+esac

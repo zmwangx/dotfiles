@@ -5,7 +5,7 @@
 	path = cron
 	url = git@gitlab.com:zmwangx/cron.git
 [submodule "emacs/local/use-package"]
-	path = emacs/local/use-package
+	path = emacs/site-lisp/use-package
 	url = git@github.com:jwiegley/use-package.git
 [submodule "fontconfig/fonts"]
 	path = fontconfig/fonts

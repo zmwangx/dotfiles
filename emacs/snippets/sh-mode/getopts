@@ -1,0 +1,26 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: getopts
+# key: getopts
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+while getopts ":h$2" opt; do
+    case $opt in
+        h)
+            cat <<EOF
+$1
+
+Usage: `(file-name-nondirectory (buffer-file-name))` [options]
+
+Options:
+    -h  show this help and exit
+    $3
+EOF
+            exit 1
+            ;;
+        $0
+        :) echo "\${RED}error: option -$OPTARG requires an argument\${RESET}" >&2; exit 1;;
+        \\?) echo "\${RED}error: unrecognized option -$OPTARG\${RESET}" >&2; exit 1;;
+        *) echo "\${RED}error: getopts internal error: unrecgonized option name \$opt\${RESET}"; exit 1;;
+    esac
+done
+shift \$((OPTIND-1))
