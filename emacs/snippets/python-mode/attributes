@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: attributes
+# key: a
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+Attributes
+----------
+$1
+$0

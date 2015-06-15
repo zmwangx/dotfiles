@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: raises
+# key: e
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+Raises
+------
+$1
+$0

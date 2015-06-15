@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: seealso
+# key: sa
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+See Also
+--------
+$1
+$0

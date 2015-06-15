@@ -180,7 +180,8 @@
     ;; jedi
     (setq-default jedi:complete-on-dot t)
     (setq-default jedi:environment-root "default")
-    (jedi:setup))
+    (jedi:setup)
+    (yas-minor-mode 1))
 
   :config
   (add-hook 'python-mode-hook 'my-python-mode-hook))
@@ -313,8 +314,7 @@
 $0")
 
   :config
-  (yas-load-directory (expand-file-name "snippets" user-emacs-directory))
-  (bind-key "C-i" 'yas-next-field-or-maybe-expand yas-keymap))
+  (yas-load-directory (expand-file-name "snippets" user-emacs-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; LOCAL PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: parameters
+# key: p
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+Parameters
+----------
+$1
+$0
