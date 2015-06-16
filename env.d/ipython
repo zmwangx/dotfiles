@@ -1,2 +1,2 @@
 # -*- mode: sh -*-
-export IPYTHONDIR=$XDG_DATA_HOME/ipython
+export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
