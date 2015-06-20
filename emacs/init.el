@@ -319,9 +319,9 @@ $0")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; LOCAL PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package pasteboard :defer 0
-  :bind (("C-c C-w" . pasteboard-copy)
-         ("C-c C-y" . pasteboard-paste)
-         ("C-c C-k" . pasteboard-cut))
+  :bind (("C-x w" . pasteboard-copy)
+         ("C-x y" . pasteboard-paste)
+         ("C-x x" . pasteboard-cut))
   :config
   (if window-system
       (progn
