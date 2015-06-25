@@ -273,6 +273,21 @@
 
 (use-package jedi :ensure t :defer t)
 
+(use-package js2-mode :ensure t :mode "\\.js\\'" :interpreter "node"
+  :init
+  (setq-default js2-basic-offset 2)
+  (setq-default js2-strict-missing-semi-warning nil)
+  (setq-default js2-skip-preprocessor-directives t)
+
+  :config
+  (if (equal mytheme 'solarized-dark)
+      (progn
+        (set-face-attribute 'js2-external-variable nil :foreground "magenta"))))
+
+(use-package json-mode :ensure t :mode "\\.json\\'" :init
+  (setq-default js-indent-level 2)
+  (setq-default json-reformat:indent-width 2))
+
 (use-package magit :ensure t :defer 0 :diminish magit-auto-revert-mode
   :bind ("M-m" . magit-status)
   :init

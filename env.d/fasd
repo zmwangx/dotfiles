@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export _FASD_DATA=$XDG_DATA_HOME/fasd/fasd

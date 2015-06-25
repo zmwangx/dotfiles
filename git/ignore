@@ -73,6 +73,11 @@ venv*
 .coverage
 .tox
 *.egg-info
+dist
+
+Node.js
+#######
+node_modules
 
 #################
 # Miscellaneous #
