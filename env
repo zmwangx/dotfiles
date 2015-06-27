@@ -12,6 +12,8 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export EDITOR=$HOME/dev/scripts/editor
 
+export LC_ALL=en_US.UTF-8
+
 for envfile in "${XDG_CONFIG_HOME}/env.d/"*; do
     source "${envfile}"
 done
