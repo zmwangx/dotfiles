@@ -37,6 +37,7 @@ alias syspip3='/usr/local/bin/pip3'
 
 ##################################### MISC #####################################
 alias ga='git add'
+alias grip='grip --browser'
 alias muttd='mutt && rm -f /tmp/.new_mail_notification_sent'
 alias notify='terminal-notifier -message'
 alias pl='parallel'
