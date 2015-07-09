@@ -1,4 +1,7 @@
 # -*- mode: sh; -*-
 
-# source per-host overrides
+# if local override exists, source the override instead
+[[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogout_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogout_override && return; }
+
+# source per-host additions
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogout ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogout

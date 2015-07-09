@@ -1,11 +1,14 @@
 # -*- mode: sh; -*-
 
+# if local override exists, source the override instead
+[[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogin_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogin_override && return; }
+
 # print available disk space on OS X
 if [[ $OSTYPE == darwin* ]]; then
     echo "${BLUE}available disk space:  ${BOLD}${RED}$(df -h | awk '/\/dev\/disk1/ {print $4" / "$2}')${RESET}"
 fi
 
-# source per-host overrides
+# source per-host additions
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogin ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostlogin
 
 true

@@ -3,3 +3,8 @@ perhostlogin
 perhostlogout
 perhostprofile
 perhostrc
+zshenv_override
+zlogin_override
+zlogout_override
+zprofile_override
+zshrc_override

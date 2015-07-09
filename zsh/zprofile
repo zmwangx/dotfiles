@@ -1,4 +1,7 @@
 # -*- mode: sh; -*-
 
-# source per-host overrides
+# if local override exists, source the override instead
+[[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zprofile_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zprofile_override && return; }
+
+# source per-host additions
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostprofile ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostprofile
