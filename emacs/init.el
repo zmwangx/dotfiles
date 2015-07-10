@@ -265,9 +265,7 @@
         '((directories (".git" ".svn" ".tox" "build"))
           (files ("*.jpg" "*.o" "*.png" "*.pyc")))))
 
-(use-package git-commit-mode :ensure t :defer t :config
-  (if (equal mytheme 'solarized-dark)
-      (set-face-attribute 'git-commit-summary-face nil :foreground "blue")))
+(use-package git-commit :ensure t :defer t)
 
 (use-package go-mode :ensure t :mode "\\.go\\'")
 
@@ -288,10 +286,7 @@
   (setq-default js-indent-level 2)
   (setq-default json-reformat:indent-width 2))
 
-(use-package magit :ensure t :defer 0 :diminish magit-auto-revert-mode
-  :bind ("M-m" . magit-status)
-  :init
-  (setq magit-last-seen-setup-instructions "1.4.0"))
+(use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
   (add-hook 'gfm-mode-hook 'abbrev-mode))
