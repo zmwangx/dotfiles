@@ -1,5 +1,12 @@
+compiz-1/
 configstore/
+dconf/
 gtk-2.0/
 htop/
 inkscape/
+nautilus/
+transmission-daemon/
+transmission/
+user-dirs.dirs
+user-dirs.locale
 hub
