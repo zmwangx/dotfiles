@@ -5,7 +5,7 @@
 
 # print available disk space on OS X
 if [[ $OSTYPE == darwin* ]]; then
-    echo "${BLUE}available disk space:  ${BOLD}${RED}$(df -h | awk '/\/dev\/disk1/ {print $4" / "$2}')${RESET}"
+    echo "${BLUE}available disk space:  ${BOLD}${RED}$(/bin/df -g $HOME | tail -n1 | awk '{print $4"G / "$2"G"}')${RESET}"
 fi
 
 # source per-host additions
