@@ -73,7 +73,7 @@ tmux
 trans
 tree
 vim --override-system-vi
-vobcopy
+zmwangx/tap/vobcopy
 wdiff
 wget --with-iri
 xz
