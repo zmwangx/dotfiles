@@ -1,0 +1,2 @@
+# -*- mode: sh; -*-
+export HOMEBREW_VERBOSE=true

@@ -553,7 +553,7 @@
 	<key>LeftOption</key>
 	<integer>2</integer>
 	<key>LoadPrefsFromCustomFolder</key>
-	<false/>
+	<true/>
 	<key>Log Smart Selection Debug Info</key>
 	<integer>1</integer>
 	<key>MaxVertically</key>
@@ -565,7 +565,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Downloads/staging</string>
+	<string>~/.config/iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -618,7 +618,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1259 397 445 82 0 0 1920 1057 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>901 585 606 456 0 0 1920 1057 </string>
+	<string>322 313 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -626,7 +626,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1076 8 790 1049 0 0 1920 1057 </string>
+	<string>0 0 1920 1080 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1512,7 +1512,7 @@
 					<key>parameter</key>
 					<string>{YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0goLDA1VTlNSR0JcTlNDb2xvclNwYWNlTxAnMC4xMjc1NDg4NDM2IDAuNDYyNjU5NDc4MiAwLjc4MjMxNDE4MTMAEAEIERojLTI3OT9RVlxpkwAAAAAAAAEBAAAAAAAAAA4AAAAAAAAAAAAAAAAAAACV,}</string>
 					<key>regex</key>
-					<string>^\+[/\w]+:\d+&gt; .*</string>
+					<string>^\+[/\w-]+:\d+&gt; .*</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
@@ -3118,12 +3118,14 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>457581980.10211098</real>
+	<real>458179430.860309</real>
 	<key>NoSyncSlowAccessibilityWarning</key>
 	<true/>
 	<key>NoSyncSlowAccessibilityWarning_selection</key>
 	<integer>0</integer>
 	<key>NoSyncSuppressAnnyoingBellOffer</key>
+	<true/>
+	<key>NoSyncSuppressCaptureOutputToolNotVisibleWarning</key>
 	<true/>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
@@ -3140,6 +3142,11 @@
 		<string>0010</string>
 		<string>0011</string>
 		<string>0012</string>
+		<string>0013</string>
+		<string>0014</string>
+		<string>0015</string>
+		<string>0016</string>
+		<string>0017</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3199,7 +3206,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string></string>
+	<string>/Users/zmwang/.config/iterm2</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -3219,7 +3226,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-04T02:49:31Z</date>
+	<date>2015-07-09T11:51:41Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
