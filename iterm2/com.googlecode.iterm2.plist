@@ -21,7 +21,7 @@
 	<key>AutoHideTmuxClientSession</key>
 	<true/>
 	<key>CheckTestRelease</key>
-	<false/>
+	<true/>
 	<key>CloseBookmarksWindowAfterOpening</key>
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
@@ -618,7 +618,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1259 397 445 82 0 0 1920 1057 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>322 313 606 456 0 0 1280 777 </string>
+	<string>901 585 606 456 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -3118,7 +3118,11 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>458179430.860309</real>
+	<real>458268056.84694999</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncSlowAccessibilityWarning</key>
 	<true/>
 	<key>NoSyncSlowAccessibilityWarning_selection</key>
@@ -3147,6 +3151,7 @@
 		<string>0015</string>
 		<string>0016</string>
 		<string>0017</string>
+		<string>0018</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3222,11 +3227,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final.xml</string>
+	<string>https://iterm2.com/appcasts/nightly.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-09T11:51:41Z</date>
+	<date>2015-07-11T08:15:25Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -3257,6 +3262,8 @@
 	<array>
 		<string>Jobs</string>
 	</array>
+	<key>TriggerRadius</key>
+	<integer>5</integer>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<true/>
 	<key>UKCrashReporterLastCrashReportDate</key>
@@ -3286,7 +3293,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20150624-nightly</string>
+	<string>2.9.20150711-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
