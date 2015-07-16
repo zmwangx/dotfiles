@@ -626,7 +626,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1080 0 0 1920 1057 </string>
+	<string>443 4 790 1048 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1469,10 +1469,12 @@
 					<string>feed://([a-z0-9A-Z]+(:[a-zA-Z0-9]+)?@)?[a-z0-9A-Z]+(\.[a-z0-9A-Z]+)*((:[0-9]+)?)(/[a-zA-Z0-9;/\.\-_+%~?&amp;@=#\(\)]*)?</string>
 				</dict>
 				<dict>
+					<key>notes</key>
+					<string>partial line without zsh prompt_sp</string>
 					<key>precision</key>
-					<string>very_high</string>
+					<string>high</string>
 					<key>regex</key>
-					<string>.*(?=h)</string>
+					<string>.*?(?= {20})</string>
 				</dict>
 			</array>
 			<key>Sync Title</key>
@@ -1512,7 +1514,7 @@
 					<key>parameter</key>
 					<string>{YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0goLDA1VTlNSR0JcTlNDb2xvclNwYWNlTxAnMC4xMjc1NDg4NDM2IDAuNDYyNjU5NDc4MiAwLjc4MjMxNDE4MTMAEAEIERojLTI3OT9RVlxpkwAAAAAAAAEBAAAAAAAAAA4AAAAAAAAAAAAAAAAAAACV,}</string>
 					<key>regex</key>
-					<string>^\+[/\w-]+:\d+&gt; .*</string>
+					<string>^\+[/.a-zA-Z0-9_-]+:\d+&gt; .*</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
@@ -3118,7 +3120,7 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>458268056.84694999</real>
+	<real>458676202.45472199</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3152,6 +3154,9 @@
 		<string>0016</string>
 		<string>0017</string>
 		<string>0018</string>
+		<string>000</string>
+		<string>0019</string>
+		<string>0020</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3231,7 +3236,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-11T08:15:25Z</date>
+	<date>2015-07-15T12:17:09Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -3293,7 +3298,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20150711-nightly</string>
+	<string>2.9.20150715-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
