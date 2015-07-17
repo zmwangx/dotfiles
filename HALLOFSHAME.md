@@ -1,7 +1,7 @@
 # Homedir Hall of Shame
 
-Here are a list of projects that insist on living in the home directory and are
-either hard or impossible to move or factor.
+Here are a list of projects that insist on living in the home directory and
+whose dotfiles or dotdirs are either hard or impossible to move or factor.
 
 ## TL;DR / Table of Shames
 
