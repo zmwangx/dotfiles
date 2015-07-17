@@ -60,10 +60,13 @@ elif [[ -n $WORKON_HOME ]]; then
 else
     venvhookdir=.virtualenvs
 fi
-for hook in $XDG_CONFIG_HOME/pyenv/virtualenvwrapper_hooks/*; do
-    hook_name=${hook##*/}
-    destination[pyenv/virtualenvwrapper_hooks/$hook_name]=$venvhookdir/$hook_name
-done
+destination[pyenv/virtualenvwrapper_hooks]=$venvhookdir
+
+# items that may be linked but are not part of this repo are marked as optional
+typeset -A optional
+set -A optional \
+    pyenv/version 1 \
+    pypi/pypirc 1
 
 # This function symlinks source to destination (so that the destination is
 # eventually a symlink pointing to source), backing up destination if it
@@ -97,7 +100,15 @@ function backup_and_symlink
 echo "${GREEN}symlinking dotfiles and dot directories...${RESET}" >&2
 success_count=0
 failure_count=0
+skipped_count=0
 for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
+    # skip if src is optional and does not exist
+    if (( optional[$src] )) && [[ ! -e $XDG_CONFIG_HOME/$src ]]; then
+        ((skipped_count++))
+        echo "${YELLOW}warning: '$XDG_CONFIG_HOME/$src' not present; skipped${RESET}" >&2
+        continue
+    fi
+
     dst=$destination[$src]
     if backup_and_symlink $XDG_CONFIG_HOME/$src $HOME/$dst; then
         ((success_count++))
@@ -105,5 +116,5 @@ for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
         ((failure_count++))
     fi
 done
-echo "${GREEN}successfully linked ${success_count} items, failed on ${failure_count} items${RESET}" >&2
+echo "${GREEN}successfully linked ${success_count} items, failed on ${failure_count} items, skipped ${skipped_count} optional items${RESET}" >&2
 exit $((failure_count > 0))
