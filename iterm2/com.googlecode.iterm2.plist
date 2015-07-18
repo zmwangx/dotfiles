@@ -626,7 +626,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>443 4 790 1048 0 0 1920 1057 </string>
+	<string>226 15 1348 1035 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1515,6 +1515,26 @@
 					<string>{YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0goLDA1VTlNSR0JcTlNDb2xvclNwYWNlTxAnMC4xMjc1NDg4NDM2IDAuNDYyNjU5NDc4MiAwLjc4MjMxNDE4MTMAEAEIERojLTI3OT9RVlxpkwAAAAAAAAEBAAAAAAAAAA4AAAAAAAAAAAAAAAAAAACV,}</string>
 					<key>regex</key>
 					<string>^\+[/.a-zA-Z0-9_-]+:\d+&gt; .*</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>PasswordTrigger</string>
+					<key>parameter</key>
+					<string>zmwang@stanford.edu</string>
+					<key>partial</key>
+					<true/>
+					<key>regex</key>
+					<string>^zmwang@stanford.edu's Password:</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>PasswordTrigger</string>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<true/>
+					<key>regex</key>
+					<string>^Enter password \(will not be echoed\) for</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
@@ -3120,7 +3140,7 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>458676202.45472199</real>
+	<real>458905406.627478</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3157,6 +3177,8 @@
 		<string>000</string>
 		<string>0019</string>
 		<string>0020</string>
+		<string>0021</string>
+		<string>0022</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3236,7 +3258,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-15T12:17:09Z</date>
+	<date>2015-07-18T18:52:59Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
