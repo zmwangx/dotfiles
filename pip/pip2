@@ -2,7 +2,7 @@ docutils
 ipython
 lxml
 pip
-python-onedrive
 PyYAML
 requests
+twine
 virtualenvwrapper

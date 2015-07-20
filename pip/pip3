@@ -3,6 +3,7 @@ beautifulsoup4
 colorama
 coverage
 docutils
+grip
 ipython
 lxml
 Pillow
@@ -17,6 +18,7 @@ requests
 Sphinx
 tox
 tweepy
+twine
 virtualenvwrapper
 wheel
 you-get
