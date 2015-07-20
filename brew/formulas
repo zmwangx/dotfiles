@@ -42,6 +42,7 @@ hub
 imagemagick --with-fontconfig --with-librsvg --with-libtiff --with-webp
 jpeg
 jq
+keybase
 libmagic --with-python
 lsdvd --with-libdvdcss
 mercurial
