@@ -10,6 +10,7 @@ Shame on them:
 * [colordiff](#colordiff)
 * [CUPS](#cups)
 * [Dropbox](#dropbox)
+* [gist](#gist)
 * [Heroku toolbelt](#heroku-toolbelt)
 * [Keybase installer](#keybase-installer)
 * [matplotlib](#matplotlib)
@@ -71,6 +72,15 @@ See the `FILES` section of `man 1 cups`: `~/.cups/client.conf` and
 Okay, Dropbox is used by hundreds of millions of dummies so I won't expect
 customizability on this front, but can't you move `~/.dropbox` to
 `~/Library/Caches`?
+
+### gist
+
+By `gist` we mean [defunkt/gist](https://github.com/defunkt/gist).
+
+Worst offender ever. It stores the OAuth token in `~/.gist`, making even
+symlinking impractical.
+
+Related PR: [`defunkt/gist#189`](https://github.com/defunkt/gist/pull/189).
 
 ### Heroku toolbelt
 
