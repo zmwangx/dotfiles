@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+here=$(dirname "$(realpath "$0")")
+
+echo "${BOLD}${BLUE}cd '$here'${RESET}" >&2
+cd "$here" || { echo "${RED}error: cd failed${RESET}" >&2; exit 1; }
+
+echo "${BOLD}${BLUE}gem install bundler${RESET}" >&2
+gem install bundler || { echo "${RED}error: failed to install bundler${RESET}" >&2; exit 1; }
+
+echo "${BOLD}${BLUE}bundle install --system${RESET}" >&2
+bundle install --system || { echo "${RED}error: 'bundle install --system' failed; Gemfile: $PWD/Gemfile${RESET}" >&2; exit 1; }
