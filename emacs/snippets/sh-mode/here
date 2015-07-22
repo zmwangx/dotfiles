@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: here
+# key: here
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+here=\$(dirname "\$(realpath "\$0")")
+
+$0
