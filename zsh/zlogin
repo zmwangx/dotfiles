@@ -4,8 +4,10 @@
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogin_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zlogin_override && return; }
 
 # print available disk space on OS X
-if [[ $OSTYPE == darwin* ]]; then
-    echo "${BLUE}available disk space:  ${BOLD}${RED}$(/bin/df -g $HOME | tail -n1 | awk '{print $4"G / "$2"G"}')${RESET}"
+if [[ $OSTYPE == *darwin* ]]; then
+    echo "${BLUE}available disk space:  ${GREEN}$(/bin/df -g $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
+elif [[ $OSTYPE == *linux* ]]; then
+    echo "${BLUE}available disk space:  ${GREEN}$(/bin/df --block-size=1G $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
 fi
 
 # source per-host additions
