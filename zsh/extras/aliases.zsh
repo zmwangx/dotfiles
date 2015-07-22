@@ -37,7 +37,6 @@ alias syspip3='/usr/local/bin/pip3'
 
 ##################################### MISC #####################################
 alias ga='git add'
-alias gist='BUNDLE_GEMFILE=~/.config/gem/Gemfile bundle exec gist'
 alias grip='grip --browser'
 alias hb='hub browse'
 alias muttd='mutt && rm -f /tmp/.new_mail_notification_sent'

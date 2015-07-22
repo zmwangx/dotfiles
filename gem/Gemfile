@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'gist', :git => 'git@github.com:zmwangx/gist.git', :branch => 'enhanced'
+gem 'gistl', :require => 'gist'
 gem 'git.io'
 gem 'lolcat'
 gem 'pry'
