@@ -17,6 +17,7 @@ Shame on them:
 * [mutt](#mutt)
 * [GNU Parallel](#gnu-parallel)
 * [PyPI](#pypi)
+* [RubyGems](#rubygems)
 * [Shout](#shout)
 * [tox](#tox)
 * [Travis client](#travis-client)
@@ -82,6 +83,20 @@ symlinking impractical.
 
 Related PR: [`defunkt/gist#189`](https://github.com/defunkt/gist/pull/189).
 
+Full solution: use my enhanced fork!
+[`zmwangx/gist`](https://github.com/zmwangx/gist), now also on
+[RubyGems.org](https://rubygems.org/gems/gistl):
+
+```
+gem install gistl
+```
+
+Gemfile:
+
+```ruby
+gem 'gistl', :require => 'gist'
+```
+
 ### Heroku toolbelt
 
 Issue: [`heroku/toolbelt#115`](https://github.com/heroku/toolbelt/issues/115).
@@ -114,6 +129,11 @@ See the `FILES` section of `man 1 mutt`: either `~/.muttrc` or
 According to
 [the docs](https://docs.python.org/3/distutils/packageindex.html#pypirc), the
 path of the config file has to be `~/.pypirc`.
+
+### RubyGems
+
+`~/.gem/credentials` is hard-coded in
+[source code](https://github.com/rubygems/rubygems/blob/503556f/lib/rubygems/config_file.rb#L274-L276).
 
 ### Shout
 
