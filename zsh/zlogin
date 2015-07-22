@@ -5,9 +5,9 @@
 
 # print available disk space on OS X
 if [[ $OSTYPE == *darwin* ]]; then
-    echo "${BLUE}available disk space:  ${GREEN}$(/bin/df -g $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
+    echo "${GREEN}available disk space:  $(/bin/df -g $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
 elif [[ $OSTYPE == *linux* ]]; then
-    echo "${BLUE}available disk space:  ${GREEN}$(/bin/df --block-size=1G $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
+    echo "${GREEN}available disk space:  $(/bin/df --block-size=1G $HOME | awk 'NR > 1 { print $4"G / "$2"G" }')${RESET}"
 fi
 
 # source per-host additions
