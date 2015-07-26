@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ccommand
+# key: ccommand
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+echo "\${BOLD}\${BLUE}$1\${RESET}" >&2$0

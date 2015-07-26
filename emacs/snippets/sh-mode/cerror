@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cerror
+# key: cerror
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+echo "\${RED}error: $1\${RESET}" >&2$0

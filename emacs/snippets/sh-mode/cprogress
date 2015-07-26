@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: cprogress
+# key: cprogress
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+echo "\${GREEN}$1\${RESET}" >&2$0
