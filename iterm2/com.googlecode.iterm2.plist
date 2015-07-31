@@ -622,11 +622,11 @@
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>290 117 700 622 0 0 1280 777 </string>
+	<string>610 327 700 622 0 0 1920 1057 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>443 4 790 1048 0 0 1920 1057 </string>
+	<string>1130 4 790 1048 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1429,6 +1429,8 @@
 					<string>\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b</string>
 				</dict>
 				<dict>
+					<key>actions</key>
+					<array/>
 					<key>notes</key>
 					<string>HTTP URL</string>
 					<key>precision</key>
@@ -1524,7 +1526,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>^(zmwang@stanford.edu's Password:|Password for zmwang@stanford.edu)</string>
+					<string>^(zmwang@[\w.]*stanford.edu's Password:|Password for zmwang@[\w.]*stanford.edu)</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -3140,7 +3142,7 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>459233617.13192499</real>
+	<real>460051208.70816803</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3182,6 +3184,13 @@
 		<string>0023</string>
 		<string>0024</string>
 		<string>0025</string>
+		<string>0026</string>
+		<string>0027</string>
+		<string>0028</string>
+		<string>0029</string>
+		<string>0030</string>
+		<string>0031</string>
+		<string>0032</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3261,10 +3270,12 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-21T18:09:46Z</date>
+	<date>2015-07-31T15:59:35Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
+	<false/>
+	<key>Selection Respects Soft Boundaries</key>
 	<false/>
 	<key>Show Toolbelt</key>
 	<false/>
@@ -3323,7 +3334,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20150720-nightly</string>
+	<string>2.9.20150731-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
