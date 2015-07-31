@@ -286,7 +286,9 @@
   (setq-default js-indent-level 2)
   (setq-default json-reformat:indent-width 2))
 
-(use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status))
+(use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status) :config
+  (add-hook 'magit-mode-hook 'visual-line-mode)
+  (setq-default magit-diff-refine-hunk t))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
   (add-hook 'gfm-mode-hook 'abbrev-mode))
