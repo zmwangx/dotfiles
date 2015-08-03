@@ -4,6 +4,9 @@ alias reload='exec zsh -l'
 alias sudo='sudo '
 
 ################################## FILESYSTEM ##################################
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias tree='tree -N'
 alias empty_trash='rm -rf ~/.Trash && mkdir -m 700 ~/.Trash'
 
