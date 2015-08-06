@@ -68,6 +68,7 @@ ruby
 safe-rm
 shellcheck
 sponge
+tccutil
 terminal-notifier
 tidy-html5
 tmux
