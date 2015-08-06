@@ -208,6 +208,8 @@
 
 (use-package adoc-mode :ensure t :mode "\\.adoc\\'")
 
+(use-package apples-mode :ensure t :interpreter "osascript")
+
 (use-package tex-site :ensure auctex :mode ("\\.tex\\'" . LaTeX-mode)
   :preface
   (defun LaTeX-insert-display-math ()
