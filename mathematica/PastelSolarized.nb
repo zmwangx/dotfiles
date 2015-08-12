@@ -1,0 +1,182 @@
+Notebook[{
+Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{"Creative"}, 
+  "PastelColor.nb", CharacterEncoding -> "UTF-8"]]],
+
+Cell[CellGroupData[{
+
+Cell["Introduction", "Section"],
+
+Cell["\<\
+This stylesheet is based on \
+https://cloud.github.com/downloads/stackmma/stylesheets/pastelSolarized.nb. \
+The author of the original stylesheet is \
+http://mathematica.stackexchange.com/users/5.\
+\>", "Text"],
+
+Cell["\<\
+Source Code Pro Medium is used as monospaced font, and Lucida Grande is used \
+for everything else. Source Code Pro family can be downloaded for free at \
+http://sourceforge.net/projects/sourcecodepro.adobe/files/.\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solarized color palette", "Section"],
+
+Cell[TextData[{
+ "Named colors and variables cannot be used in a stylesheet. This section \
+contains the RGB colors for the Solarized palette for easy copy-pasting. See \
+http://ethanschoonover.com/solarized for more details.\n\n",
+ StyleBox["Background Tones (dark):\n",
+  FontWeight->"Bold"],
+ "base03\t\tRGBColor[0.,0.168627,0.211765]\nbase02\t\t\
+RGBColor[0.027451,0.211765,0.258824]\n\n",
+ StyleBox["Content Tones:",
+  FontWeight->"Bold"],
+ "\nbase01\t\tRGBColor[0.345098,0.431373,0.458824]\nbase00\t\t\
+RGBColor[0.396078,0.482353,0.513725]\nbase0\t\t\
+RGBColor[0.513725,0.580392,0.588235]\nbase1\t\t\
+RGBColor[0.576471,0.631373,0.631373]\n\n",
+ StyleBox["Background Tones (light):",
+  FontWeight->"Bold"],
+ "\nbase2\t\tRGBColor[0.933333,0.909804,0.835294]\nbase3\t\t\
+RGBColor[0.992157,0.964706,0.890196]\n\n",
+ StyleBox["Accent Colors:",
+  FontWeight->"Bold"],
+ "\nyellow\t\tRGBColor[0.709804,0.537255,0.]\norange\t\t\
+RGBColor[0.796078,0.294118,0.0862745]\nred\t\t\
+RGBColor[0.862745,0.196078,0.184314]\nmagenta\t\
+RGBColor[0.827451,0.211765,0.509804]\nviolet\t\t\
+RGBColor[0.423529,0.443137,0.768627]\nblue\t\t\
+RGBColor[0.14902,0.545098,0.823529]\ncyan\t\t\
+RGBColor[0.164706,0.631373,0.596078]\ngreen\t\tRGBColor[0.521569,0.6,0.]\n\n\n"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Environment", "Section"],
+
+Cell[StyleData[All, "Working"],
+ DockedCells->{}],
+
+Cell[StyleData[All, "Printout"],
+ DockedCells->{},
+ ShowSyntaxStyles->True,
+ Background->GrayLevel[1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Input/Output and StandardForm", "Section"],
+
+Cell[StyleData["StandardForm"],
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ AutoStyleOptions->{
+ "CommentStyle"->{
+  FontColor -> RGBColor[0.576471, 0.631373, 0.631373], ShowAutoStyles -> 
+   False, ShowSyntaxStyles -> False, AutoNumberFormatting -> False},
+ "FunctionLocalVariableStyle"->{FontColor -> RGBColor[0.709804, 0.537255, 0.]},
+ "LocalScopeConflictStyle"->{
+  FontColor -> RGBColor[0.423529, 0.443137, 0.768627]},
+ "LocalVariableStyle"->{FontColor -> RGBColor[0.164706, 0.631373, 0.596078]},
+ "PatternVariableStyle"->{
+  FontColor -> RGBColor[0.521569, 0.6, 0.], FontSlant -> Italic},
+ "StringStyle"->{
+  FontColor -> RGBColor[0.827451, 0.211765, 0.509804], ShowAutoStyles -> 
+   False, ShowSyntaxStyles -> False, AutoNumberFormatting -> False},
+ "SymbolShadowingStyle"->{
+  FontColor -> RGBColor[0.796078, 0.294118, 0.0862745]},
+ "SyntaxErrorStyle"->{FontColor -> RGBColor[0.862745, 0.196078, 0.184314]},
+ "UndefinedSymbolStyle"->{FontColor -> RGBColor[0.14902, 0.545098, 0.823529]}},
+ FontFamily->"Source Code Pro Medium",
+ FontSize->12,
+ FontWeight->"Plain",
+ FontSlant->"Plain"],
+
+Cell[StyleData["Input"],
+ CellFrame->1,
+ CellMargins->{{65, 0}, {0, 5}},
+ CellFrameColor->RGBColor[0.933333, 0.909804, 0.835294],
+ AutoIndent->Automatic,
+ AutoSpacing->True,
+ FontWeight->"Plain",
+ FontColor->RGBColor[0.027451, 0.211765, 0.258824],
+ Background->RGBColor[0.992157, 0.964706, 0.890196]],
+
+Cell[CellGroupData[{
+
+Cell[StyleData["Output"],
+ CellFrame->1,
+ CellMargins->{{65, 0}, {5, -1}},
+ CellFrameColor->RGBColor[0.933333, 0.909804, 0.835294],
+ Background->GrayLevel[1]],
+
+Cell[StyleData["Input", "Printout", StyleDefinitions -> "None"],
+ CellMargins->{{39, 10}, {0, 7}},
+ CellFrameLabelMargins->0,
+ LinebreakAdjustments->{0.85, 2, 10, 1, 1},
+ Background->RGBColor[0.992157, 0.964706, 0.890196]],
+
+Cell[StyleData["Output", "Printout", StyleDefinitions -> None],
+ CellMargins->{{39, 10}, {7, 0}},
+ CellFrameLabelMargins->0,
+ Background->GrayLevel[1]]
+}, Open  ]],
+
+Cell[StyleData["Code"],
+ PageWidth->WindowWidth,
+ CellFrame->1,
+ CellMargins->{{65, 0}, {0, 5}},
+ CellFrameColor->RGBColor[0.622222, 0.606536, 0.556863],
+ AutoSpacing->True,
+ FontWeight->"Plain",
+ Background->RGBColor[0.992157, 0.964706, 0.890196]],
+
+Cell[StyleData["PrintUsage"],
+ Editable->False,
+ PageWidth->WindowWidth,
+ CellFrame->{{0, 0}, {0, 2}},
+ CellFrameColor->RGBColor[0.14902, 0.545098, 0.823529],
+ ContextMenu->FEPrivate`FrontEndResource["ContextMenus", "Output"],
+ Background->RGBColor[0.887937, 0.940095, 0.976761]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Titles, sections and text", "Section"],
+
+Cell[StyleData["Title"],
+ FontFamily->"Lucida Grande",
+ FontColor->RGBColor[0.14902, 0.545098, 0.823529]],
+
+Cell[StyleData["Subtitle"],
+ FontFamily->"Lucida Grande"],
+
+Cell[StyleData["Subsubtitle"],
+ FontFamily->"Lucida Grande"],
+
+Cell[StyleData["Section"],
+ FontFamily->"Lucida Grande"],
+
+Cell[StyleData["Subsection"],
+ FontFamily->"Lucida Grande"],
+
+Cell[StyleData["Subsubsection"],
+ FontFamily->"Lucida Grande"],
+
+Cell[StyleData["Text"],
+ TextJustification->1,
+ FontFamily->"Lucida Grande",
+ FontSize->12]
+}, Open  ]]
+},
+WindowSize->{740, 756},
+WindowMargins->{{241, Automatic}, {Automatic, 0}},
+TrackCellChangeTimes->False,
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"PrivateStylesheetFormatting.nb"
+]
+
