@@ -65,7 +65,6 @@ reattach-to-user-namespace
 rsync
 rtmpdump
 ruby
-safe-rm
 shellcheck
 sponge
 tccutil
