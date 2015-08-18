@@ -11,7 +11,7 @@ git clone --recursive https://github.com/zmwangx/dotfiles ~/.config
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv` (done for you
 when you run `~/.config/setup`, which sets up `.bashrc` and `.zshenv` in your
 home directory), and its equivalent should go into the runcoms of other
-noninteractive shells.
+noninteractive (POSIX-compatible) shells.
 
 Note that config files with credentials have been excluded from the directory,
 and their `.template` counterparts have been committed in instead. Replace the

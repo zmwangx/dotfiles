@@ -1,8 +1,34 @@
 # -*- mode: sh; -*-
-# shell-independent environment variables
 
-export PATH=$HOME/dev/scripts:$HOME/dev/go/bin:$HOME/dev/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:$PATH
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+# Shell-independent environment variables.
+# This script is POSIX-compatible and can be sourced from any POSIX-compatible shell.
+
+# assume Homebrew is installed to the standard locations
+case $OSTYPE; in
+    *darwin*) homebrew_root="/usr/local";;
+    *linux*) homebrew_root="$HOME/.linuxbrew";;
+    *) homebrew_root="";;
+esac
+
+# Homebrew-related paths
+if [ -n "$homebrew_root" ]; then
+    for subdir in bin sbin opt/coreutils/libexec/gnubin; do
+        [ -d "$homebrew_root/$subdir" ] && PATH="$homebrew_root/$subdir:$PATH"
+    done
+    for subdir in man opt/coreutils/libexec/gnuman; do
+        [ -d "$homebrew_root/$subdir" ] && MANPATH="$homebrew_root/$subdir:$MANPATH"
+    done
+fi
+unset homebrew_root subdir
+
+# personal dev paths
+for devpath in "$HOME/dev/bin" "$HOME/dev/go/bin" "$HOME/dev/scripts"; do
+    [ -d "$devpath" ] && PATH="$devpath:$PATH"
+done
+unset devpath
+
+export PATH
+export MANPATH
 
 export TMPDIR=/tmp
 
@@ -10,11 +36,20 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
-export EDITOR=$HOME/dev/scripts/editor
-export VISUAL=$HOME/dev/scripts/editor
+# set default editor
+if [ -f "$HOME/dev/scripts/editor" ]; then
+    export EDITOR="$HOME/dev/scripts/editor"
+elif command -v emacs >/dev/null && [ -z "$(emacs --batch --no-init-file --eval '(if (version< emacs-version "24.4") (message "Emacs is 24.3 or earlier"))' 2>&1)" ]; then
+    # only use Emacs as default editor when we have Emacs 24.4 or later
+    export EDITOR="emacs"
+elif command -v vi >/dev/null; then
+    export EDITOR="vi"
+fi
+[ -n "$EDITOR" ] && export VISUAL="$EDITOR"
 
 export LC_ALL=en_US.UTF-8
 
 for envfile in "$XDG_CONFIG_HOME/env.d/"*; do
     source "$envfile"
 done
+unset envfile
