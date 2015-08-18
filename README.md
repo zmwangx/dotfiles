@@ -3,7 +3,7 @@ This repository contains most of my vital config files.
 ## Getting started
 
 ```zsh
-git clone --recursive https://github.com/zmwangx/dotfiles ~/.config
+git clone --recursive git@github.com:zmwangx/dotfiles.git ~/.config
 # create data/cache directories and link some dotfiles or dot directories to HOME
 ~/.config/setup
 ```
