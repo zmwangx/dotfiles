@@ -40,4 +40,7 @@ find_and_move_app "opera-developer" "Opera Developer.app" "Opera Developer.app" 
 find_and_move_app "baiducloud" "百度云同步盘.app" "BaiduCloud.app" || errored=true
 find_and_move_app "flvcd-bigrats" "硕鼠MAC.app" "BigRats.app" || errored=true
 
+# other
+vagrant plugin install vagrant-scp vagrant-timezone
+
 [[ $errored == false ]]

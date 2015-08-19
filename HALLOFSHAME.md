@@ -49,7 +49,8 @@ There are large and crucial projects that somewhat deserve a space in
   * fontconfig;
   * GnuPG;
   * Linuxbrew;
-  * SSH.
+  * SSH;
+  * Vagrant.
 
 ## Shameful
 
