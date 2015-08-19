@@ -4,7 +4,7 @@
 # dependencies might need to be installed independently). 
 # https://github.com/Homebrew/linuxbrew
 
-set -x
+set +x
 if [[ ! -e ~/.linuxbrew ]]; then 
     git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew || { echo "${RED}error: git-clone failed${RESET}" >&2; exit 1; }
 fi
@@ -27,6 +27,5 @@ while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
     brew install $optstring || errored=true
-    { echo; echo; echo; } >&2
 done < "$here/formulae"
 [[ $errored == false ]]
