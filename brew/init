@@ -15,7 +15,7 @@ while read -r tap; do
     { echo; echo; echo; } >&2
 done < "$here/taps"
 
-# some formulas depend on x11, so install brew-cask and xquartz first
+# some formulae depend on x11, so install brew-cask and xquartz first
 echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
 brew install brew-cask
 { echo; echo; echo; } >&2
@@ -23,13 +23,13 @@ echo "${BOLD}${BLUE}sudo brew cask install xquartz${RESET}" >&2
 sudo brew cask install xquartz
 { echo; echo; echo; } >&2
 
-# formulas
+# formulae
 while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
     brew install $optstring || errored=true
     { echo; echo; echo; } >&2
-done < "$here/formulas"
+done < "$here/formulae"
 
 # specials
 "$here/special" || errored=true
