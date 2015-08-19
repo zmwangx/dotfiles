@@ -11,3 +11,6 @@ source ~/.config/env
 
 # remove dupes in paths
 typeset -gU cdpath fpath mailpath path
+
+# skip global compinit on some annoying systems, e.g., Debian
+skip_global_compinit=1
