@@ -4,7 +4,7 @@
 # This script is POSIX-compatible and can be sourced from any POSIX-compatible shell.
 
 # assume Homebrew is installed to the standard locations
-case $OSTYPE; in
+case $OSTYPE in
     *darwin*) homebrew_root="/usr/local";;
     *linux*) homebrew_root="$HOME/.linuxbrew";;
     *) homebrew_root="";;
