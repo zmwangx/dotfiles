@@ -18,25 +18,14 @@ function find_and_move_app
     ln -s "$dst" "$src"
 }
 
-# chromium
+### apps that have to live in /Applications
 find_and_move_app "chromium" "chrome-mac/Chromium.app" "Chromium.app" || errored=true
-
-# firefox
 find_and_move_app "firefox" "Firefox.app" "Firefox.app" || errored=true
-find_and_move_app "firefox-beta" "Firefox.app" "Firefox Beta.app" || errored=true
 find_and_move_app "firefoxdeveloperedition" "FirefoxDeveloperEdition.app" "FirefoxDeveloperEdition.app" || errored=true
-
-# chrome
 find_and_move_app "google-chrome" "Google Chrome.app" "Google Chrome.app" || errored=true
-find_and_move_app "google-chrome-beta" "Google Chrome.app" "Google Chrome Beta.app" || errored=true
-find_and_move_app "google-chrome-dev" "Google Chrome.app" "Google Chrome Dev.app" || errored=true
-
-# opera
 find_and_move_app "opera" "Opera.app" "Opera.app" || errored=true
 find_and_move_app "opera-beta" "Opera Beta.app" "Opera Beta.app" || errored=true
 find_and_move_app "opera-developer" "Opera Developer.app" "Opera Developer.app" || errored=true
-
-# other
 find_and_move_app "tunnelblick" "Tunnelblick.app" "Tunnelblick.app" || errored=true
 
 ### swap and rename apps with non-ASCII filenames
