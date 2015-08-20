@@ -36,6 +36,9 @@ find_and_move_app "opera" "Opera.app" "Opera.app" || errored=true
 find_and_move_app "opera-beta" "Opera Beta.app" "Opera Beta.app" || errored=true
 find_and_move_app "opera-developer" "Opera Developer.app" "Opera Developer.app" || errored=true
 
+# other
+find_and_move_app "tunnelblick" "Tunnelblick.app" "Tunnelblick.app" || errored=true
+
 ### swap and rename apps with non-ASCII filenames
 find_and_move_app "baiducloud" "百度云同步盘.app" "BaiduCloud.app" || errored=true
 find_and_move_app "flvcd-bigrats" "硕鼠MAC.app" "BigRats.app" || errored=true
