@@ -13,7 +13,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:prompt' theme 'zmwangx'
 zstyle ':prezto:load' pmodule \
        environment editor history directory utility colors spectrum git completion prompt \
-       archive bd fasd homebrew iterm2 osx diskutil calendar python ruby \
+       archive bd fasd homebrew iterm2 osx diskutil calendar python \
        local
 source ~/.zprezto/init.zsh
 
