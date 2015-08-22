@@ -12,7 +12,7 @@ zstyle ':prezto:environment:termcap' color 'no' # disable coloring of less, whic
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:prompt' theme 'zmwangx'
 zstyle ':prezto:load' pmodule \
-       environment editor history directory utility colors spectrum git completion prompt \
+       environment editor history directory utility colors git completion prompt \
        archive bd fasd homebrew iterm2 osx diskutil calendar python \
        local
 source ~/.zprezto/init.zsh
