@@ -4,12 +4,17 @@ here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@
 
 errored=false
 
-tapped_taps=( $(brew tap) )
-installed_formulae=( $(brew list -1) )
+if (( $+commands[brew] )); then
+    tapped_taps=( $(brew tap) )
+    installed_formulae=( $(brew list -1) )
+fi
 
 # install Homebrew base system
 # redirect stdin to /dev/null to perform a noninteractive install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || errored=true
+
+# regenerate paths
+source ~/.config/env
 
 # taps
 while read -r tap; do
@@ -33,9 +38,11 @@ brew cask install xquartz java
 # formulae
 while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
-    (( $installed_formulae[(I)$optstring[(w)1]] )) && continue
+    formula_name=$optstring[(w)1] # strip options
+    formula_name=$formula_name[(ws:/:)-1] # strip tap prefix
+    (( $installed_formulae[(I)$formula_name] )) && continue
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
-    brew install $optstring || errored=true
+    brew install ${=optstring} || errored=true
     { echo; echo; echo; } >&2
 done < "$here/formulae"
 
