@@ -37,7 +37,6 @@ set -A destination \
     bash/bashrc .bashrc \
     colordiff/colordiffrc .colordiffrc \
     emacs .emacs.d \
-    fontconfig/fonts .fonts \
     gnupg/gpg.conf .gnupg/gpg.conf \
     mutt/muttrc .muttrc \
     parallel .parallel \
