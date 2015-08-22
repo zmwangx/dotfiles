@@ -1,12 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
 errored=false
 
+# strip potential undesired (!) from "brew cask list" output
+installed_casks=( $(brew cask list -1 | /usr/bin/sed -E 's/ .*//') )
+
 # QL plugins
 while read -r qlplugin; do
     [[ $qlplugin == \#* ]] && continue # skip comments
+    (( $installed_casks[(I)$qlplugin] )) && continue
     echo "${BOLD}${BLUE}brew cask install $qlplugin${RESET}" >&2
     brew cask install $qlplugin || errored=true
     { echo; echo; echo; } >&2
@@ -17,6 +21,7 @@ qlmanage -r
 # apps
 while read -r app; do
     [[ $app == \#* ]] && continue # skip comments
+    (( $installed_casks[(I)$app] )) && continue
     echo "${BOLD}${BLUE}brew cask install $app${RESET}" >&2
     brew cask install $app || errored=true
     { echo; echo; echo; } >&2

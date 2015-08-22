@@ -1,23 +1,30 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
 errored=false
 
+tapped_taps=( $(brew tap) )
+installed_formulae=( $(brew list -1) )
+
 # install Homebrew base system
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || errored=true
+# redirect stdin to /dev/null to perform a noninteractive install
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || errored=true
 
 # taps
 while read -r tap; do
     [[ $tap == \#* ]] && continue # skip comments
+    (( $tapped_taps[(I)$tap] )) && continue
     echo "${BOLD}${BLUE}brew tap $tap${RESET}" >&2
     brew tap $tap || errored=true
     { echo; echo; echo; } >&2
 done < "$here/taps"
 
-# some formulae depend on x11, so install brew-cask and xquartz first
-echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
-brew install brew-cask
+# some formulae depend on X11 or JRE, so install brew-cask, xquartz, and java first
+(( $installed_formulae[(I)brew-cask] )) || {
+    echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
+    brew install brew-cask
+}
 { echo; echo; echo; } >&2
 echo "${BOLD}${BLUE}brew cask install xquartz java${RESET}" >&2
 brew cask install xquartz java
@@ -26,6 +33,7 @@ brew cask install xquartz java
 # formulae
 while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
+    (( $installed_formulae[(I)$optstring[(w)1]] )) && continue
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
     brew install $optstring || errored=true
     { echo; echo; echo; } >&2

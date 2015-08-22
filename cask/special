@@ -1,21 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 errored=false
 
 ### move apps into /Applications
 function find_and_move_app
 {
-    shopt -s nullglob
+    setopt nullglob
     paths=( /opt/homebrew-cask/Caskroom/"$1"/*/"$2" )
     [[ -n $paths ]] || { echo "${RED}error: no install found in /opt/homebrew-cask/Caskroom/$1${RESET}" >&2; return 1; }
     src=${paths[-1]}
     dst=/Applications/$3
     echo "${BOLD}${BLUE}rm -f '$dst'${RESET}" >&2
-    rm -f "$dst" || { echo "${RED}error: '$dst' already exists${RESET}" >&2; return 1; }
+    rm -f $dst || { echo "${RED}error: '$dst' already exists${RESET}" >&2; return 1; }
     echo "${BOLD}${BLUE}mv '$src' '$dst'${RESET}" >&2
-    mv "$src" "$dst" || { echo "${RED}error: failed to move into '$dst'${RESET}" >&2; return 1; }
+    mv $src $dst || { echo "${RED}error: failed to move into '$dst'${RESET}" >&2; return 1; }
     echo "${BOLD}${BLUE}ln -s '$dst' '$src'${RESET}" >&2
-    ln -s "$dst" "$src"
+    ln -s $dst $src
 }
 
 ### apps that have to live in /Applications

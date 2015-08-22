@@ -8,6 +8,9 @@ git clone --recursive git@github.com:zmwangx/dotfiles.git ~/.config
 ~/.config/setup
 ```
 
+To provision a new OS X install, do `~/.config/provision` instead (requires
+Xcode and CLT).
+
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv` (done for you
 when you run `~/.config/setup`, which sets up `.bashrc` and `.zshenv` in your
 home directory), and its equivalent should go into the runcoms of other

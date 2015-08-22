@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 ### link apps
 echo "${BOLD}${BLUE}brew linkapps emacs${RESET}" >&2
@@ -14,23 +14,23 @@ mkdir -p ~/dev/bin
 # curl
 curl_bin="$(brew --prefix curl)/bin"
 echo "${BOLD}${BLUE}ln -sf '$curl_bin'/* ~/dev/bin${RESET}" >&2
-ln -sf "$curl_bin"/* ~/dev/bin
+ln -sf $curl_bin/* ~/dev/bin
 # gnu-getopt
 gnu_getopt_bin="$(brew --prefix gnu-getopt)/bin"
 echo "${BOLD}${BLUE}ln -sf '$gnu_getopt_bin'/* ~/dev/bin${RESET}" >&2
-ln -sf "$gnu_getopt_bin"/* ~/dev/bin
+ln -sf $gnu_getopt_bin/* ~/dev/bin
 
 ### permissions
 # htop
 htop="$(brew --prefix htop-osx)/bin/htop"
 echo "${BOLD}${BLUE}sudo chown root:wheel '$htop'${RESET}" >&2
-sudo chown root:wheel "$htop"
+sudo chown root:wheel $htop
 echo "${BOLD}${BLUE}sudo chmod u+s '$htop'${RESET}" >&2
-sudo chmod u+s "$htop"
+sudo chmod u+s $htop
 
 # mutt
 mutt="$(brew --prefix mutt)/bin/mutt"
 echo "${BOLD}${BLUE}sudo chown root:mail '$mutt'${RESET}" >&2
-sudo chown root:mail "$mutt"
+sudo chown root:mail $mutt
 echo "${BOLD}${BLUE}sudo chmod u+s '$mutt'${RESET}" >&2
-sudo chmod u+s "$mutt"
+sudo chmod u+s $mutt

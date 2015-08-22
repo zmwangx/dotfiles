@@ -1,0 +1,73 @@
+#!/bin/zsh
+
+# This script provisions an empty OS X install.
+#
+# This script assumes Xcode (/Applications/Xcode.app or
+# /Applications/Xcode-beta.app, the latter takes precedence) and corresponding
+# CLT.
+#
+# This script is nondestructive, that is to say, even if you are not
+# provisioning a new machine (say Homebrew is already installed), your machine
+# won't explode. You'll get a few error messages at most.
+
+[[ $OSTYPE == *darwin* ]] || {
+    echo "${BOLD}${RED}ERROR: UNRECGONIZED OSTYPE $OSTYPE. THIS PROVISIONER ONLY WORKS ON OS X.${RESET}" >&2
+    exit 1
+}
+
+# Our provisioner requires sudo here and there, so we temporarily modify
+# /etc/sudoers so that the timestamp does not expire. Remember to revert
+# /etc/sudoers after we are done!
+print -P '%B%F{yellow}WARNING:
+
+We are going to modify /etc/sudoers to avoid having to type admin password to
+sudo during provision. The original /etc/sudoers will be backed up to
+/etc/sudoers.bak. It will be restored at the end of provision.
+
+If something went wrong and the provision script exited early, please remember
+to restore /etc/sudoers.
+%f%b'
+
+setopt xtrace
+sudo cp -f /etc/sudoers /etc/sudoers.bak || exit 1
+sudo /bin/sh -c "echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers" || exit 1
+if [[ $(xcode-select --print-path) =~ /Applications/Xcode(-beta)?.app/Contents/Developer ]]; then
+    # already selected a valid path; pass
+    true
+elif [[ -d /Applications/Xcode-beta.app ]]; then
+    sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer
+elif [[ -d /Applications/Xcode.app ]]; then
+    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+fi
+unsetopt xtrace
+
+errored=false
+
+print -P '%B%F{green}
+Setting up basic environment...
+%f%b'
+~/.config/setup || errored=true
+
+print -P '%B%F{green}
+Installing Homebrew and formulae...
+%f%b'
+~/.config/brew/init
+
+print -P '%B%F{green}
+Installing casks...
+%f%b'
+~/.config/cask/init
+
+setopt xtrace
+sudo mv -f /etc/sudoers.bak /etc/sudoers
+unsetopt xtrace
+print -P '%B%F{green}
+/etc/sudoers restored.
+%f%b'
+
+print -P '%B%F{green}
+Provision success.
+Please reload your shell.
+%f%b'
+
+[[ $errored == false ]]
