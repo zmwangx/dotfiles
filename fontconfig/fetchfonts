@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# This script fetches the necessary fonts for fonts.conf, which may not be
+# present on the system.
+
+set -x
+[[ -e ~/.fonts ]] && {
+    mv ~/.fonts ~/.fonts.bak
+    echo "${YELLOW}warning: existing ~/.fonts backed up to ~/.fonts.bak${RESET}" >&2
+}
+git clone git@gitlab.com:zmwangx/fonts.git ~/.fonts
