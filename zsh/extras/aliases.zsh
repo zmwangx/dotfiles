@@ -32,6 +32,7 @@ alias yf='youtube-dl -F'
 alias yt='youtube-dash-dl'
 
 #################################### PYTHON ####################################
+alias p='pmodload python'
 alias ip='ipython'
 alias ip2='ipython2'
 alias ip3='ipython3'
