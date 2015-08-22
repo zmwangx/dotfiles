@@ -19,8 +19,8 @@ done < "$here/taps"
 echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
 brew install brew-cask
 { echo; echo; echo; } >&2
-echo "${BOLD}${BLUE}sudo brew cask install xquartz${RESET}" >&2
-sudo brew cask install xquartz
+echo "${BOLD}${BLUE}brew cask install xquartz${RESET}" >&2
+brew cask install xquartz
 { echo; echo; echo; } >&2
 
 # formulae
