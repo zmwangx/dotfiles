@@ -43,9 +43,9 @@ unsetopt xtrace
 
 # detect OS X version
 osx_version=$(sw_vers -productVersion)
-print -P "%B%F{green}
+print -P '%B%F{green}
 OS X $osx_version detected
-%f%b"
+%f%b'
 osx_major_version=$osx_version[(ws:.:)1]
 osx_minor_version=$osx_version[(ws:.:)2]
 osx_patch_version=$osx_version[(ws:.:)3]
@@ -54,11 +54,11 @@ osx_patch_version=$osx_version[(ws:.:)3]
 # path initialization with path_helper.
 if (( osx_major_version > 10 || ( osx_major_version == 10 && osx_minor_version >= 11 ) )); then
     if [[ -e /etc/zprofile && ! -e /etc/zshenv ]]; then
-        print -P "%B%F{green}
+        print -P '%B%F{green}
 Moving /etc/zprofile to /etc/zshenv...
-%f%b"
+%f%b'
         sudo mv /etc/zprofile /etc/zshenv || {
-            print -P "%F{red}error: failed to move /etc/zprofile to /etc/zshenv"
+            print -P '%F{red}error: failed to move /etc/zprofile to /etc/zshenv'
             errored=true
         }
     fi
@@ -70,6 +70,16 @@ print -P '%B%F{green}
 Setting up basic environment...
 %f%b'
 ~/.config/setup || errored=true
+
+if [[ ! -d ~/dev/scripts ]]; then
+    mkdir -p ~/dev/scripts
+    print -P '%B%F{green}
+Checking out helper tools...
+%f%b'
+    setopt xtrace
+    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts || errored=true
+    unsetopt xtrace
+fi
 
 print -P '%B%F{green}
 Installing Homebrew and formulae...
