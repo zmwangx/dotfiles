@@ -39,7 +39,7 @@ go
 grep --with-default-names
 htop-osx
 hub
-imagemagick --with-fontconfig --with-librsvg --with-libtiff --with-webp
+imagemagick --with-fontconfig --with-librsvg --with-webp
 jpeg
 jq
 keybase
