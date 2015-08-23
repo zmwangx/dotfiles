@@ -8,10 +8,7 @@ google-chrome
 opera
 opera-beta
 opera-developer
-# TeX
-mactex
 # other
-affinity-photo-beta
 appcleaner
 atext
 atom
@@ -29,7 +26,6 @@ gpgtools
 inkscape
 minimal-status-bar
 mou
-office2016
 omnifocus
 quotefix
 rcdefaultapp
@@ -44,3 +40,6 @@ vlc
 vmware-fusion
 xquartz
 xtrafinder
+# space consumers
+mactex
+office2016

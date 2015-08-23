@@ -1,8 +1,6 @@
 asciidoc --with-docbook-xsl
 asciinema
 aspell --with-lang-en
-autoconf
-automake
 bash
 bazaar
 bfg
@@ -19,7 +17,7 @@ daemonize
 diceware
 dos2unix
 duti
-emacs --with-cocoa --with-d-bus --with-gnutls --with-imagemagick --with-librsvg --with-mailutils
+emacs --with-cocoa --with-d-bus --with-gnutls --with-imagemagick --with-librsvg
 exiftool
 fasd
 fdupes
@@ -30,7 +28,6 @@ fontconfig
 fpp
 freetype
 gawk
-gcc
 git
 gnu-getopt
 gnu-sed --with-default-names
@@ -63,7 +60,6 @@ python3
 rar
 reattach-to-user-namespace
 rsync
-rtmpdump
 ruby
 shellcheck
 sponge
@@ -76,7 +72,7 @@ tree
 vim --override-system-vi
 zmwangx/tap/vobcopy
 wdiff
-wget --with-iri
+wget
 xz
 youtube-dl
 zsh
