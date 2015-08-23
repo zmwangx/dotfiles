@@ -19,18 +19,18 @@ source ~/.config/env
 while read -r tap; do
     [[ $tap == \#* ]] && continue # skip comments
     (( $tapped_taps[(I)$tap] )) && continue
-    echo "${BOLD}${BLUE}brew tap $tap${RESET}" >&2
+    print -P "%B%F{blue}brew tap $tap%f%b" >&2
     brew tap $tap || errored=true
     { echo; echo; echo; } >&2
 done < "$here/taps"
 
 # some formulae depend on X11 or JRE, so install brew-cask, xquartz, and java first
 $here/installed.py "brew-cask" || {
-    echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
+    echo "%B%F{blue}brew install brew-cask%f%b" >&2
     brew install brew-cask
 }
 { echo; echo; echo; } >&2
-echo "${BOLD}${BLUE}brew cask install xquartz java${RESET}" >&2
+print -P "%B%F{blue}brew cask install xquartz java%f%b" >&2
 brew cask install xquartz java
 { echo; echo; echo; } >&2
 
@@ -38,7 +38,7 @@ brew cask install xquartz java
 while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
     $here/installed.py $optstring && continue
-    echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
+    print -P "%B%F{blue}brew install $optstring%f%b" >&2
     brew reinstall ${=optstring} || errored=true
     { echo; echo; echo; } >&2
 done < "$here/formulae"

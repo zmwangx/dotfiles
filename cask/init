@@ -11,7 +11,7 @@ installed_casks=( $(brew cask list -1 | /usr/bin/sed -E 's/ .*//') )
 while read -r qlplugin; do
     [[ $qlplugin == \#* ]] && continue # skip comments
     (( $installed_casks[(I)$qlplugin] )) && continue
-    echo "${BOLD}${BLUE}brew cask install $qlplugin${RESET}" >&2
+    print -P "%B%F{blue}brew cask install $qlplugin%f%b" >&2
     brew cask install $qlplugin || errored=true
     { echo; echo; echo; } >&2
 done < "$here/qlplugins"
@@ -22,7 +22,7 @@ qlmanage -r
 while read -r app; do
     [[ $app == \#* ]] && continue # skip comments
     (( $installed_casks[(I)$app] )) && continue
-    echo "${BOLD}${BLUE}brew cask install $app${RESET}" >&2
+    print -P "%B%F{blue}brew cask install $app%f%b" >&2
     brew cask install $app || errored=true
     { echo; echo; echo; } >&2
 done < "$here/apps"
@@ -31,8 +31,8 @@ done < "$here/apps"
 "$here/special" || errored=true
 
 # print notes
-echo "$GREEN" >&2
+print -P "%B" >&2
 cat "$here/notes" >&2
-echo "$RESET" >&2
+print -P "%b" >&2
 
 [[ $errored == false ]]
