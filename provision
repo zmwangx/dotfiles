@@ -89,6 +89,13 @@ print -P '%B%F{green}
 %f%b'
 
 print -P '%B%F{green}
+Installing Emacs packages...
+%f%b'
+setopt xtrace
+/usr/local/bin/emacs --batch -l ~/.emacs.d/init.el
+unsetopt xtrace
+
+print -P '%B%F{green}
 Provision success.
 Please reload your shell.
 %f%b'
