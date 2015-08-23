@@ -6,7 +6,6 @@ errored=false
 
 if (( $+commands[brew] )); then
     tapped_taps=( $(brew tap) )
-    installed_formulae=( $(brew list -1) )
 fi
 
 # install Homebrew base system
@@ -26,7 +25,7 @@ while read -r tap; do
 done < "$here/taps"
 
 # some formulae depend on X11 or JRE, so install brew-cask, xquartz, and java first
-(( $installed_formulae[(I)brew-cask] )) || {
+$here/installed.py "brew-cask" || {
     echo "${BOLD}${BLUE}brew install brew-cask${RESET}" >&2
     brew install brew-cask
 }
@@ -38,11 +37,9 @@ brew cask install xquartz java
 # formulae
 while read -r optstring; do
     [[ $optstring == \#* ]] && continue # skip comments
-    formula_name=$optstring[(w)1] # strip options
-    formula_name=$formula_name[(ws:/:)-1] # strip tap prefix
-    (( $installed_formulae[(I)$formula_name] )) && continue
+    $here/installed.py $optstring && continue
     echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
-    brew install ${=optstring} || errored=true
+    brew reinstall ${=optstring} || errored=true
     { echo; echo; echo; } >&2
 done < "$here/formulae"
 
