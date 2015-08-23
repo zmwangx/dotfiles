@@ -41,6 +41,29 @@ elif [[ -d /Applications/Xcode.app ]]; then
 fi
 unsetopt xtrace
 
+# detect OS X version
+osx_version=$(sw_vers -productVersion)
+print -P "%B%F{green}
+OS X $osx_version detected
+%f%b"
+osx_major_version=$osx_version[(ws:.:)1]
+osx_minor_version=$osx_version[(ws:.:)2]
+osx_patch_version=$osx_version[(ws:.:)3]
+
+# If OS X 10.11+, move default /etc/zprofile to /etc/zshenv, which contains
+# path initialization with path_helper.
+if (( osx_major_version > 10 || ( osx_major_version == 10 && osx_minor_version >= 11 ) )); then
+    if [[ -e /etc/zprofile && ! -e /etc/zshenv ]]; then
+        print -P "%B%F{green}
+Moving /etc/zprofile to /etc/zshenv...
+%f%b"
+        sudo mv /etc/zprofile /etc/zshenv || {
+            print -P "%F{red}error: failed to move /etc/zprofile to /etc/zshenv"
+            errored=true
+        }
+    fi
+fi
+
 errored=false
 
 print -P '%B%F{green}
