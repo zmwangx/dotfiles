@@ -43,9 +43,9 @@ unsetopt xtrace
 
 # detect OS X version
 osx_version=$(sw_vers -productVersion)
-print -P '%B%F{green}
+print -P "%B%F{green}
 OS X $osx_version detected
-%f%b'
+%f%b"
 osx_major_version=$osx_version[(ws:.:)1]
 osx_minor_version=$osx_version[(ws:.:)2]
 osx_patch_version=$osx_version[(ws:.:)3]
