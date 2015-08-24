@@ -41,6 +41,7 @@ jpeg
 jq
 keybase
 libmagic --with-python
+libyaml
 lsdvd --with-libdvdcss
 mercurial
 most
