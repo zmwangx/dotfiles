@@ -86,6 +86,23 @@ Installing Homebrew and formulae...
 %f%b'
 ~/.config/brew/init
 
+# detect user login shell
+whoami=$(whoami)
+myloginshell="$(dscl . -read /Users/$whoami UserShell | sed 's/^UserShell: //')"
+if [[ -e /usr/local/bin/zsh && $myloginshell != /usr/local/bin/zsh ]]; then
+    print -P '%B%F{green}
+Changing login shell to /usr/local/bin/zsh...
+%f%b'
+    grep -q -E '^/usr/local/bin/zsh' /etc/shells || {
+        setopt xtrace
+        sudo /bin/sh -c "echo /usr/local/bin/zsh >>/etc/shells" || errored=true
+        unsetopt xtrace
+    }
+    setopt xtrace
+    sudo chsh -s /usr/local/bin/zsh $whoami
+    unsetopt xtrace
+fi
+
 print -P '%B%F{green}
 Installing casks...
 %f%b'
