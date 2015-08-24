@@ -1,0 +1,95 @@
+#!/usr/bin/python
+
+import argparse
+import json
+import os
+import re
+import subprocess
+
+def brew_formula_installed(formula):
+    """Check if a formula is installed.
+
+    Parameters
+    ----------
+    formula : str
+        Formula name (possibly with a tap prefix).
+
+    Returns:
+    {0, 2, 3}
+        0 if formula is installed; 2 if formula is not installed; 3 if
+        an unknown error occured.
+
+    """
+    try:
+        formula_keg = subprocess.check_output(["/usr/local/bin/brew", "--prefix", formula],
+                                              stderr=subprocess.PIPE).strip()
+    except subprocess.CalledProcessError:
+        return 3
+
+    return 0 if os.path.exists(formula_keg) else 2
+
+def brew_formula_installed_exact(optstring):
+    """Check if a formula is installed with the expected options.
+
+    Parameters
+    ----------
+    optstring : str
+        A string that usually follows ``brew install``, with the formula
+        name (possibly with a tap prefix) followed by installation
+        options.
+
+    Returns
+    -------
+    {0, 1, 2, 3}
+        0 if formula is installed with the expected options; 1 if
+        formula is installed but with different options; 2 if formula is
+        not installed; 3 if an unknown error occured.
+
+    """
+    tokens = re.split(r"\s+", optstring)
+    formula_name = tokens[0]
+    formula_expected_options = set(tokens[1:])
+
+    try:
+        formula_keg = subprocess.check_output(["/usr/local/bin/brew", "--prefix", formula_name],
+                                              stderr=subprocess.PIPE).strip()
+    except subprocess.CalledProcessError:
+        return 3
+
+    if not os.path.exists(formula_keg):
+        return 2
+
+    formula_receipt = os.path.join(formula_keg, "INSTALL_RECEIPT.json")
+    if not os.path.exists(formula_receipt):
+        return 3
+
+    try:
+        with open(formula_receipt) as fp:
+            formula_metadata = json.load(fp)
+            formula_installed_options = set(formula_metadata["used_options"])
+    except Exception:
+        return 3
+
+    return 0 if formula_expected_options == formula_installed_options else 1
+
+def main():
+    """CLI interface.
+
+    Regular mode: Return status is one of 0, 2, and 3; meanings are
+    described in the docstring of brew_formula_installed.
+
+    Exact mode (--exact): Return status is one of 0, 1, 2, and 3; meanings are
+    described in the docstring of brew_formula_installed_exact.
+
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--exact", action="store_true")
+    parser.add_argument("optstring")
+    args = parser.parse_args()
+    if args.exact:
+        exit(brew_formula_installed_exact(args.optstring))
+    else:
+        exit(brew_formula_installed(args.optstring))
+
+if __name__ == "__main__":
+    main()

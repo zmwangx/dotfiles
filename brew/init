@@ -2,48 +2,113 @@
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
+function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '%f%b'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_note { { print -nP $'\n%B'; print -n $1; print -P '%b'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+
 errored=false
 
-if (( $+commands[brew] )); then
-    tapped_taps=( $(brew tap) )
-fi
+print_milestone "Provisioning Homebrew..."
 
 # install Homebrew base system
-# redirect stdin to /dev/null to perform a noninteractive install
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || errored=true
+if [[ ! -d /usr/local/.git ]]; then
+    print_milestone "Installing Homebrew base system..."
+    # redirect stdin to /dev/null to perform a noninteractive install
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || {
+        print_error "failed to install Homebrew base system"
+        exit 1
+    }
+fi
 
-# regenerate paths
-source ~/.config/env
+# abstract away paths
+brew=/usr/local/bin/brew
+tap_list=$here/taps
+formulae_list=$here/formulae
+postflight=$here/postflight
+installed=$here/installed
+cask_installed=$here/../cask/installed
 
 # taps
-while read -r tap; do
-    [[ $tap == \#* ]] && continue # skip comments
-    (( $tapped_taps[(I)$tap] )) && continue
-    print -P "%B%F{blue}brew tap $tap%f%b" >&2
-    brew tap $tap || errored=true
-    { echo; echo; echo; } >&2
-done < "$here/taps"
+print_milestone "Tapping taps..."
+tapped_taps=( $($brew tap) )
+<$tap_list while read -r tap; do
+    # skip comments and tapped taps
+    ( [[ $tap == \#* ]] || (( $tapped_taps[(I)$tap] )) ) && { print_progress "tap '$tap' already tapped"; continue; }
+    print_command "brew tap $tap"
+    $brew tap $tap || { errored=true; print_error "failed to tap '$tap'"; }
+done
 
-# some formulae depend on X11 or JRE, so install brew-cask, xquartz, and java first
-$here/installed.py "brew-cask" || {
-    print -P "%B%F{blue}brew install brew-cask%f%b" >&2
-    brew install brew-cask
-}
-{ echo; echo; echo; } >&2
-print -P "%B%F{blue}brew cask install xquartz java%f%b" >&2
-brew cask install xquartz java
-{ echo; echo; echo; } >&2
+# some formulae depend on X11 and JRE
+print_milestone "Installing prelimary dependencies..."
+if ! $installed "brew-cask"; then
+    print_command "brew install brew-cask"
+    $brew install brew-cask || { errored=true; print_error "failed to install formula 'brew-cask'"; }
+else
+    print_progress "formula 'brew-cask' already installed"
+fi
+for cask in xquartz java; do
+    if ! $cask_installed $cask; then
+        print_command "brew cask install $cask"
+        $brew cask install $cask || { errored=true; print_error "failed to install cask $cask"; }
+    else
+        print_progress "cask '$cask' already installed"
+    fi
+done
 
 # formulae
-while read -r optstring; do
-    [[ $optstring == \#* ]] && continue # skip comments
-    $here/installed.py $optstring && continue
-    print -P "%B%F{blue}brew install $optstring%f%b" >&2
-    brew reinstall ${=optstring} || errored=true
-    { echo; echo; echo; } >&2
-done < "$here/formulae"
+print_milestone "Installing formulae..."
+newly_installed=()
+<$formulae_list while read -r optstring; do
+    # skip comments
+    [[ $optstring == \#* ]] && continue
 
-# specials
-"$here/special" || errored=true
+    formula=$optstring[(w)1]
+    unset options
+    options=$optstring[(w)2,-1]
+
+    # get installed status (0 for installed with right options, 1 for installed
+    # with not-quite-right options, 2 for not installed outright)
+    $installed --exact $optstring
+    case $? in
+        0)
+            print_progress "formula '$formula' already installed"
+            continue
+            ;;
+        1)
+            print_command "brew uninstall $formula"
+            $brew uninstall $formula || {
+                errored=true
+                print_error "failed to uninstall formula '$formula' (attempting to reinstall with options '$options')"
+                continue
+            }
+            ;&
+        2)
+            print_command "brew install $optstring"
+            $brew install ${=optstring} || {
+                errored=true
+                print_error "failed to install formula '$formula' with options '$options'"
+                continue
+            }
+            newly_installed+=$formula
+            ;;
+        *)
+            print_error "cannot determine status of formula '$formula'"
+            errored=true
+            ;;
+    esac
+done
+
+if [[ -n $newly_installed ]]; then
+    print_milestone "Newly installed formulae:"
+    print -c $newly_installed
+
+    # postflight
+    print_milestone "Running postflight setup..."
+    $postflight $newly_installed || errored=true
+fi
+
+print_note "Please run 'postflight --all' if the init script was previously interrupted."
 
 [[ $errored == false ]]

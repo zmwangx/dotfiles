@@ -1,0 +1,76 @@
+#!/usr/bin/env zsh
+
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+
+# process arguments
+all=0
+case $1 in
+    -h|--help)
+        print 'Usage:
+
+    postflight -h|--help
+    postflight -a|--all
+    postflight formula...
+
+In the first form, print this help and exit with 1.
+
+In the second form, run postflight for all formulae that require special
+treatment.
+
+In the third form, run postflight for selected formulae (when available).
+'
+        ;;
+    -a|--all)
+        all=1
+        ;;
+    *)
+        newly_installed=($@)
+        ;;
+esac
+
+# abstract away paths
+brew=/usr/local/bin/brew
+installed=$here/installed
+
+errored=false
+
+# link apps
+for formula in emacs mpv terminal-notifier; do
+    (( $all )) && $installed $formula || (( $newly_installed[(I)$formula] )) || continue
+    print_command "brew linkapps $formula"
+    $brew linkapps $formula || { print_error "failed to link apps for formula '$formula'"; errored=true; }
+done
+
+# key-only
+if [[ ! -d ~/dev/bin ]]; then
+    print_command "mkdir -p ~/dev/bin"
+    mkdir -p ~/dev/bin
+fi
+for formula in curl gnu-getopt; do
+    (( $all )) && $installed $formula || (( $newly_installed[(I)$formula] )) || continue
+    keg_bin="$(brew --prefix $formula)/bin"
+    print_command "ln -sf $keg_bin/* ~/dev/bin"
+    ln -sf $keg_bin/* ~/dev/bin || { print_error "failed to link binaries for formula '$formula' to ~/dev/bin"; errored=true; }
+done
+
+# permissions
+if (( $all )) && $installed htop-osx || (( $newly_installed[(I)htop-osx] )); then
+    htop="$(brew --prefix htop-osx)/bin/htop"
+    print_command "sudo chown root:wheel '$htop'"
+    sudo chown root:wheel $htop || errored=true
+    print_command "sudo chmod u+s '$htop'"
+    sudo chmod u+s $htop || errored=true
+fi
+
+if (( $all )) && $installed mutt || (( $newly_installed[(I)mutt] )); then
+    mutt="$(brew --prefix mutt)/bin/mutt"
+    print_command "sudo chown root:mail '$mutt'"
+    sudo chown root:mail $mutt || errored=true
+    print_command "sudo chmod u+s '$mutt'"
+    sudo chmod u+s $mutt || errored=true
+fi
+
+[[ $errored == false ]]
