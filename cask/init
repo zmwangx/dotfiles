@@ -10,8 +10,6 @@ function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f';
 
 errored=false
 
-print_milestone "Provisioning Homebrew Cask..."
-
 # abstract away paths
 brew=/usr/local/bin/brew
 cask_list=$here/casks

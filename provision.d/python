@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+
+# This script sets up basic Python dependencies and dev environment.
+#
+# This script assumes python2, python3, pip2 and pip3 that are accessible
+# without sudo.
+
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+
+function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '%f%b'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
+errored=false
+
+# pip
+print_milestone "Installing pip dependencies..."
+
+print_command "pip2 install --upgrade pip"
+pip2 install --upgrade pip || errored=true
+
+pip2_requirements=$here/../pip/pip2
+print_command "pip2 install --requirement '$pip2_requirements'"
+pip2 install --requirement $pip2_requirements
+
+print_command "pip3 install --upgrade pip"
+pip3 install --upgrade pip || errored=true
+
+pip3_requirements=$here/../pip/pip3
+print_command "pip3 install --requirement '$pip3_requirements'"
+pip3 install --requirement $pip3_requirements
+
+# install repositories
+print_milestone "Installing personal repositories..."
+
+pydevdir=$HOME/dev/src/py
+if [[ ! -d $pydevdir ]]; then
+    print_command "mkdir -p $pydevdir"
+    mkdir -p $pydevdir
+fi
+
+typeset -A repos
+set -A repos \
+    imgur git@github.com:zmwangx/imgur.git \
+    onedrive git@github.com:zmwangx/pyonedrive.git \
+    pyzmwangx git@github.com:zmwangx/pyzmwangx.git \
+    storyboard git@github.com:zmwangx/storyboard.git
+for repo in ${(k)repos}; do
+    repo_path=$pydevdir/$repo
+    if [[ -d $repo_path ]]; then
+        print_progress "Repository '$repo' already exists"
+    else
+        url=$repos[$repo]
+        print_command "git clone --recursive '$url' '$repo_path'"
+        git clone --recursive $url $repo_path || {
+            print_error "Failed to clone repository '$url' into '$repo_path'"
+            errored=true
+            continue
+        }
+    fi
+    print_command "cd '$repo_path' && ./setup.py develop"
+    cd $repo_path && ./setup.py develop || errored=true
+done

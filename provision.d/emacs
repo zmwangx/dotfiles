@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# This provisioner installs Emacs packages required in ~/.emacs.d/init.el.
+
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+
+print_command "/usr/local/bin/emacs --batch -l ~/.emacs.d/init.el"
+/usr/local/bin/emacs --batch -l ~/.emacs.d/init.el

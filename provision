@@ -10,104 +10,85 @@
 # provisioning a new machine (say Homebrew is already installed), your machine
 # won't explode. You'll get a few error messages at most.
 
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+provisioner_dir=$here/provision.d
+
+function print_warning { { print -nP $'\n%B%F{yellow}Warning: '; print -n $1; print -P '%f%b'; } >&2 }
+function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '%f%b'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_note { { print -nP $'\n%B'; print -n $1; print -P '%b'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
+errored=false
+
 [[ $OSTYPE == *darwin* ]] || {
-    echo "${BOLD}${RED}ERROR: UNRECGONIZED OSTYPE $OSTYPE. THIS PROVISIONER ONLY WORKS ON OS X.${RESET}" >&2
+    print_error "UNRECGONIZED OSTYPE $OSTYPE. THIS PROVISIONER ONLY WORKS ON OS X."
     exit 1
 }
 
 # Our provisioner requires sudo here and there, so we temporarily modify
 # /etc/sudoers so that the timestamp does not expire. Remember to revert
 # /etc/sudoers after we are done!
-print -P '%B%F{yellow}WARNING:
+print_warning '
 
 We are going to modify /etc/sudoers to avoid having to type admin password to
 sudo during provision. The original /etc/sudoers will be backed up to
 /etc/sudoers.bak. It will be restored at the end of provision.
 
 If something went wrong and the provision script exited early, please remember
-to restore /etc/sudoers.
-%f%b'
+to restore /etc/sudoers.'
 
-setopt xtrace
-sudo cp -f /etc/sudoers /etc/sudoers.bak || exit 1
-sudo /bin/sh -c "echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers" || exit 1
-if [[ $(xcode-select --print-path) =~ /Applications/Xcode(-beta)?.app/Contents/Developer ]]; then
-    # already selected a valid path; pass
-    true
+print_milestone "Modifying /etc/sudoers..."
+print_command "sudo -v"
+sudo -v
+print_command "sudo cp -f /etc/sudoers /etc/sudoers.bak"
+sudo cp -f /etc/sudoers /etc/sudoers.bak || { print_error "Failed to back up /etc/sudoers"; exit 1; }
+print_command "sudo /bin/sh -c \"echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers\""
+sudo /bin/sh -c "echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers" || { print_error "Failed to write to /etc/sudoers to enable nopassword sudo"; exit 1; }
+
+# select Xcode
+print_milestone "Selecting Xcode..."
+xcode_path="$(xcode-select --print-path)"
+if [[ $xcode_path =~ /Applications/Xcode(-beta)?.app/Contents/Developer ]]; then
+    print_progress "Xcode already selected: $xcode_path"
 elif [[ -d /Applications/Xcode-beta.app ]]; then
+    print_command "sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer"
     sudo xcode-select --switch /Applications/Xcode-beta.app/Contents/Developer
 elif [[ -d /Applications/Xcode.app ]]; then
+    print_command "sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer"
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 fi
-unsetopt xtrace
 
-# detect OS X version
-osx_version=$(sw_vers -productVersion)
-print -P "%B%F{green}
-OS X $osx_version detected
-%f%b"
-osx_major_version=$osx_version[(ws:.:)1]
-osx_minor_version=$osx_version[(ws:.:)2]
-osx_patch_version=$osx_version[(ws:.:)3]
+print_milestone "Inspecting Zsh global init files..."
+$provisioner_dir/zshglobalinit || errored=true
 
-# If OS X 10.11+, move default /etc/zprofile to /etc/zshenv, which contains
-# path initialization with path_helper.
-if (( osx_major_version > 10 || ( osx_major_version == 10 && osx_minor_version >= 11 ) )); then
-    if [[ -e /etc/zprofile && ! -e /etc/zshenv ]]; then
-        print -P '%B%F{green}
-Moving /etc/zprofile to /etc/zshenv...
-%f%b'
-        sudo mv /etc/zprofile /etc/zshenv || {
-            print -P '%F{red}error: failed to move /etc/zprofile to /etc/zshenv'
-            errored=true
-        }
-    fi
-fi
+print_milestone "Setting up dotfiles..."
+$provisioner_dir/dotfiles || errored=true
 
-errored=false
+print_milestone "Provisioning Homebrew..."
+$provisioner_dir/brew || errored=true
 
-print -P '%B%F{green}
-Setting up basic environment...
-%f%b'
-~/.config/setup || errored=true
+print_milestone "Provisioning Homebrew Cask..."
+$provisioner_dir/cask || errored=true
 
-if [[ ! -d ~/dev/scripts ]]; then
-    mkdir -p ~/dev/scripts
-    print -P '%B%F{green}
-Checking out helper tools...
-%f%b'
-    setopt xtrace
-    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts || errored=true
-    unsetopt xtrace
-fi
+print_milestone "Installing Emacs packages..."
+$provisioner_dir/emacs || errored=true
 
-print -P '%B%F{green}
-Installing Homebrew and formulae...
-%f%b'
-~/.config/brew/init
+print_milestone "Installing helper scripts..."
+$provisioner_dir/scripts || errored=true
 
-print -P '%B%F{green}
-Installing casks...
-%f%b'
-~/.config/cask/init
+print_milestone "Setting up Python development environment"
+$provisioner_dir/python || errored=true
 
-setopt xtrace
-sudo mv -f /etc/sudoers.bak /etc/sudoers
-unsetopt xtrace
-print -P '%B%F{green}
-/etc/sudoers restored.
-%f%b'
+print_milestone "Setting up cron schedule..."
+$provisioner_dir/cron || errored=true
 
-print -P '%B%F{green}
-Installing Emacs packages...
-%f%b'
-setopt xtrace
-/usr/local/bin/emacs --batch -l ~/.emacs.d/init.el
-unsetopt xtrace
+print_milestone "Restoring /etc/sudoers..."
+print_command "sudo mv -f /etc/sudoers.bak /etc/sudoers"
+sudo mv -f /etc/sudoers.bak /etc/sudoers || { print_error "Failed to restore /etc/sudoers from /etc/sudoers.bak"; errored=true; }
 
-print -P '%B%F{green}
-Provision success.
-Please reload your shell.
-%f%b'
+print_note "Provision success.
+Please reload your shell."
 
 [[ $errored == false ]]

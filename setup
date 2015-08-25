@@ -19,7 +19,7 @@ data_dirs=(aspell bash fasd ipython iterm2 less mail pry pylint zsh)
 cache_dirs=(cron fontconfig gem grip matplotlib npm)
 for dir in $data_dirs; do
     [[ -d $XDG_DATA_HOME/$dir ]] && continue
-    mkdir $XDG_DATA_HOME/$dir
+    mkdir -p $XDG_DATA_HOME/$dir
     print "Created '$XDG_DATA_HOME/$dir'" >&2
 done
 for dir in $cache_dirs; do

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
+[[ -e ~/.config/cron/crontab ]] || { print_error "Crontab '~/.config/cron/crontab' does not exist"; exit 1; }
+print_command "crontab ~/.config/cron/crontab"
+/usr/bin/crontab ~/.config/cron/crontab || { print_error "Failed to set crontab"; exit 1; }

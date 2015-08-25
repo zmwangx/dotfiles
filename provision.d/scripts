@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# This script checks out helper scripts at ~/dev/scripts.
+
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
+if [[ -d ~/dev/scripts ]]; then
+    print_progress "'~/dev/scripts' already exists"
+else
+    print_command "mkdir -p ~/dev/scripts"
+    mkdir -p ~/dev/scripts
+    print_command "git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts"
+    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts || {
+        print_error "Failed to clone repository 'git@gitlab.com:zmwangx/scripts.git' to '~/dev/scripts'"
+        exit 1
+    }
+fi
