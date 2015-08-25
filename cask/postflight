@@ -1,0 +1,141 @@
+#!/usr/bin/env zsh
+
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+
+# process arguments
+all=0
+case $1 in
+    -h|--help)
+        print 'Usage:
+
+    postflight -h|--help
+    postflight -a|--all
+    postflight formula...
+
+In the first form, print this help and exit with 1.
+
+In the second form, run postflight for all casks that require special
+treatment.
+
+In the third form, run postflight for selected casks (when available).
+'
+        ;;
+    -a|--all)
+        all=1
+        ;;
+    *)
+        newly_installed=($@)
+        ;;
+esac
+
+# abstract away paths
+brew=/usr/local/bin/brew
+installed=$here/installed
+
+# run postflight for a cask if --all is specified and the cask is installed,
+# or if the cask is one of the casks specified on the command line
+function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
+
+errored=false
+
+# quicklook
+if [[ "$(defaults read com.apple.finder QLEnableTextSelection)" != "1" ]]; then
+    print_progress "Enabling text selection in QuickLook..."
+    defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
+fi
+print_progress "Resetting QuickLook..."
+qlmanage -r
+
+saved_PATH=$PATH
+PATH=$here:$PATH
+
+# move app to /Applications
+#
+# Usage: move_app_to_slash_applications <cask_name> <artifact_relative_to_staged_path> [<artifact_relative_to_applications>]
+#
+# This function also try to removes the original symlink (created by brew-cask)
+# of the staged app in /Applications.
+function move_app_to_slash_applications
+{
+    should_run_postflight_for $1 || return 0
+
+    print_progress "Cask '$1': moving '${2##*/}' to /Applications"
+
+    natural_dst=/Applications/${2##*/}
+    if [[ -n $3 ]]; then
+        dst=/Applications/$3
+    else
+        dst=$natural_dst
+    fi
+    [[ -d $dst ]] && { print_error "not overwriting destination '$dst', which is an existing directory"; return 1; }
+
+    staged_path="$($brew cask stagedpath $1)" || { print_error "cask '$1' not installed"; return 1; }
+    src=$staged_path/$2
+    [[ -d $src ]] || { print_error "source path '$src' does not exist or is not a directory"; return 1; }
+
+    # remove existing destination
+    [[ -e $dst ]] && {
+        print_command "rm '$dst'"
+        rm $dst || { print_error "failed to remove existing '$dst'"; return 1; }
+    }
+
+    # remove original symlink
+    [[ -h $natural_dst ]] && [[ $(readlink $natural_dst) == /opt/homebrew-cask/Caskroom/$1/* ]] && {
+        print_command "rm '$natural_dst'"
+        rm $natural_dst || { print_error "failed to remove original symlink '$natural_dst'"; return 1; }
+    }
+
+    # move application
+    print_command "mv '$src' '$dst'"
+    mv $src $dst || { print_error "failed to move '$srt' to '$dst'"; return 1; }
+}
+
+move_app_to_slash_applications "chromium" "chrome-mac/Chromium.app" || errored=true
+move_app_to_slash_applications "firefox" "Firefox.app" || errored=true
+move_app_to_slash_applications "firefoxdeveloperedition" "FirefoxDeveloperEdition.app" || errored=true
+move_app_to_slash_applications "google-chrome" "Google Chrome.app" || errored=true
+move_app_to_slash_applications "opera" "Opera.app" || errored=true
+move_app_to_slash_applications "opera-beta" "Opera Beta.app" || errored=true
+move_app_to_slash_applications "opera-developer" "Opera Developer.app" || errored=true
+move_app_to_slash_applications "tunnelblick" "Tunnelblick.app" || errored=true
+
+move_app_to_slash_applications "baiducloud" "百度云同步盘.app" "BaiduCloud.app" || errored=true
+move_app_to_slash_applications "flvcd-bigrats" "硕鼠MAC.app" "BigRats.app" || errored=true
+
+# stage only
+if should_run_postflight_for sogouinput; then
+    print_progress "Lauching Sogou Input installer..."
+    if staged_path="$($brew cask stagedpath sogouinput)"; then
+        installer_path=$staged_path/安装搜狗输入法.app
+        if [[ -d $installer_path ]]; then
+            print_command "open '$installer_path'"
+            open $installer_path
+        else
+            print_error "installer '$installer_path' not found"
+            errored=true
+        fi
+    else
+        print_error "cask 'sogouinput' not installed"
+        errored=true
+    fi
+fi
+
+# vagrant plugins
+if should_run_postflight_for vagrant; then
+    print_progress "Installing vagrant plugins..."
+    print_command "vagrant plugin install vagrant-scp vagrant-timezone"
+    vagrant plugin install vagrant-scp vagrant-timezone || { print_error "failed to install vagrant plugins"; errored=true; }
+fi
+
+# VirtualBox settings
+if should_run_postflight_for virtualbox; then
+    print_progress "Setting VirtualBox preferences..."
+    print_command "VBoxManage setproperty machinefolder ~/virtualbox"
+    /Applications/VirtualBox.app/Contents/MacOS/VBoxManage setproperty machinefolder $HOME/virtualbox || errored=true
+fi
+
+[[ $errored == false ]]

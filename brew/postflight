@@ -36,11 +36,11 @@ esac
 brew=/usr/local/bin/brew
 installed=$here/installed
 
-errored=false
-
 # run postflight for a formula if --all is specified and the formula is installed,
 # or if the formula is one of the formulae specified on the command line
 function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
+
+errored=false
 
 # link apps
 for formula in emacs mpv terminal-notifier; do

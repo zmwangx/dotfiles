@@ -30,12 +30,14 @@ postflight=$here/postflight
 installed=$here/installed
 cask_installed=$here/../cask/installed
 
+export HOMEBREW_VERBOSE=true
+
 # taps
 print_milestone "Tapping taps..."
 tapped_taps=( $($brew tap) )
 <$tap_list while read -r tap; do
     # skip comments and tapped taps
-    ( [[ $tap == \#* ]] || (( $tapped_taps[(I)$tap] )) ) && { print_progress "tap '$tap' already tapped"; continue; }
+    ( [[ $tap == \#* ]] || (( $tapped_taps[(I)$tap] )) ) && { print_progress "Tap '$tap' already tapped"; continue; }
     print_command "brew tap $tap"
     $brew tap $tap || { errored=true; print_error "failed to tap '$tap'"; }
 done
@@ -46,14 +48,14 @@ if ! $installed "brew-cask"; then
     print_command "brew install brew-cask"
     $brew install brew-cask || { errored=true; print_error "failed to install formula 'brew-cask'"; }
 else
-    print_progress "formula 'brew-cask' already installed"
+    print_progress "Formula 'brew-cask' already installed"
 fi
 for cask in xquartz java; do
     if ! $cask_installed $cask; then
         print_command "brew cask install $cask"
         $brew cask install $cask || { errored=true; print_error "failed to install cask $cask"; }
     else
-        print_progress "cask '$cask' already installed"
+        print_progress "Cask '$cask' already installed"
     fi
 done
 
@@ -73,7 +75,7 @@ newly_installed=()
     $installed --exact $optstring
     case $? in
         0)
-            print_progress "formula '$formula' already installed"
+            print_progress "Formula '$formula' already installed"
             continue
             ;;
         1)

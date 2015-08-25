@@ -2,37 +2,64 @@
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
+function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '%f%b'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_note { { print -nP $'\n%B'; print -n $1; print -P '%b'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+
 errored=false
 
-# strip potential undesired (!) from "brew cask list" output
-installed_casks=( $(brew cask list -1 | /usr/bin/sed -E 's/ .*//') )
+print_milestone "Provisioning Homebrew Cask..."
 
-# QL plugins
-while read -r qlplugin; do
-    [[ $qlplugin == \#* ]] && continue # skip comments
-    (( $installed_casks[(I)$qlplugin] )) && continue
-    print -P "%B%F{blue}brew cask install $qlplugin%f%b" >&2
-    brew cask install $qlplugin || errored=true
-    { echo; echo; echo; } >&2
-done < "$here/qlplugins"
-defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
-qlmanage -r
+# abstract away paths
+brew=/usr/local/bin/brew
+cask_list=$here/casks
+postflight=$here/postflight
+notes=$here/notes
+installed=$here/installed
+formula_installed=$here/../brew/installed
 
-# apps
-while read -r app; do
-    [[ $app == \#* ]] && continue # skip comments
-    (( $installed_casks[(I)$app] )) && continue
-    print -P "%B%F{blue}brew cask install $app%f%b" >&2
-    brew cask install $app || errored=true
-    { echo; echo; echo; } >&2
-done < "$here/apps"
+# install base system, if not already there
+[[ -f $brew ]] || { print_error "/usr/local/bin/brew not found; please install Homebrew first"; exit 1; }
+if ! $formula_installed "brew-cask"; then
+    print_milestone "Installing Homebrew Cask base system..."
+    print_command "brew install brew-cask"
+    $brew install brew-cask || { print_error "failed to install Homebrew Cask base system"; exit 1; }
+fi
 
-# special
-"$here/special" || errored=true
+export HOMEBREW_CASK_OPTS='--appdir=/Applications --verbose'
 
-# print notes
-print -P "%B" >&2
-cat "$here/notes" >&2
-print -P "%b" >&2
+# casks
+print_milestone "Installing casks..."
+newly_installed=()
+<$cask_list while read -r cask; do
+    [[ $cask == \#* ]] && continue # skip comments
+
+    if $installed $cask; then
+        print_progress "cask '$cask' already installed"
+    else
+        print_command "brew cask install $cask"
+        $brew cask install $cask || {
+            errored=true
+            print_error "failed to install cask '$cask'"
+            continue
+        }
+        newly_installed+=$cask
+    fi
+done
+
+if [[ -n $newly_installed ]]; then
+    print_milestone "Newly installed casks:"
+    print -c $newly_installed
+
+    # postflight
+    print_milestone "Running postflight setup..."
+    $postflight $newly_installed || errored=true
+fi
+
+# notes
+print_note "$(< $notes)"
+print_note "Please run 'postflight --all' if the init script was previously interrupted."
 
 [[ $errored == false ]]
