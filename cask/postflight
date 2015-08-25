@@ -43,11 +43,13 @@ function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_in
 errored=false
 
 # quicklook
-if [[ "$(defaults read com.apple.finder QLEnableTextSelection)" != "1" ]]; then
+if [[ "$(defaults read com.apple.finder QLEnableTextSelection 2>/dev/null)" != "1" ]]; then
     print_progress "Enabling text selection in QuickLook..."
+    print_command "defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder"
     defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
 fi
 print_progress "Resetting QuickLook..."
+print_command "qlmanage -r"
 qlmanage -r
 
 saved_PATH=$PATH
