@@ -2,6 +2,7 @@
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
 function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
 function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
 
@@ -37,9 +38,13 @@ installed=$here/installed
 
 errored=false
 
+# run postflight for a formula if --all is specified and the formula is installed,
+# or if the formula is one of the formulae specified on the command line
+function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
+
 # link apps
 for formula in emacs mpv terminal-notifier; do
-    (( $all )) && $installed $formula || (( $newly_installed[(I)$formula] )) || continue
+    should_run_postflight_for $formula || continue
     print_command "brew linkapps $formula"
     $brew linkapps $formula || { print_error "failed to link apps for formula '$formula'"; errored=true; }
 done
@@ -50,14 +55,14 @@ if [[ ! -d ~/dev/bin ]]; then
     mkdir -p ~/dev/bin
 fi
 for formula in curl gnu-getopt; do
-    (( $all )) && $installed $formula || (( $newly_installed[(I)$formula] )) || continue
+    should_run_postflight_for $formula || continue
     keg_bin="$(brew --prefix $formula)/bin"
     print_command "ln -sf $keg_bin/* ~/dev/bin"
     ln -sf $keg_bin/* ~/dev/bin || { print_error "failed to link binaries for formula '$formula' to ~/dev/bin"; errored=true; }
 done
 
 # permissions
-if (( $all )) && $installed htop-osx || (( $newly_installed[(I)htop-osx] )); then
+if should_run_postflight_for htop-osx; then
     htop="$(brew --prefix htop-osx)/bin/htop"
     print_command "sudo chown root:wheel '$htop'"
     sudo chown root:wheel $htop || errored=true
@@ -65,12 +70,36 @@ if (( $all )) && $installed htop-osx || (( $newly_installed[(I)htop-osx] )); the
     sudo chmod u+s $htop || errored=true
 fi
 
-if (( $all )) && $installed mutt || (( $newly_installed[(I)mutt] )); then
+if should_run_postflight_for mutt; then
     mutt="$(brew --prefix mutt)/bin/mutt"
     print_command "sudo chown root:mail '$mutt'"
     sudo chown root:mail $mutt || errored=true
     print_command "sudo chmod u+s '$mutt'"
     sudo chmod u+s $mutt || errored=true
+fi
+
+# change login shell to /usr/local/bin/zsh
+if should_run_postflight_for zsh; then
+    # detect user login shell
+    whoami=$(whoami)
+    myloginshell="$(dscl . -read /Users/$whoami UserShell | sed 's/^UserShell: //')"
+    if [[ -e /usr/local/bin/zsh && $myloginshell != /usr/local/bin/zsh ]]; then
+        print_progress "Changing login shell to /usr/local/bin/zsh"
+        # authorize
+        if ! grep -q -E '^/usr/local/bin/zsh' /etc/shells; then
+            print_command 'sudo /bin/sh -c "echo /usr/local/bin/zsh >>/etc/shells"'
+            sudo /bin/sh -c "echo /usr/local/bin/zsh >>/etc/shells" || {
+                print_error "failed to add /usr/local/bin/zsh to /etc/shells"
+                errored=true
+            }
+        fi
+        # change shell
+        print_command "sudo chsh -s /usr/local/bin/zsh $whoami"
+        sudo chsh -s /usr/local/bin/zsh $whoami || {
+            print_error "failed to change shell to /usr/local/bin/zsh"
+            errored=true
+        }
+    fi
 fi
 
 [[ $errored == false ]]
