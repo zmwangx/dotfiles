@@ -6,7 +6,7 @@ function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '
 function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
 function print_note { { print -nP $'\n%B'; print -n $1; print -P '%b'; } >&2 }
 function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
 
 errored=false
 
@@ -17,7 +17,7 @@ if [[ ! -d /usr/local/.git ]]; then
     print_milestone "Installing Homebrew base system..."
     # redirect stdin to /dev/null to perform a noninteractive install
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || {
-        print_error "failed to install Homebrew base system"
+        print_error "Failed to install Homebrew base system"
         exit 1
     }
 fi
@@ -39,21 +39,21 @@ tapped_taps=( $($brew tap) )
     # skip comments and tapped taps
     ( [[ $tap == \#* ]] || (( $tapped_taps[(I)$tap] )) ) && { print_progress "Tap '$tap' already tapped"; continue; }
     print_command "brew tap $tap"
-    $brew tap $tap || { errored=true; print_error "failed to tap '$tap'"; }
+    $brew tap $tap || { errored=true; print_error "Failed to tap '$tap'"; }
 done
 
 # some formulae depend on X11 and JRE
 print_milestone "Installing prelimary dependencies..."
 if ! $installed "brew-cask"; then
     print_command "brew install brew-cask"
-    $brew install brew-cask || { errored=true; print_error "failed to install formula 'brew-cask'"; }
+    $brew install brew-cask || { errored=true; print_error "Failed to install formula 'brew-cask'"; }
 else
     print_progress "Formula 'brew-cask' already installed"
 fi
 for cask in xquartz java; do
     if ! $cask_installed $cask; then
         print_command "brew cask install $cask"
-        $brew cask install $cask || { errored=true; print_error "failed to install cask $cask"; }
+        $brew cask install $cask || { errored=true; print_error "Failed to install cask $cask"; }
     else
         print_progress "Cask '$cask' already installed"
     fi
@@ -82,7 +82,7 @@ newly_installed=()
             print_command "brew uninstall $formula"
             $brew uninstall $formula || {
                 errored=true
-                print_error "failed to uninstall formula '$formula' (attempting to reinstall with options '$options')"
+                print_error "Failed to uninstall formula '$formula' (attempting to reinstall with options '$options')"
                 continue
             }
             ;&
@@ -90,13 +90,13 @@ newly_installed=()
             print_command "brew install $optstring"
             $brew install ${=optstring} || {
                 errored=true
-                print_error "failed to install formula '$formula' with options '$options'"
+                print_error "Failed to install formula '$formula' with options '$options'"
                 continue
             }
             newly_installed+=$formula
             ;;
         *)
-            print_error "cannot determine status of formula '$formula'"
+            print_error "Cannot determine status of formula '$formula'"
             errored=true
             ;;
     esac

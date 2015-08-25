@@ -6,7 +6,7 @@ function print_milestone { { print -nP $'\n%B%F{green}'; print -n $1; print -P '
 function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
 function print_note { { print -nP $'\n%B'; print -n $1; print -P '%b'; } >&2 }
 function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
 
 errored=false
 
@@ -25,7 +25,7 @@ formula_installed=$here/../brew/installed
 if ! $formula_installed "brew-cask"; then
     print_milestone "Installing Homebrew Cask base system..."
     print_command "brew install brew-cask"
-    $brew install brew-cask || { print_error "failed to install Homebrew Cask base system"; exit 1; }
+    $brew install brew-cask || { print_error "Failed to install Homebrew Cask base system"; exit 1; }
 fi
 
 export HOMEBREW_CASK_OPTS='--appdir=/Applications --verbose'
@@ -42,7 +42,7 @@ newly_installed=()
         print_command "brew cask install $cask"
         $brew cask install $cask || {
             errored=true
-            print_error "failed to install cask '$cask'"
+            print_error "Failed to install cask '$cask'"
             continue
         }
         newly_installed+=$cask

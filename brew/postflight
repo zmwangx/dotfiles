@@ -4,7 +4,7 @@ here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@
 
 function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
 function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
 
 # process arguments
 all=0
@@ -46,7 +46,7 @@ errored=false
 for formula in emacs mpv terminal-notifier; do
     should_run_postflight_for $formula || continue
     print_command "brew linkapps $formula"
-    $brew linkapps $formula || { print_error "failed to link apps for formula '$formula'"; errored=true; }
+    $brew linkapps $formula || { print_error "Failed to link apps for formula '$formula'"; errored=true; }
 done
 
 # key-only
@@ -58,7 +58,7 @@ for formula in curl gnu-getopt; do
     should_run_postflight_for $formula || continue
     keg_bin="$(brew --prefix $formula)/bin"
     print_command "ln -sf $keg_bin/* ~/dev/bin"
-    ln -sf $keg_bin/* ~/dev/bin || { print_error "failed to link binaries for formula '$formula' to ~/dev/bin"; errored=true; }
+    ln -sf $keg_bin/* ~/dev/bin || { print_error "Failed to link binaries for formula '$formula' to ~/dev/bin"; errored=true; }
 done
 
 # permissions
@@ -89,14 +89,14 @@ if should_run_postflight_for zsh; then
         if ! grep -q -E '^/usr/local/bin/zsh' /etc/shells; then
             print_command 'sudo /bin/sh -c "echo /usr/local/bin/zsh >>/etc/shells"'
             sudo /bin/sh -c "echo /usr/local/bin/zsh >>/etc/shells" || {
-                print_error "failed to add /usr/local/bin/zsh to /etc/shells"
+                print_error "Failed to add /usr/local/bin/zsh to /etc/shells"
                 errored=true
             }
         fi
         # change shell
         print_command "sudo chsh -s /usr/local/bin/zsh $whoami"
         sudo chsh -s /usr/local/bin/zsh $whoami || {
-            print_error "failed to change shell to /usr/local/bin/zsh"
+            print_error "Failed to change shell to /usr/local/bin/zsh"
             errored=true
         }
     fi

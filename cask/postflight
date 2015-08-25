@@ -4,7 +4,7 @@ here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@
 
 function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
 function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}error: '; print -n $1; print -P '%f'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
 
 # process arguments
 all=0
@@ -71,27 +71,27 @@ function move_app_to_slash_applications
     else
         dst=$natural_dst
     fi
-    [[ -d $dst ]] && { print_error "not overwriting destination '$dst', which is an existing directory"; return 1; }
+    [[ -d $dst ]] && { print_error "Not overwriting destination '$dst', which is an existing directory"; return 1; }
 
-    staged_path="$($brew cask stagedpath $1)" || { print_error "cask '$1' not installed"; return 1; }
+    staged_path="$($brew cask stagedpath $1)" || { print_error "Cask '$1' not installed"; return 1; }
     src=$staged_path/$2
-    [[ -d $src ]] || { print_error "source path '$src' does not exist or is not a directory"; return 1; }
+    [[ -d $src ]] || { print_error "Source path '$src' does not exist or is not a directory"; return 1; }
 
     # remove existing destination
     [[ -e $dst ]] && {
         print_command "rm '$dst'"
-        rm $dst || { print_error "failed to remove existing '$dst'"; return 1; }
+        rm $dst || { print_error "Failed to remove existing '$dst'"; return 1; }
     }
 
     # remove original symlink
     [[ -h $natural_dst ]] && [[ $(readlink $natural_dst) == /opt/homebrew-cask/Caskroom/$1/* ]] && {
         print_command "rm '$natural_dst'"
-        rm $natural_dst || { print_error "failed to remove original symlink '$natural_dst'"; return 1; }
+        rm $natural_dst || { print_error "Failed to remove original symlink '$natural_dst'"; return 1; }
     }
 
     # move application
     print_command "mv '$src' '$dst'"
-    mv $src $dst || { print_error "failed to move '$srt' to '$dst'"; return 1; }
+    mv $src $dst || { print_error "Failed to move '$srt' to '$dst'"; return 1; }
 }
 
 move_app_to_slash_applications "chromium" "chrome-mac/Chromium.app" || errored=true
@@ -115,11 +115,11 @@ if should_run_postflight_for sogouinput; then
             print_command "open '$installer_path'"
             open $installer_path
         else
-            print_error "installer '$installer_path' not found"
+            print_error "Installer '$installer_path' not found"
             errored=true
         fi
     else
-        print_error "cask 'sogouinput' not installed"
+        print_error "Cask 'sogouinput' not installed"
         errored=true
     fi
 fi
@@ -128,7 +128,7 @@ fi
 if should_run_postflight_for vagrant; then
     print_progress "Installing vagrant plugins..."
     print_command "vagrant plugin install vagrant-scp vagrant-timezone"
-    vagrant plugin install vagrant-scp vagrant-timezone || { print_error "failed to install vagrant plugins"; errored=true; }
+    vagrant plugin install vagrant-scp vagrant-timezone || { print_error "Failed to install vagrant plugins"; errored=true; }
 fi
 
 # VirtualBox settings
