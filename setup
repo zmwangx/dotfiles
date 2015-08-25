@@ -7,25 +7,31 @@ setopt NULL_GLOB
 here="$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")"
 source $here/env
 
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_warning { { print -nP $'%F{yellow}Warning: '; print -n $1; print -P '%f'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
 # Create data and cache dirs (some programs are not smart enough to create
 # directories themselves, and nonexistent directories are silently ignored).
 
-echo "${GREEN}creating program-specific data and cache directories...${RESET}" >&2
+print_progress "Creating program-specific data and cache directories..."
 data_dirs=(aspell bash fasd ipython iterm2 less mail pry pylint zsh)
 cache_dirs=(cron fontconfig gem grip matplotlib npm)
 for dir in $data_dirs; do
-    echo "create directory: $XDG_DATA_HOME/$dir" >&2
-    mkdir -p $XDG_DATA_HOME/$dir
+    [[ -d $XDG_DATA_HOME/$dir ]] && continue
+    mkdir $XDG_DATA_HOME/$dir
+    print "Created '$XDG_DATA_HOME/$dir'" >&2
 done
 for dir in $cache_dirs; do
-    echo "create directory: $XDG_CACHE_HOME/$dir" >&2
+    [[ -d $XDG_CACHE_HOME/$dir ]] && continue
     mkdir -p $XDG_CACHE_HOME/$dir
+    print "Created '$XDG_CACHE_HOME/$dir'" >&2
 done
 
 # Change mode of all directories in $XDG_CONFIG_HOME, $XDG_DATA_HOME, and
 # $XDG_CACHE_HOME to 700.
 
-echo "${GREEN}changing program-specific directory modes to 700...${RESET}" >&2
+print_progress "Changing program-specific directory modes to 700..."
 for dir in $XDG_CONFIG_HOME/*/ $XDG_DATA_HOME/*/ $XDG_CACHE_HOME/*/; do
     chmod 700 $dir
 done
@@ -85,18 +91,16 @@ function backup_and_symlink
 {
     src=$1
     dst=$2
-    [[ -e $src ]] || { echo "${RED}error: '$src' does not exist${RESET}" >&2; return 1; }
-    [[ -d $dst && ! -h $dst ]] && \
-        { echo "${RED}error: not overwriting destination directory '$dst'${RESET}" >&2; return 1; }
-    [[ -e $dst && ! -h $dst ]] && \
-        { mv $dst $dst.bak; echo "${YELLOW}warning: '$dst' backed up to '$dst.bak'${RESET}" >&2; }
+    [[ -e $src ]] || { print_error "'$src' does not exist"; return 1; }
+    [[ -d $dst && ! -h $dst ]] && { print_error "Not overwriting destination directory '$dst'"; return 1; }
+    [[ -e $dst && ! -h $dst ]] && { mv $dst $dst.bak; print_warning "'$dst' backed up to '$dst.bak'"; }
     [[ -h $dst ]] && rm $dst
-    echo "$src <== $dst" >&2
+    print "$src <== $dst" >&2
     mkdir -p "$(dirname $dst)"
     ln -s $src $dst
 }
 
-echo "${GREEN}symlinking dotfiles and dot directories...${RESET}" >&2
+print_progress "Symlinking dotfiles and dot directories..."
 success_count=0
 failure_count=0
 skipped_count=0
@@ -104,7 +108,7 @@ for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
     # skip if src is optional and does not exist
     if (( optional[$src] )) && [[ ! -e $XDG_CONFIG_HOME/$src ]]; then
         ((skipped_count++))
-        echo "${YELLOW}warning: '$XDG_CONFIG_HOME/$src' not present; skipped${RESET}" >&2
+        print_warning "'$XDG_CONFIG_HOME/$src' not present; skipped"
         continue
     fi
 
@@ -115,5 +119,5 @@ for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
         ((failure_count++))
     fi
 done
-echo "${GREEN}successfully linked ${success_count} items, failed on ${failure_count} items, skipped ${skipped_count} optional items${RESET}" >&2
+print_progress "Successfully linked ${success_count} items, failed on ${failure_count} items, skipped ${skipped_count} optional items"
 exit $((failure_count > 0))
