@@ -71,7 +71,7 @@ function move_app_to_slash_applications
     else
         dst=$natural_dst
     fi
-    [[ -d $dst ]] && { print_error "Not overwriting destination '$dst', which is an existing directory"; return 1; }
+    [[ ! -h $dst && -d $dst ]] && { print_error "Not overwriting destination '$dst', which is an existing directory"; return 1; }
 
     staged_path="$($brew cask stagedpath $1)" || { print_error "Cask '$1' not installed"; return 1; }
     src=$staged_path/$2
