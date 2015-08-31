@@ -19,3 +19,5 @@
 	required = true
 [alias]
 	pullall = !git pull && git submodule update --init --recursive
+[rebase]
+	autosquash = true
