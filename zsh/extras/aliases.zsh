@@ -11,10 +11,8 @@ alias tree='tree -N'
 alias empty_trash='rm -rf ~/.Trash && mkdir -m 700 ~/.Trash'
 
 ################################### SHORTCUT ###################################
-alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias dev='cd ~/dev/src'
-alias scpt='cd ~/dev/scripts'
 alias tmp='cd /tmp'
 
 alias finance='hdiutil attach -stdinpass ~/confidential/finance.sparsebundle'
