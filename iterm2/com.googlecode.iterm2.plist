@@ -616,7 +616,7 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>427 326 222 296 0 0 1920 1057 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>713 65 445 77 0 0 1280 777 </string>
+	<string>713 37 445 82 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>901 595 606 456 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
@@ -626,7 +626,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>697 4 790 1049 0 0 1920 1057 </string>
+	<string>0 8 790 1049 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -3142,7 +3142,7 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>462098862.28692001</real>
+	<real>462924230.94265097</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3207,6 +3207,13 @@
 		<string>0046</string>
 		<string>0047</string>
 		<string>0048</string>
+		<string>0049</string>
+		<string>0050</string>
+		<string>0051</string>
+		<string>0052</string>
+		<string>0053</string>
+		<string>0054</string>
+		<string>0055</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
 	<integer>8</integer>
@@ -3286,7 +3293,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-08-24T04:44:51Z</date>
+	<date>2015-09-03T12:53:07Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -3350,7 +3357,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20150812-nightly</string>
+	<string>2.9.20150826-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
