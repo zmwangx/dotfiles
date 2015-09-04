@@ -25,6 +25,10 @@
 (setq user-full-name "Zhiming Wang")
 (setq user-mail-address "zmwangx@gmail.com")
 
+;;; custom
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+
 ;;; editing and saving
 (setq-default auto-save-default nil)
 (setq-default indent-tabs-mode nil)
@@ -78,15 +82,14 @@
     (setq-default frame-background-mode 'light)
 
     ;; default face
-    (set-face-attribute 'default nil
-                        :family "Source Code Pro" :foundry "adobe"
-                        :width 'normal :height 120
-                        :weight 'normal :slant 'normal
-                        :foreground "black" :distant-foreground "black" :background "white"
-                        :underline nil :overline nil :strike-through nil :box nil :inverse-video nil
-                        :stipple nil :inherit nil)
-    ;; turn off antialiasing
-    ;(setq-default mac-allow-anti-aliasing nil)
+    (set-face-attribute 'default nil :family "Monaco" :height 100)
+    (setq-default mac-allow-anti-aliasing nil) ;; non-anti-aliased
+
+    ;; load solarized-dark theme
+    (use-package solarized :ensure solarized-theme :config (load-theme 'solarized-dark))
+
+    ;; frame size
+    (setq initial-frame-alist '((width . 120)))
 
     ;; change font for Chinese fontset (han)
     (set-fontset-font "fontset-default" 'han "STSong")))
