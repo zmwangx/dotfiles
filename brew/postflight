@@ -50,15 +50,10 @@ for formula in emacs mpv terminal-notifier; do
 done
 
 # key-only
-if [[ ! -d ~/dev/bin ]]; then
-    print_command "mkdir -p ~/dev/bin"
-    mkdir -p ~/dev/bin
-fi
 for formula in curl gnu-getopt; do
     should_run_postflight_for $formula || continue
-    keg_bin="$(brew --prefix $formula)/bin"
-    print_command "ln -sf $keg_bin/* ~/dev/bin"
-    ln -sf $keg_bin/* ~/dev/bin || { print_error "Failed to link binaries for formula '$formula' to ~/dev/bin"; errored=true; }
+    print_command "brew link --force $formula"
+    $brew link --force $formula || { print_error "Failed to link binaries for keg-only formula '$formula'"; errored=true; }
 done
 
 # permissions
