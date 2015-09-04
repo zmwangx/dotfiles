@@ -291,7 +291,24 @@
 (use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status) :config
   (add-hook 'magit-mode-hook 'visual-line-mode)
   (setq-default magit-diff-refine-hunk t)
-  (setq magit-push-always-verify nil))
+  (setq magit-push-always-verify nil)
+
+  (defun magit-signed-commit (&optional args)
+    "Create a new, GPG-signed commit on HEAD.
+With a prefix argument amend to the commit at HEAD instead.
+\n(git commit [--amend] --gpg-signed ARGS)"
+    (interactive (if current-prefix-arg
+                     (append (magit-commit-arguments) '("--amend" "--gpg-sign"))
+                   (append (magit-commit-arguments) '("--gpg-sign"))))
+    (when (setq args (magit-commit-assert args))
+      (magit-run-git-with-editor "commit" args)))
+
+  ;; bind magit-signed-commit to c c
+  (plist-put magit-commit-popup :actions
+             (append '((?c "Signed Commit" magit-signed-commit)
+                       (?d "Commit" magit-commit))
+                     (cdr (plist-get magit-commit-popup :actions))))
+  (plist-put magit-commit-popup :default-action 'magit-signed-commit))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
   (add-hook 'gfm-mode-hook 'abbrev-mode))
