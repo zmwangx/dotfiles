@@ -270,6 +270,9 @@
         '((directories (".git" ".svn" ".tox" "build"))
           (files ("*.jpg" "*.o" "*.png" "*.pyc")))))
 
+(use-package flycheck :ensure t :commands flycheck-mode :init
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
 (use-package git-commit :ensure t :defer t)
 
 (use-package go-mode :ensure t :mode "\\.go\\'")
