@@ -25,10 +25,6 @@
 (setq user-full-name "Zhiming Wang")
 (setq user-mail-address "zmwangx@gmail.com")
 
-;;; custom
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
 ;;; editing and saving
 (setq-default auto-save-default nil)
 (setq-default indent-tabs-mode nil)
@@ -51,7 +47,7 @@
 (bind-key "M-s" 'shell-command)
 (bind-key "C--" 'undo)
 
-;; enable
+;;; enable
 (put 'downcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL THEMING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -59,37 +55,24 @@
 (require 'color)
 
 (if (not (window-system))
-    ;;; tty mode, colors based on my modified Solarized palatte for iTerm2
+    ;; tty mode, colors based on my modified Solarized palatte for iTerm2
     (progn
-      (setq mytheme 'solarized-dark)
-      (setq-default frame-background-mode 'dark)
-      (menu-bar-mode -1)
+      ;; custom
+      (setq custom-file (expand-file-name "custom-tty.el" user-emacs-directory))
+      (load custom-file 'noerror))
 
-      (set-face-attribute 'error nil :foreground "red" :weight 'bold)
-      (set-face-attribute 'font-lock-builtin-face nil :foreground "blue")
-      (set-face-attribute 'font-lock-comment-face nil :foreground "yellow")
-      (set-face-attribute 'font-lock-constant-face nil :foreground "green")
-      (set-face-attribute 'font-lock-function-name-face nil :foreground "blue")
-      (set-face-attribute 'font-lock-keyword-face nil :foreground "cyan")
-      (set-face-attribute 'font-lock-string-face nil :foreground "green")
-      (set-face-attribute 'font-lock-type-face nil :foreground "cyan")
-      (set-face-attribute 'font-lock-variable-name-face nil :foreground "brightred")
-      (set-face-attribute 'region nil :background "brightcyan" :foreground "black"))
-
-  ;;; window system mode
+  ;; window system mode
   (progn
-    (setq mytheme 'default)
-    (setq-default frame-background-mode 'light)
-
-    ;; default face
-    (set-face-attribute 'default nil :family "Monaco" :height 100)
-    (setq-default mac-allow-anti-aliasing nil) ;; non-anti-aliased
+    ;; custom
+    (setq custom-file (expand-file-name "custom-window.el" user-emacs-directory))
+    (load custom-file 'noerror)
 
     ;; load solarized-dark theme
     (use-package solarized :ensure solarized-theme :config (load-theme 'solarized-dark))
 
-    ;; frame size
-    (setq initial-frame-alist '((width . 120)))
+    ;; maximize frame height
+    (add-to-list 'default-frame-alist
+                 (cons 'height (/ (- (x-display-pixel-height) 55) (frame-char-height))))
 
     ;; change font for Chinese fontset (han)
     (set-fontset-font "fontset-default" 'han "STSong")))
@@ -146,18 +129,9 @@
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook))
 
 (use-package cperl-mode :mode "\\.pl\\'" :interpreter "perl" :config
-  (setq-default cperl-indent-level 4)
-  (if (equal mytheme 'solarized-dark)
-      (progn
-        (set-face-attribute 'cperl-array-face nil :foreground "red" :background "default" :weight 'bold :slant 'normal)
-        (set-face-attribute 'cperl-hash-face nil :foreground "red" :background "default" :weight 'bold :slant 'normal)
-        (set-face-attribute 'cperl-nonoverridable-face nil :foreground "cyan"))))
+  (setq-default cperl-indent-level 4))
 
-(use-package diff-mode :defer t :config
-  (if (equal mytheme 'solarized-dark)
-      (progn
-        (set-face-attribute 'diff-header nil :foreground "default" :background "default")
-        (set-face-attribute 'diff-file-header nil :inherit 'diff-header :background 'unspecified))))
+(use-package diff-mode :defer t)
 
 (use-package hideshow :commands hs-minor-mode :diminish hs-minor-mode)
 
@@ -168,9 +142,7 @@
   (setq ido-enable-flex-matching t)
   (setq ido-enable-last-directory-history nil))
 
-(use-package make-mode :mode ("\\Makefile\\'" . makefile-mode) :config
-  (if (equal mytheme 'solarized-dark)
-      (set-face-attribute 'makefile-space nil :background "magenta")))
+(use-package make-mode :mode ("\\Makefile\\'" . makefile-mode))
 
 (use-package minibuffer :init (setq completion-cycle-threshold 3))
 
@@ -197,11 +169,7 @@
     (yas-minor-mode 1))
 
   :config
-  (add-hook 'sh-mode-hook 'my-sh-mode-hook)
-  (if (equal mytheme 'solarized-dark)
-      (progn
-        (set-face-attribute 'sh-heredoc nil :foreground "brightyellow" :weight 'regular)
-        (set-face-attribute 'sh-quoted-exec nil :foreground "red"))))
+  (add-hook 'sh-mode-hook 'my-sh-mode-hook))
 
 (use-package vc-hooks :init (setq vc-follow-symlinks t))
 
@@ -224,7 +192,7 @@
     (newline-and-indent)
     (insert "\\]")
     (indent-for-tab-command)
-    (previous-line)
+    (forward-line -1)
     (indent-for-tab-command))
 
   (defun my-TeX-mode-hook ()
@@ -249,13 +217,7 @@
 
   :config
   (add-hook 'TeX-mode-hook 'my-TeX-mode-hook)
-  (add-hook 'LaTeX-mode-hook 'my-LaTeX-mode-hook)
-  (if (equal mytheme 'solarized-dark)
-      (eval-after-load 'font-latex
-        '(progn
-           (set-face-attribute 'font-latex-math-face nil :foreground "green")
-           (set-face-attribute 'font-latex-sedate-face nil :foreground "cyan")
-           (set-face-attribute 'font-latex-verbatim-face nil :foreground "white")))))
+  (add-hook 'LaTeX-mode-hook 'my-LaTeX-mode-hook))
 
 (use-package auto-complete :ensure t :commands auto-complete-mode :diminish auto-complete-mode)
 
@@ -283,12 +245,7 @@
   :init
   (setq-default js2-basic-offset 2)
   (setq-default js2-strict-missing-semi-warning nil)
-  (setq-default js2-skip-preprocessor-directives t)
-
-  :config
-  (if (equal mytheme 'solarized-dark)
-      (progn
-        (set-face-attribute 'js2-external-variable nil :foreground "magenta"))))
+  (setq-default js2-skip-preprocessor-directives t))
 
 (use-package json-mode :ensure t :mode "\\.json\\'" :init
   (setq-default js-indent-level 2)
@@ -319,17 +276,7 @@ With a prefix argument amend to the commit at HEAD instead.
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
   (add-hook 'gfm-mode-hook 'abbrev-mode))
 
-(use-package markup-faces :ensure t :defer t :config
-  (if (equal mytheme 'solarized-dark)
-      (progn
-        (set-face-attribute 'markup-meta-face nil :foreground "green")
-        (set-face-attribute 'markup-meta-hide-face nil :foreground "brightgreen")
-        (set-face-attribute 'markup-reference-face nil :foreground "green")
-        (set-face-attribute 'markup-secondary-text-face nil :foreground "yellow")
-        (set-face-attribute 'markup-strong-face nil :foreground "red" :weight 'bold)
-        (set-face-attribute 'markup-title-0-face nil :foreground "blue" :weight 'bold)
-        (set-face-attribute 'markup-title-1-face nil :foreground "blue" :weight 'bold)
-        (set-face-attribute 'markup-typewriter-face nil :foreground "green"))))
+(use-package markup-faces :ensure t :defer t)
 
 (use-package simple :diminish visual-line-mode)
 
@@ -415,18 +362,3 @@ $0")
   ;; shell script
   (define-auto-insert '("\\.\\(ba\\)?sh\\'" . "Bash skeleton") '(nil "#!/usr/bin/env bash" \n _ ))
   (define-auto-insert '("\\.zsh\\'" . "Zsh skeleton") '(nil "#!/usr/bin/env zsh" \n _ )))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; WINDOW SPECIFIC ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(if (window-system)
-  (progn
-    ;; disable toolbar, tooltip, scrollbar, and window fringe
-    (tool-bar-mode -1)
-    (tooltip-mode -1)
-    (scroll-bar-mode -1)
-    (fringe-mode 0)
-    ;; set frame size for window-system
-    (add-to-list 'default-frame-alist (cons 'width 81))
-    (add-to-list 'default-frame-alist
-         (cons 'height (/ (- (x-display-pixel-height) 55)
-                          (frame-char-height))))))
