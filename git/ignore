@@ -83,4 +83,5 @@ node_modules
 # Miscellaneous #
 #################
 *~
+.#*
 .dir-locals.el
