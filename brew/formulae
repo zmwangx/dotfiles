@@ -40,7 +40,7 @@ imagemagick --with-fontconfig --with-librsvg --with-webp
 jpeg
 jq
 keybase
-libmagic --with-python
+libmagic
 libyaml
 lsdvd --with-libdvdcss
 mercurial

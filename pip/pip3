@@ -13,6 +13,7 @@ Pygments
 pyimgur
 pylint
 python-dateutil
+python-magic
 PyYAML
 requests
 Sphinx
