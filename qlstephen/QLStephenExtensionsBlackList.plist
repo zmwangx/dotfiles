@@ -5,6 +5,7 @@
     <string>7z</string>
     <string>a</string>
     <string>bz2</string>
+    <string>crx</string>
     <string>dat</string>
     <string>db</string>
     <string>dll</string>
@@ -15,6 +16,7 @@
     <string>dotm</string>
     <string>dotx</string>
     <string>dvi</string>
+    <string>eot</string>
     <string>exe</string>
     <string>gpg</string>
     <string>gz</string>
@@ -35,6 +37,7 @@
     <string>ps</string>
     <string>rar</string>
     <string>rar</string>
+    <string>safariextz</string>
     <string>scpt</string>
     <string>sparseimage</string>
     <string>tar</string>
@@ -43,6 +46,8 @@
     <string>tgz</string>
     <string>tlz</string>
     <string>txz</string>
+    <string>woff2</string>
+    <string>woff</string>
     <string>xls</string>
     <string>xlsx</string>
     <string>xlt</string>
