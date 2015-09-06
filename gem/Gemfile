@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'extensionator'
 gem 'gistl', :require => 'gist'
 gem 'git.io'
 gem 'lolcat'
