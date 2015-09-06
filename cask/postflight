@@ -48,6 +48,23 @@ if [[ "$(defaults read com.apple.finder QLEnableTextSelection 2>/dev/null)" != "
     print_command "defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder"
     defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
 fi
+
+# QLStephen extension blacklists
+if should_run_postflight_for qlstephen; then
+    if [[ -d /Library/QuickLook/QLStephen.qlgenerator ]]; then
+        generator_path=/Library/QuickLook/QLStephen.qlgenerator
+    else
+        generator_path=$HOME/Library/QuickLook/QLStephen.qlgenerator
+    fi
+    resource_path=$generator_path/Contents/Resources
+    print_progress "Copying QLStephenExtensionsBlackList.plist..."
+    print_command "cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist '$resource_path'"
+    cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist $resource_path || {
+        print_error "Copy operation failed."
+        errored=true
+    }
+fi
+
 print_progress "Resetting QuickLook..."
 print_command "qlmanage -r"
 qlmanage -r
