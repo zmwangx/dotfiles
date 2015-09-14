@@ -20,8 +20,6 @@ Note that config files with credentials have been excluded from the directory,
 and their `.template` counterparts have been committed in instead. Replace the
 redacted credentials (generally in the form `XXXXXX`) with the actual values.
 
-Also, the `cron` submodule is private.
-
 ## XDG offenders
 
 You are invited to visit the Homedir Hall of Shame
