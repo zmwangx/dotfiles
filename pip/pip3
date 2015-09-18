@@ -1,5 +1,6 @@
 arrow
 beautifulsoup4
+blessed
 colorama
 coverage
 docutils
