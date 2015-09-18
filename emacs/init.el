@@ -266,11 +266,9 @@ With a prefix argument amend to the commit at HEAD instead.
     (when (setq args (magit-commit-assert args))
       (magit-run-git-with-editor "commit" args)))
 
-  ;; bind magit-signed-commit to c c
-  (plist-put magit-commit-popup :actions
-             (append '((?c "Signed Commit" magit-signed-commit)
-                       (?d "Commit" magit-commit))
-                     (cdr (plist-get magit-commit-popup :actions))))
+  ;; bind magit-signed-commit to c c (and rebind magit-commit to c d)
+  (magit-change-popup-key 'magit-commit-popup :action ?c ?d)
+  (magit-define-popup-action 'magit-commit-popup ?c "Signed Commit" 'magit-signed-commit)
   (plist-put magit-commit-popup :default-action 'magit-signed-commit))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
