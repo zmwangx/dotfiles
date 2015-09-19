@@ -40,6 +40,7 @@ imagemagick --with-fontconfig --with-librsvg --with-webp
 jpeg
 jq
 keybase
+libksba
 libmagic
 libyaml
 lsdvd --with-libdvdcss
