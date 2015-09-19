@@ -78,8 +78,11 @@ $provisioner_dir/emacs || errored=true
 print_milestone "Installing helper scripts..."
 $provisioner_dir/scripts || errored=true
 
-print_milestone "Setting up Python development environment"
+print_milestone "Setting up Python development environment..."
 $provisioner_dir/python || errored=true
+
+print_milestone "Setting up RVM..."
+$provisioner_dir/rvm || errored=true
 
 print_milestone "Setting up cron schedule..."
 $provisioner_dir/cron || errored=true

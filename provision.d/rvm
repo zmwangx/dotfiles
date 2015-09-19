@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+
+if [[ -e $HOME/.rvm/scripts/rvm ]]; then
+    print_progress "RVM already installed in $HOME/.rvm"
+else
+    print_progress "Installing RVM from get.rvm.io..."
+    print_command "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 || {
+        print_error "Failed to download GPG key"
+        exit 1
+    }
+    setopt pipefail
+    print_command "curl -sSL https://get.rvm.io | bash -s -- --user-install --ignore-dotfiles --ruby stable"
+    curl -sSL https://get.rvm.io | bash -s -- --user-install --ignore-dotfiles --ruby stable || {
+        print_error "Failed to install RVM"
+        exit 1
+    }
+fi
