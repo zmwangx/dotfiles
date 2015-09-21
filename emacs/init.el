@@ -253,6 +253,7 @@
 (use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status) :config
   (add-hook 'magit-mode-hook 'visual-line-mode)
   (setq-default magit-diff-refine-hunk t)
+  (setq-default magit-revert-buffers t)
   (setq magit-push-always-verify nil)
 
   (defun magit-signed-commit (&optional args)
