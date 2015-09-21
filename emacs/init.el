@@ -232,8 +232,7 @@
         '((directories (".git" ".svn" ".tox" "build"))
           (files ("*.jpg" "*.o" "*.png" "*.pyc")))))
 
-(use-package flycheck :ensure t :bind ("C-c C-f" . flycheck-mode) :init
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+(use-package flycheck :ensure t :defer t)
 
 (use-package git-commit :ensure t :defer t)
 
