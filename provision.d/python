@@ -4,6 +4,14 @@
 #
 # This script assumes python2, python3, pip2 and pip3 that are accessible
 # without sudo.
+#
+# Usage:
+#     $HOME/.config/provision.d/python [--pyenv [...]]
+#
+# If the option --pyenv is specified, set up the Python environment with pyenv
+# first (assumes pyenv on $PATH). When --pyenv is specified and there are more
+# arguments passed on the command line, then the rest of the arguments will be
+# treated as Python versions understood by pyenv, and passed to `pyenv shell`.
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
 
@@ -13,6 +21,23 @@ function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f
 function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
 
 errored=false
+
+# deal with pyenv
+if [[ $1 == "--pyenv" ]]; then
+    shift
+    if (( $+commands[pyenv] )); then
+        print_progress "Initializing pyenv..."
+        eval "$(pyenv init -)" || { print_error "pyenv failed to init"; return 1; }
+        # remaining arguments -- if any -- treated as Python versions
+        if (( $# )); then
+            print_command "pyenv shell $@"
+            pyenv shell $@ || { print_error "pyenv failed to set Python versions"; return 1; }
+        fi
+    else
+        print_error "pyenv not found"
+        return 1
+    fi
+fi
 
 # pip
 print_milestone "Installing pip dependencies..."
