@@ -256,20 +256,17 @@
   (setq-default magit-revert-buffers t)
   (setq magit-push-always-verify nil)
 
-  (defun magit-signed-commit (&optional args)
-    "Create a new, GPG-signed commit on HEAD.
-With a prefix argument amend to the commit at HEAD instead.
-\n(git commit [--amend] --gpg-signed ARGS)"
-    (interactive (if current-prefix-arg
-                     (append (magit-commit-arguments) '("--amend" "--gpg-sign"))
-                   (append (magit-commit-arguments) '("--gpg-sign"))))
-    (when (setq args (magit-commit-assert args))
-      (magit-run-git-with-editor "commit" args)))
+  ;; add --gpg-sign switch to magit-commit by default, and provide the --no-gpg-sign switch in popup
+  (defun magit-commit-insert-gpg-sign-switch (args)
+    "Insert the --gpg-sign switch as the first option to `magit-commit'."
+    (setcar args (cons "--gpg-sign" (car args)))
+    args)
+  (advice-add 'magit-commit :filter-args #'magit-commit-insert-gpg-sign-switch)
+  (advice-add 'magit-commit-amend :filter-args #'magit-commit-insert-gpg-sign-switch)
+  (advice-add 'magit-commit-extend :filter-args #'magit-commit-insert-gpg-sign-switch)
+  (advice-add 'magit-commit-reword :filter-args #'magit-commit-insert-gpg-sign-switch)
 
-  ;; bind magit-signed-commit to c c (and rebind magit-commit to c d)
-  (magit-change-popup-key 'magit-commit-popup :action ?c ?d)
-  (magit-define-popup-action 'magit-commit-popup ?c "Signed Commit" 'magit-signed-commit)
-  (plist-put magit-commit-popup :default-action 'magit-signed-commit))
+  (magit-define-popup-switch 'magit-commit-popup ?N "Do NOT GPG-sign commit" "--no-gpg-sign"))
 
 (use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
   (add-hook 'gfm-mode-hook 'abbrev-mode))
