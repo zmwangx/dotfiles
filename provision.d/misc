@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
+
+# suppress last login message upon login
+print_command "touch ~/.hushlogin"
+touch ~/.hushlogin

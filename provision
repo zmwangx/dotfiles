@@ -87,6 +87,9 @@ $provisioner_dir/rvm || errored=true
 print_milestone "Setting up cron schedule..."
 $provisioner_dir/cron || errored=true
 
+print_milestone "Final touches (miscellaneous)..."
+$provisioner_dir/misc || errored=true
+
 print_milestone "Restoring /etc/sudoers..."
 print_command "sudo mv -f /etc/sudoers.bak /etc/sudoers"
 sudo mv -f /etc/sudoers.bak /etc/sudoers || { print_error "Failed to restore /etc/sudoers from /etc/sudoers.bak"; errored=true; }
