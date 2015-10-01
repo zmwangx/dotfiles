@@ -618,7 +618,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>713 37 445 82 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>901 595 606 456 0 0 1920 1057 </string>
+	<string>901 595 606 456 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -628,7 +628,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1130 8 790 1049 0 0 1920 1057 </string>
+	<string>440 17 790 1063 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1308,7 +1308,7 @@
 			<key>Right Option Key Sends</key>
 			<integer>2</integer>
 			<key>Rows</key>
-			<integer>73</integer>
+			<integer>74</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
@@ -2229,7 +2229,7 @@
 			<key>Right Option Key Sends</key>
 			<integer>2</integer>
 			<key>Rows</key>
-			<integer>73</integer>
+			<integer>74</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
@@ -2972,7 +2972,7 @@
 			<key>Right Option Key Sends</key>
 			<integer>2</integer>
 			<key>Rows</key>
-			<integer>73</integer>
+			<integer>74</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
@@ -3309,7 +3309,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-09-23T21:28:42Z</date>
+	<date>2015-09-30T19:57:42Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -3347,7 +3347,7 @@
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<true/>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1441676160</real>
+	<real>1443193984</real>
 	<key>URLCharacterSet</key>
 	<string>.?\/:;%=&amp;_-,+~#@!*()|[]</string>
 	<key>URLHandlersByGuid</key>
