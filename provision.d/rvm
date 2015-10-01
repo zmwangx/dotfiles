@@ -8,8 +8,8 @@ if [[ -e $HOME/.rvm/scripts/rvm ]]; then
     print_progress "RVM already installed in $HOME/.rvm"
 else
     print_progress "Installing RVM from get.rvm.io..."
-    print_command "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 || {
+    print_command "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+    gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 || {
         print_error "Failed to download GPG key"
         exit 1
     }

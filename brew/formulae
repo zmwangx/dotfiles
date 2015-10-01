@@ -32,6 +32,7 @@ git
 gnu-getopt
 gnu-sed --with-default-names
 gnu-tar --with-default-names
+gnupg2
 go
 grep --with-default-names
 htop-osx
