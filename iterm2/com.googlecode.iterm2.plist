@@ -618,7 +618,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>713 37 445 82 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>901 595 606 456 0 0 1920 1080 </string>
+	<string>901 624 606 456 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -628,7 +628,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>154 473 592 584 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>440 17 790 1063 0 0 1920 1080 </string>
+	<string>359 4 790 1063 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1528,7 +1528,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>^(zmwang@[\w.]*stanford.edu's Password:|Password for zmwang@[\w.]*stanford.edu)</string>
+					<string>^(zmwang@[\w.]*stanford.edu's [Pp]assword:|Password for zmwang@[\w.]*stanford.edu)</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -3309,7 +3309,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-09-30T19:57:42Z</date>
+	<date>2015-10-01T19:57:42Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
