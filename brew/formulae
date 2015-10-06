@@ -41,6 +41,7 @@ imagemagick --with-fontconfig --with-librsvg --with-webp
 jpeg
 jq
 keybase
+libass --with-fontconfig
 libksba
 libmagic
 libyaml
