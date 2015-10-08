@@ -17,6 +17,7 @@ python-dateutil
 python-magic
 PyYAML
 requests
+restview
 Sphinx
 tox
 tweepy
