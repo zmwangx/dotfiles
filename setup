@@ -41,7 +41,6 @@ done
 typeset -A destination
 set -A destination \
     bash/bashrc .bashrc \
-    colordiff/colordiffrc .colordiffrc \
     emacs .emacs.d \
     gnupg/gpg.conf .gnupg/gpg.conf \
     mutt/muttrc .muttrc \

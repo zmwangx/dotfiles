@@ -7,7 +7,6 @@ whose dotfiles or dotdirs are either hard or impossible to move or factor.
 
 Shame on them:
 
-* [colordiff](#colordiff)
 * [CUPS](#cups)
 * [Dropbox](#dropbox)
 * [gist](#gist)
@@ -56,13 +55,6 @@ There are large and crucial projects that somewhat deserve a space in
 
 These projects should feel ashamed by their lack of customizability and
 pollution to user home.
-
-### colordiff
-
-`"$ENV{HOME}/.colordiffrc"` is hard-coded in
-[source code](https://github.com/daveewart/colordiff/blob/current/colordiff.pl).
-
-PR: [`daveewart/colordiff#24`](https://github.com/daveewart/colordiff/pull/24).
 
 ### CUPS
 
