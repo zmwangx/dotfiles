@@ -36,8 +36,10 @@ We are going to modify /etc/sudoers to avoid having to type admin password to
 sudo during provision. The original /etc/sudoers will be backed up to
 /etc/sudoers.bak. It will be restored at the end of provision.
 
-If something went wrong and the provision script exited early, please remember
-to restore /etc/sudoers.'
+We try to restore /etc/sudoers under most conditions, but if the script is
+killed, please run
+
+    sudo mv -f /etc/sudoers.bak /etc/sudoers'
 
 print_milestone "Modifying /etc/sudoers..."
 print_command "sudo -v"
@@ -46,6 +48,38 @@ print_command "sudo cp -f /etc/sudoers /etc/sudoers.bak"
 sudo cp -f /etc/sudoers /etc/sudoers.bak || { print_error "Failed to back up /etc/sudoers"; exit 1; }
 print_command "sudo /bin/sh -c \"echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers\""
 sudo /bin/sh -c "echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers" || { print_error "Failed to write to /etc/sudoers to enable nopassword sudo"; exit 1; }
+
+# set up traps for restoration of /etc/sudoers
+
+# restore_sudoers takes 1 positional argument, which is the signal name
+# (without SIG prefix)
+function restore_sudoers_and_exit
+{
+    [[ $1 != EXIT ]] && print_error "SIG$1 received."
+    print_milestone "Restoring /etc/sudoers..."
+    print_command "sudo mv -f /etc/sudoers.bak /etc/sudoers"
+    sudo mv -f /etc/sudoers.bak /etc/sudoers || print_error "Failed to restore /etc/sudoers from /etc/sudoers.bak"
+    if [[ $1 == EXIT ]]; then
+        print_note $'Provision success.\nPlease reload your shell.'
+    else
+        print_progress "Aborting..."
+        exit 1
+    fi
+}
+
+# set_up_traps sets up traps for HUP, INT, TERM and STOP to run
+# restore_sudoers_and_exit with the respective signal name.
+function set_up_traps
+{
+    for sig in HUP INT TERM STOP; do
+        trap "restore_sudoers_and_exit $sig" $sig
+    done
+}
+
+set_up_traps
+# set up trap for EXIT separately because if we trap inside set_up_traps, then
+# the trap would be triggered upon exit of set_up_traps
+trap 'restore_sudoers_and_exit EXIT' EXIT
 
 # select Xcode
 print_milestone "Selecting Xcode..."
@@ -89,12 +123,5 @@ $provisioner_dir/cron || errored=true
 
 print_milestone "Final touches (miscellaneous)..."
 $provisioner_dir/misc || errored=true
-
-print_milestone "Restoring /etc/sudoers..."
-print_command "sudo mv -f /etc/sudoers.bak /etc/sudoers"
-sudo mv -f /etc/sudoers.bak /etc/sudoers || { print_error "Failed to restore /etc/sudoers from /etc/sudoers.bak"; errored=true; }
-
-print_note "Provision success.
-Please reload your shell."
 
 [[ $errored == false ]]
