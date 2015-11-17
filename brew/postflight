@@ -66,11 +66,11 @@ if should_run_postflight_for htop-osx; then
 fi
 
 if should_run_postflight_for mutt; then
-    mutt="$(brew --prefix mutt)/bin/mutt"
-    print_command "sudo chown root:mail '$mutt'"
-    sudo chown root:mail $mutt || errored=true
-    print_command "sudo chmod u+s '$mutt'"
-    sudo chmod u+s $mutt || errored=true
+    mutt_dotlock="$(brew --prefix mutt)/bin/mutt_dotlock"
+    print_command "sudo chown $USER:mail '$mutt_dotlock'"
+    sudo chown $USER:mail $mutt_dotlock || errored=true
+    print_command "sudo chmod g+s '$mutt_dotlock'"
+    sudo chmod g+s $mutt_dotlock || errored=true
 fi
 
 # change login shell to /usr/local/bin/zsh
