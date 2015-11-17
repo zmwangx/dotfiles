@@ -3,6 +3,6 @@
 # key: here
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-here=\$(dirname "\$(realpath -f "\$0")")
+here=\$(dirname "\$(realpath "\$0")")
 
 $0
