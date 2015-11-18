@@ -3,9 +3,9 @@
 # This provisioner makes the necessary adjustments to the stock Zsh global init
 # files shipped with OS X.
 
-function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
-function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -Rn $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -Rn $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -Rn $1; print -P '%f'; } >&2 }
 
 # detect OS X version
 osx_version=$(sw_vers -productVersion)

@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-function print_progress { { print -nP $'%F{green}'; print -n $1; print -P '%f'; } >&2 }
-function print_command { { print -nP '%B%F{blue}==> '; print -n $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}Error: '; print -n $1; print -P '%f'; } >&2 }
+function print_progress { { print -nP $'%F{green}'; print -Rn $1; print -P '%f'; } >&2 }
+function print_command { { print -nP '%B%F{blue}==> '; print -Rn $1; print -P '%f%b'; } >&2 }
+function print_error { { print -nP '%F{red}Error: '; print -Rn $1; print -P '%f'; } >&2 }
 
 print_progress "Cloning cron configurations and scripts..."
 repo_path="$HOME/.cron"
