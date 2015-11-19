@@ -15,3 +15,17 @@ PATH=$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++')
 # aliases
 alias l='ls -1A --color=auto'
 alias path='echo $PATH | tr -s ":" "\n"'
+
+# prompt
+function _prompt_command
+{
+    local last_status="$?"
+    local bash_segment='\[\e[35m\]bash-${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}\[\e[0m\]'
+    local time_segment='\[\e[33m\]\t\[\e[0m\]'
+    local path_segment='\[\e[36m\][\w]\[\e[0m\]'
+    local status_segment
+    (( last_status )) && status_segment='\[\e[31m\]>>>\[\e[0m\]' || status_segment='\[\e[32m\]>>>\[\e[0m\]'
+    PS1="$bash_segment $time_segment $path_segment $status_segment"$'\n'
+}
+
+PROMPT_COMMAND=_prompt_command
