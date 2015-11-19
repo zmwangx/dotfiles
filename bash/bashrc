@@ -7,14 +7,31 @@ source ~/.config/env
 HISTFILE=${XDG_DATA_HOME:-$HOME/.local/share}/bash/history
 HISTSIZE=10000
 HISTTIMEFORMAT=%s
-PROMPT_COMMAND='history -a'
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # deduplicate PATH
 PATH=$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++')
 
+# options
+shopt -s autocd checkjobs checkwinsize direxpand failglob globstar no_empty_cmd_completion
+
 # aliases
 alias l='ls -1A --color=auto'
 alias path='echo $PATH | tr -s ":" "\n"'
+
+# fasd
+command -v fasd >/dev/null && {
+    eval "$(fasd --init bash-hook bash-ccomp bash-ccomp-install)"
+    function fasd_cd {
+        local fasd_ret="$(fasd -d "$@")"
+        if [[ -d "$fasd_ret" ]]; then
+            cd "$fasd_ret"
+        else
+            printf '%s\n' "$fasd_ret"
+        fi
+    }
+    alias j='fasd_cd -i'
+}
 
 # prompt
 function _prompt_command
@@ -28,4 +45,7 @@ function _prompt_command
     PS1="$bash_segment $time_segment $path_segment $status_segment"$'\n'
 }
 
-PROMPT_COMMAND=_prompt_command
+# CAUTION:
+# _prompt_command *must* be at the beginning of PROMPT_COMMAND, or coloring
+# based on prior command exit status won't work.
+PROMPT_COMMAND="_prompt_command; $PROMPT_COMMAND"
