@@ -40,6 +40,7 @@ done
 
 typeset -A destination
 set -A destination \
+    bash/bash_profile .bash_profile \
     bash/bashrc .bashrc \
     emacs .emacs.d \
     gnupg/gpg.conf .gnupg/gpg.conf \
