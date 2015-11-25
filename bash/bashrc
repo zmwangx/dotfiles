@@ -13,7 +13,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 PATH=$(echo -n "$PATH" | awk -v RS=':' -v ORS=':' '!a[$1]++')
 
 # options
-shopt -s autocd checkjobs checkwinsize direxpand failglob globstar no_empty_cmd_completion
+shopt -s autocd checkjobs checkwinsize direxpand failglob globstar no_empty_cmd_completion 2>/dev/null
 
 # aliases
 alias l='ls -1A --color=auto'
