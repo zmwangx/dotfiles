@@ -37,12 +37,12 @@ command -v fasd >/dev/null && {
 function _prompt_command
 {
     local last_status="$?"
-    local bash_segment='\[\e[35m\]bash-${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}\[\e[0m\]'
-    local time_segment='\[\e[33m\]\t\[\e[0m\]'
-    local path_segment='\[\e[36m\][\w]\[\e[0m\]'
-    local status_segment
-    (( last_status )) && status_segment='\[\e[31m\]>>>\[\e[0m\]' || status_segment='\[\e[32m\]>>>\[\e[0m\]'
-    PS1="$bash_segment $time_segment $path_segment $status_segment"$'\n'
+    local bashseg='\[\e[35m\]bash-${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}\[\e[0m\]'
+    local timeseg='\[\e[33m\]\t\[\e[0m\]'
+    local pathseg='\[\e[36m\][\w]\[\e[0m\]'
+    local jobseg
+    (( last_status )) && jobseg='\[\e[31m\]>>>\[\e[0m\]' || jobseg='\[\e[32m\]>>>\[\e[0m\]'
+    PS1="$bashseg $timeseg $pathseg $jobseg"$'\n'
 }
 
 # CAUTION:
