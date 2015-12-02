@@ -50,6 +50,7 @@ mercurial
 most
 mpv --with-libaacs --with-libbluray --with-libcaca --with-libdvdnav --with-libdvdread --with-vapoursynth
 mutt --with-s-lang
+nmap
 node
 ohcount
 optipng
