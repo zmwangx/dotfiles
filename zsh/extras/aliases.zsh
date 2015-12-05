@@ -27,6 +27,7 @@ alias m='mpv-launcher'
 alias mp='mpv-launcher --playlist'
 alias yd="youtube-dl -o '%(upload_date)s-%(title)s__yt-%(id)s.%(ext)s' --write-sub"
 alias yf='youtube-dl -F'
+alias you-get='you-get --extractor-proxy proxy.uku.im:443'
 alias yt='youtube-dash-dl'
 
 #################################### PYTHON ####################################
