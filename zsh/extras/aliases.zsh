@@ -7,7 +7,7 @@ alias sudo='sudo '
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias tree='tree -N'
+alias tree='tree -Nv'
 alias empty_trash='rm -rf ~/.Trash && mkdir -m 700 ~/.Trash'
 
 ################################### SHORTCUT ###################################
