@@ -1,6 +1,6 @@
 [submodule "zsh/prezto"]
 	path = zsh/prezto
 	url = git@github.com:zmwangx/prezto.git
-[submodule "emacs/local/use-package"]
+[submodule "emacs/site-lisp/use-package"]
 	path = emacs/site-lisp/use-package
 	url = git@github.com:jwiegley/use-package.git
