@@ -38,6 +38,7 @@ alias ip3='ipython3'
 alias syspip3='/usr/local/bin/pip3'
 
 ##################################### MISC #####################################
+alias acdcli='acdcli --check=none'
 alias ga='git add'
 alias grip='grip --browser'
 alias hb='hub browse'
