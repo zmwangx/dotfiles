@@ -19,20 +19,6 @@ shopt -s autocd checkjobs checkwinsize direxpand failglob globstar no_empty_cmd_
 alias l='ls -1A --color=auto'
 alias path='echo $PATH | tr -s ":" "\n"'
 
-# fasd
-command -v fasd >/dev/null && {
-    eval "$(fasd --init bash-hook bash-ccomp bash-ccomp-install)"
-    function fasd_cd {
-        local fasd_ret="$(fasd -d "$@")"
-        if [[ -d "$fasd_ret" ]]; then
-            cd "$fasd_ret"
-        else
-            printf '%s\n' "$fasd_ret"
-        fi
-    }
-    alias j='fasd_cd -i'
-}
-
 # prompt
 function _prompt_command
 {
@@ -50,3 +36,17 @@ function _prompt_command
 # _prompt_command *must* be at the beginning of PROMPT_COMMAND, or coloring
 # based on prior command exit status won't work.
 PROMPT_COMMAND="_prompt_command; $PROMPT_COMMAND"
+
+# z
+_Z_CMD=j
+_z_data_home=${XDG_DATA_HOME:-$HOME/.local/share}/z
+mkdir -p "$_z_data_home"
+_Z_DATA=$_z_data_home/index
+touch $_Z_DATA
+unset _z_data_home
+_Z_EXCLUDE_DIRS=(
+    /tmp
+)
+for z in /usr/local/etc/profile.d/z.sh ~/.linuxbrew/etc/profile.d/z.sh /etc/profile.d/z.sh; do
+    [[ -f $z ]] && source "$z" && unset z && break
+done
