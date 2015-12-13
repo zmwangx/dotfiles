@@ -1,0 +1,6 @@
+# Volume
+set softvol=true
+vol 90%
+
+# Key bindings
+bind -f common q shell screen -d cmus
