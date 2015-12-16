@@ -42,12 +42,6 @@ done
 
 # some formulae depend on X11 and JRE
 print_milestone "Installing prelimary dependencies..."
-if ! $installed "brew-cask"; then
-    print_command "brew install brew-cask"
-    $brew install brew-cask || { errored=true; print_error "Failed to install formula 'brew-cask'"; }
-else
-    print_progress "Formula 'brew-cask' already installed"
-fi
 for cask in xquartz java; do
     if ! $cask_installed $cask; then
         print_command "brew cask install $cask"
