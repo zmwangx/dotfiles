@@ -38,16 +38,9 @@ installed=$here/installed
 
 # run postflight for a cask if --all is specified and the cask is installed,
 # or if the cask is one of the casks specified on the command line
-function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
+function should_run_postflight_for { (( all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
 
 errored=false
-
-# quicklook
-if [[ "$(defaults read com.apple.finder QLEnableTextSelection 2>/dev/null)" != "1" ]]; then
-    print_progress "Enabling text selection in QuickLook..."
-    print_command "defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder"
-    defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
-fi
 
 # QLStephen extension blacklists
 if should_run_postflight_for qlstephen; then
@@ -65,9 +58,24 @@ if should_run_postflight_for qlstephen; then
     }
 fi
 
-print_progress "Resetting QuickLook..."
-print_command "qlmanage -r"
-qlmanage -r
+# QuickLook generic
+#
+# Use heuristic here: QuickLook related casks usually has "ql" or "quicklook"
+# in their names, so these names will match the pattern *(ql|quicklook)*.
+#
+# Only perform the generic QuickLook actions if all postlights are requested or
+# if one of the newly installed casks match the pattern.
+if (( all )) || [[ -n ${(M)newly_installed:#*(ql|quicklook)*} ]]; then
+    if [[ "$(defaults read com.apple.finder QLEnableTextSelection 2>/dev/null)" != "1" ]]; then
+        print_progress "Enabling text selection in QuickLook..."
+        print_command "defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder"
+        defaults write com.apple.finder QLEnableTextSelection -bool true && killall Finder
+    fi
+
+    print_progress "Resetting QuickLook..."
+    print_command "qlmanage -r"
+    qlmanage -r
+fi
 
 saved_PATH=$PATH
 PATH=$here:$PATH
