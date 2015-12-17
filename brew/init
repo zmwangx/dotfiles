@@ -85,6 +85,8 @@ newly_installed=()
                 print_error "Failed to install formula '$formula' with options '$options'"
                 continue
             }
+            print_progress "Running postflight for formula '$formula'..."
+            $postflight $formula || errored=true
             newly_installed+=$formula
             ;;
         *)
@@ -97,10 +99,6 @@ done
 if [[ -n $newly_installed ]]; then
     print_milestone "Newly installed formulae:"
     print -c $newly_installed
-
-    # postflight
-    print_milestone "Running postflight setup..."
-    $postflight $newly_installed || errored=true
 fi
 
 print_note "Please run 'postflight --all' if the init script was previously interrupted."
