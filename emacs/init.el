@@ -71,8 +71,12 @@
     (use-package solarized :ensure solarized-theme :config (load-theme 'solarized-dark))
 
     ;; maximize frame height
+    ;;
+    ;; (nth 4 (car (frame-monitor-attributes))) extracts the pixel height of
+    ;; the monitor of the current frame; see
+    ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Multiple-Terminals.html#index-frame_002dmonitor_002dattributes
     (add-to-list 'default-frame-alist
-                 (cons 'height (/ (- (x-display-pixel-height) 55) (frame-char-height))))
+                 (cons 'height (/ (- (nth 4 (car (frame-monitor-attributes))) 30) (frame-char-height))))
 
     ;; change font for Chinese fontset (han)
     (set-fontset-font "fontset-default" 'han "STSong")))
