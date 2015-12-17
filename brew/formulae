@@ -5,6 +5,7 @@ bash
 bazaar
 bfg
 bibutils
+cabal-install
 cb2bib
 chrome-cli
 cmake
@@ -27,6 +28,7 @@ fontconfig
 fpp
 freetype
 gawk
+ghc
 git
 gnu-getopt
 gnu-sed --with-default-names
