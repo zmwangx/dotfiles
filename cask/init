@@ -44,16 +44,14 @@ newly_installed=()
             continue
         }
         newly_installed+=$cask
+        print_progress "Running postflight for cask '$cask'..."
+        $postflight $cask || errored=true
     fi
 done
 
 if [[ -n $newly_installed ]]; then
     print_milestone "Newly installed casks:"
     print -c $newly_installed
-
-    # postflight
-    print_milestone "Running postflight setup..."
-    $postflight $newly_installed || errored=true
 fi
 
 # notes
