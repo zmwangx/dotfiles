@@ -3,6 +3,6 @@
 # key: here
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-here=\$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "\$0")
+here="\$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "\$0")"
 
 $0
