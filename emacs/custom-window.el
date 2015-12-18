@@ -12,9 +12,9 @@
       (vertical-scroll-bars)
       (left-fringe . 0)
       (right-fringe . 0))))
- ;; '(ns-antialias-text nil)
  '(tool-bar-mode nil)
- '(tooltip-mode nil))
+ '(tooltip-mode nil)
+ '(user-mail-address "zmwangx@gmail.com"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

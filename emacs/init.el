@@ -21,10 +21,6 @@
 (require 'bind-key)
 (require 'diminish nil t)
 
-;;; user info
-(setq user-full-name "Zhiming Wang")
-(setq user-mail-address "zmwangx@gmail.com")
-
 ;;; editing and saving
 (setq-default auto-save-default nil)
 (setq-default indent-tabs-mode nil)
@@ -331,13 +327,13 @@ $0")
     '(nil
       "% " (file-name-nondirectory (buffer-file-name)) \n
       "%" \n
-      "% Created by Zhiming Wang on " (format-time-string "%B %d, %Y.") \n \n
+      "% Created by " (user-full-name) " on " (format-time-string "%B %d, %Y.") \n \n
       "\\documentclass{amsart}" \n \n
       "\\input{" my-amsart-preamble-file "}" \n \n
       "\\title{" (read-string "title (if empty, do not make title): ") & ; if title is nonempty
       (nil
        "}" \n
-       "\\author{Zhiming Wang}" \n
+       "\\author{" (user-full-name) "}" \n
        "\\date{\\today}" \n \n
        "\\begin{document}" \n \n
        "\\maketitle" \n \n
