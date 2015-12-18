@@ -43,6 +43,7 @@ set -A destination \
     bash/bash_profile .bash_profile \
     bash/bashrc .bashrc \
     emacs .emacs.d \
+    ghc/ghci.conf .ghc/ghci.conf \
     gnupg/gpg.conf .gnupg/gpg.conf \
     mutt/muttrc .muttrc \
     parallel .parallel \
