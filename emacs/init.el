@@ -272,8 +272,8 @@
 
   (magit-define-popup-switch 'magit-commit-popup ?N "Do NOT GPG-sign commit" "--no-gpg-sign"))
 
-(use-package markdown-mode :ensure t :mode ("\\.md\\'" . gfm-mode) :config
-  (add-hook 'gfm-mode-hook 'abbrev-mode))
+(use-package markdown-mode :ensure t :mode "\\.md\\'" :config
+  (add-hook 'markdown-mode-hook 'abbrev-mode))
 
 (use-package markup-faces :ensure t :defer t)
 
