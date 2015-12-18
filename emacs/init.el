@@ -242,6 +242,8 @@
 
 (use-package go-mode :ensure t :mode "\\.go\\'")
 
+(use-package haskell-mode :ensure t :mode "\\.hs\\'")
+
 (use-package jedi :ensure t :defer t)
 
 (use-package js2-mode :ensure t :mode "\\.js\\'" :interpreter "node"
