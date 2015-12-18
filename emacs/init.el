@@ -320,6 +320,13 @@ $0")
   (setq auto-insert-query nil)
   (setq auto-insert-directory (expand-file-name "templates" user-emacs-directory))
 
+  ;; Declare all values safe for auto-insert-alist so that we can auto-insert
+  ;; project specific license/authorship boilerplates without being bugged upon
+  ;; opening any file.
+  ;;
+  ;; Probably a little bit risky though.
+  (put 'auto-insert-alist 'safe-local-variable (lambda (var) t))
+
   ;; LaTeX
   (setq my-amsart-preamble-file
         (substitute-in-file-name "$HOME/.emacs.d/templates/latex/amsart-preamble.tex"))
