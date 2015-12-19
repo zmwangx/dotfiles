@@ -79,6 +79,10 @@ Node.js
 #######
 node_modules
 
+Emacs
+#####
+*.elc
+
 #################
 # Miscellaneous #
 #################
