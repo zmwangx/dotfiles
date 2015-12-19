@@ -236,6 +236,12 @@
 
 (use-package git-commit :ensure t :defer t)
 
+(use-package gitattributes-mode :ensure t :defer t)
+
+(use-package gitconfig-mode :ensure t :defer t)
+
+(use-package gitignore-mode :ensure t :defer t)
+
 (use-package go-mode :ensure t :mode "\\.go\\'")
 
 (use-package haskell-mode :ensure t :mode "\\.hs\\'")
