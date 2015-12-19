@@ -318,6 +318,8 @@ $0")
         (bind-key "s-v" 'pasteboard-paste)
         (bind-key "s-x" 'pasteboard-cut))))
 
+(use-package misc)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; AUTO INSERT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package autoinsert :defer 0
