@@ -1,0 +1,58 @@
+################################################################################
+#
+# YOUTUBE FORMAT CODE CHART*
+#
+# (Last updated: 12/19/2015)
+#
+# Traditional 30fps:
+#
+#       247     720p            VP9 in WebM
+#       136     720p            H.264 Main in MP4
+#       248     1080p           VP9 in WebM
+#       137     1080p           H.264 High in MP4
+#       271     1440p           VP9 in WebM
+#       264     1440p           H.264 High in MP4
+#       313     2160p           VP9 in WebM
+#       266     2160p-2304p     H.264 High in MP4
+#       138     2160p-4320p     H.264 High in MP4
+#
+# HFR 60fps:
+#
+#       302     720p60          VP9 in WebM
+#       298     720p60          H.264 Main in MP4
+#       303     1080p60         VP9 in WebM
+#       299     1080p60         H.264 High in MP4
+#       308     1440p60         VP9 in WebM
+#       315     2160p60         VP9 in WebM
+#
+# Audio:
+#
+#       140     128k AAC in M4A
+#       171     128k Vorbis in WebM
+#       251     160k Opus in WebM
+#       141*    256k AAC in M4A
+#
+# * Only listing DASH-only and relatively high quality formats;
+# * 256k AAC might have been gone.
+#
+# Source: https://en.wikipedia.org/wiki/YouTube#Quality_and_formats.
+#
+################################################################################
+#
+# Personal preferences:
+#
+# I still prefer H.264 (despite consuming more bandwidth than VP9) for hardware
+# decoding.
+#
+# I'm not sure about audio since I'm not an audiophile, so I'm basing my
+# preferences solely on bitrate.
+
+--format=((315/308/299/303/138/266/313/264/271/137/248/136/247/bestvideo)+(141/251/171/140/bestaudio))/best
+
+# Filesystem options
+--output=%(upload_date)s-%(title)s-%(id)s.%(ext)s
+
+# Subtitle options
+--write-sub
+--sub-format=(ass,srt)/best
+--sub-lang=en,zh-Hans,zh-Hant
