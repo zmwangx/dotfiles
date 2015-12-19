@@ -1,9 +1,9 @@
-;;; pasteboard.el --- Interact with OS X system pasteboard
+;;; pasteboard.el --- Interact with OS X system pasteboard  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015  Zhiming Wang
 
 ;; Author: Zhiming Wang <zmwangx@gmail.com>
-;; Keywords:
+;; Keywords: osx, pasteboard, clipboard
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
