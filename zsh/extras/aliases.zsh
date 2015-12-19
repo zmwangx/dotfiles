@@ -11,6 +11,7 @@ alias tree='tree -Nv'
 alias empty_trash='rm -rf ~/.Trash && mkdir -m 700 ~/.Trash'
 
 ################################### SHORTCUT ###################################
+alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias dev='cd ~/dev/src'
 alias tmp='cd /tmp'
