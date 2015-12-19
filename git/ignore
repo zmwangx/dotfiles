@@ -67,20 +67,17 @@ Temporary Items
 # Language specific #
 #####################
 
-Python
-######
+# Python
 venv*
 .coverage
 .tox
 *.egg-info
 dist
 
-Node.js
-#######
+# Node.js
 node_modules
 
-Emacs
-#####
+# Emacs
 *.elc
 
 #################
