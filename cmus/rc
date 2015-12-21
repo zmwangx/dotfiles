@@ -4,3 +4,22 @@ vol 90%
 
 # Key bindings
 bind -f common q shell screen -d cmus
+
+# Color
+#
+# For some reason 256-color doesn't seem to work for me in iTerm2 with
+# xterm-256 color (setting color to anything greater than 15 doesn't
+# seem to do anything). Therefore I'm stuck with just a few colors.
+colorscheme default
+set color_titleline_fg=black
+set color_win_title_fg=black
+set color_win_sel_bg=cyan
+set color_win_sel_fg=black
+set color_win_cur=cyan
+set color_win_cur_sel_bg=cyan
+set color_win_cur_sel_fg=black
+set color_win_inactive_cur_sel_fg=black
+
+# Local Variables:
+# mode: conf
+# End:
