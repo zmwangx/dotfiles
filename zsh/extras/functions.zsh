@@ -30,3 +30,12 @@ function unmv
     [[ $# == 2 ]] || { echo "${RED}error: unmv takes exactly two arguments and moves $2 to $1${RESET}" >&2; return 1; }
     mv "$2" "$1"
 }
+
+# ffprobe wrappable capable of handling multiple files
+function probe
+{
+    local video
+    for video; do
+        command ffprobe -hide_banner $video
+    done
+}
