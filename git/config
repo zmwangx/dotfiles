@@ -23,3 +23,5 @@
 	autosquash = true
 [gpg]
 	program = gpg2
+[diff]
+	submodule = log
