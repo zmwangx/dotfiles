@@ -13,8 +13,18 @@ errored=false
 # install Homebrew base system
 if [[ ! -d /usr/local/.git ]]; then
     print_milestone "Installing Homebrew base system..."
+    install_script_url='https://raw.githubusercontent.com/Homebrew/install/master/install'
+    install_script_tmp_path=$(mktemp) || {
+        print_error "Failed to generate temporary path for Homebrew install script with mktemp"
+        exit 1
+    }
+    trap "rm -f ${(qq)install_script_tmp_path}" EXIT
+    curl -fsSL $install_script_url >$install_script_tmp_path || {
+        print_error "Failed to curl Homebrew install script from $install_script_url"
+        exit 1
+    }
     # redirect stdin to /dev/null to perform a noninteractive install
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null || {
+    ruby $install_script_tmp_path </dev/null || {
         print_error "Failed to install Homebrew base system"
         exit 1
     }
