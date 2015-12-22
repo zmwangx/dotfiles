@@ -22,7 +22,7 @@ fi
 unset homebrew_root subdir
 
 # personal dev paths
-for devpath in "$HOME/dev/bin" "$HOME/dev/go/bin" "$HOME/dev/scripts"; do
+for devpath in "$HOME/dev/bin" "$HOME/dev/go/bin" "$HOME/scripts"; do
     [ -d "$devpath" ] && PATH="$devpath:$PATH"
 done
 unset devpath
@@ -37,8 +37,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
 # set default editor
-if [ -f "$HOME/dev/scripts/editor" ]; then
-    export EDITOR="$HOME/dev/scripts/editor"
+if [ -f "$HOME/scripts/editor" ]; then
+    export EDITOR="$HOME/scripts/editor"
 elif command -v emacs >/dev/null && [ -z "$(emacs --batch --eval '(if (version< emacs-version "24.4") (message "Emacs is 24.3 or earlier"))' 2>&1)" ]; then
     # only use Emacs as default editor when we have Emacs 24.4 or later
     export EDITOR="emacs"
