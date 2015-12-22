@@ -1512,7 +1512,7 @@
 					<key>parameter</key>
 					<string>{YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0goLDA1VTlNSR0JcTlNDb2xvclNwYWNlTxAnMC45ODk0MzQxODI2IDAuOTU3OTQzOTE2MyAwLjg2NDA1OTgwNTkAEAEIERojLTI3OT9RVlxpkwAAAAAAAAEBAAAAAAAAAA4AAAAAAAAAAAAAAAAAAACV,YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0goLDA1VTlNSR0JcTlNDb2xvclNwYWNlTxAnMC44MTkyNjk2NTcxIDAuMTA4NDA2NjYyOSAwLjE0MTQ1NzE1NTMAEAEIERojLTI3OT9RVlxpkwAAAAAAAAEBAAAAAAAAAA4AAAAAAAAAAAAAAAAAAACV}</string>
 					<key>regex</key>
-					<string>.*(^|[^"'_}-])(?&lt;!error: getopts internal )\b(error|Error|ERROR):.*</string>
+					<string>.*(^|[^"'_}-])(?&lt;!error: getopts internal )(\b(error|Error|ERROR):|\[ERROR]).*</string>
 				</dict>
 				<dict>
 					<key>action</key>
