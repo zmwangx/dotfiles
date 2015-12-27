@@ -26,6 +26,8 @@ alias ffprobe='ffprobe -hide_banner'
 alias m='mpv-launcher'
 alias mp='mpv-launcher --playlist'
 alias yt='youtube-dl'
+# "ytp" for "YouTube-dl Portable" (limit to DASH MP4/H.264 and M4A/AAC if at all possible)
+alias ytp='youtube-dl -f "((299/138/266/264/137/298/136)+(141/140))/best"'
 alias yf='youtube-dl -F'
 
 #################################### PYTHON ####################################
