@@ -25,7 +25,7 @@ alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias m='mpv-launcher'
 alias mp='mpv-launcher --playlist'
-alias yd='youtube-dl'
+alias yt='youtube-dl'
 alias yf='youtube-dl -F'
 
 #################################### PYTHON ####################################
