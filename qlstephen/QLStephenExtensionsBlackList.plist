@@ -4,6 +4,7 @@
   <array>
     <string>7z</string>
     <string>a</string>
+    <stirng>apk</stirng>
     <string>bz2</string>
     <string>crx</string>
     <string>dat</string>
@@ -41,6 +42,7 @@
     <string>safariextz</string>
     <string>scpt</string>
     <string>sparseimage</string>
+    <string>sqlite</string>
     <string>tar</string>
     <string>taz</string>
     <string>tbz</string>
