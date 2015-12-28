@@ -44,18 +44,24 @@ errored=false
 
 # QLStephen extension blacklists
 if should_run_postflight_for qlstephen; then
+    unset generator_path
     if [[ -d /Library/QuickLook/QLStephen.qlgenerator ]]; then
         generator_path=/Library/QuickLook/QLStephen.qlgenerator
-    else
+    elif [[ -d $HOME/Library/QuickLook/QLStephen.qlgenerator ]]; then
         generator_path=$HOME/Library/QuickLook/QLStephen.qlgenerator
     fi
-    resource_path=$generator_path/Contents/Resources
-    print_progress "Copying QLStephenExtensionsBlackList.plist..."
-    print_command "cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist '$resource_path'"
-    cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist $resource_path || {
-        print_error "Copy operation failed."
+    if (( $+generator_path )); then
+        resource_path=$generator_path/Contents/Resources
+        print_progress "Copying QLStephenExtensionsBlackList.plist..."
+        print_command "cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist '$resource_path'"
+        cp -f ~/.config/qlstephen/QLStephenExtensionsBlackList.plist $resource_path || {
+            print_error "Copy operation failed."
+            errored=true
+        }
+    else
+        print_error "QLStephen.qlgenerator not found in /Library/QuickLook or ~/Library/QuickLook"
         errored=true
-    }
+    fi
 fi
 
 # QuickLook generic
