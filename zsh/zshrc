@@ -25,6 +25,3 @@ for script in ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/extras/*.zsh(N); do source $
 
 # remove dupes in paths
 typeset -gU cdpath fpath mailpath path
-
-# unset stupid variables set in zshenv
-unset skip_global_compinit
