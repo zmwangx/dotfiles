@@ -55,7 +55,9 @@ alias spellcheck='aspell check'
 alias ss='date +%Y%m%d%H%M%S'
 alias tn='tmux new-window'
 alias visudo='VISUAL=vi sudo visudo'
-alias wget='wget --hsts-file=${XDG_DATA_HOME:-$HOME/.local/share}/wget/wget-hsts'
+# Alias wget with redirected HSTS database only if the --hsts-file option is available
+command wget --help | grep -q -e --hsts-file \
+    && alias wget='wget --hsts-file=${XDG_DATA_HOME:-$HOME/.local/share}/wget/wget-hsts'
 alias zap='zap-DS_Store'
 
 ################################### OVERRIDE ###################################
