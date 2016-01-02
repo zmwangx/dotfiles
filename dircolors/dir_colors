@@ -166,6 +166,7 @@ EXEC 01;32
 .svgz 00;36
 .mng 00;36
 .pcx 00;36
+.webp 00;36
 # video formats
 .mov 00;35
 .mpg 00;35
