@@ -3,24 +3,27 @@
 # key: getopts
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
+print_error () { { print -nP '%F{red}Error: '; print -Rn \$1; print -P '%f'; } >&2 }
+
+setopt localoptions typesetsilent
+local opt OPTARG OPTIND
 while getopts "${2::h}" opt; do
     case $opt in
         h)
             cat <<EOF
 ${1:
 
-}Usage: `(file-name-nondirectory (buffer-file-name))` [options]
+}Usage: \${0:t} [options]
 
 Options:
-    -h  show this help and exit
+    -h  show this help and return
     $3
 EOF
-            exit 1
+            return 1
             ;;
         $0
-        :) echo "\${RED}error: option -$OPTARG requires an argument\${RESET}" >&2; exit 1;;
-        \\?) echo "\${RED}error: unrecognized option -$OPTARG\${RESET}" >&2; exit 1;;
-        *) echo "\${RED}error: getopts internal error: unrecgonized option name \$opt\${RESET}" >&2; exit 1;;
+        :) print_error "Option -$OPTARG requires an argument."; return 1;;
+        \\?) print_error "Unrecognized option -$OPTARG."; return 1;;
     esac
 done
 shift \$((OPTIND-1))
