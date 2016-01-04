@@ -50,7 +50,7 @@ libyaml
 lsdvd --with-libdvdcss
 mercurial
 most
-mpv --with-libaacs --with-libbluray --with-libcaca --with-libdvdnav --with-libdvdread --with-vapoursynth
+mpv --with-bundle --with-libaacs --with-libbluray --with-libcaca --with-libdvdnav --with-libdvdread --with-vapoursynth
 mutt --with-s-lang
 nmap
 node
