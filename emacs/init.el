@@ -135,6 +135,15 @@
 
 (use-package hideshow :commands hs-minor-mode :diminish hs-minor-mode)
 
+(use-package sgml-mode :mode ("\\.html\\'" . html-mode)
+  :preface
+  (defun my-html-mode-hook ()
+    (yas-minor-mode 1))
+
+  :config
+  (message "hello world")
+  (add-hook 'html-mode-hook 'my-html-mode-hook))
+
 (use-package ido-mode :defer 0
   :init
   (ido-mode)
@@ -373,4 +382,12 @@ $0")
 
   ;; shell script
   (define-auto-insert '("\\.\\(ba\\)?sh\\'" . "Bash skeleton") '(nil "#!/usr/bin/env bash" \n _ ))
-  (define-auto-insert '("\\.zsh\\'" . "Zsh skeleton") '(nil "#!/usr/bin/env zsh" \n _ )))
+  (define-auto-insert '("\\.zsh\\'" . "Zsh skeleton") '(nil "#!/usr/bin/env zsh" \n _ ))
+
+  ;; HTML5
+  (define-auto-insert '("\\.html\\'" . "HTML5 skeleton")
+    '(nil
+      "<!DOCTYPE html>" \n
+      "<html>" \n
+      "<head>" \n
+      _)))
