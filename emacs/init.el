@@ -172,7 +172,7 @@
 
 (use-package ruby-mode :mode "\\.rb\\'" :interpreter "ruby")
 
-(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\)\\'" . sh-mode)
+(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\|/.env\\)\\'" . sh-mode)
   :preface
   (defun my-sh-mode-hook ()
     (yas-minor-mode 1))
