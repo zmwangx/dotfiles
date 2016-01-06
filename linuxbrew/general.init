@@ -1,31 +1,13 @@
 #!/usr/bin/env zsh
 
-# This scripts set up linuxbrew on Linux (additional distro dependent 
-# dependencies might need to be installed independently). 
+# This scripts set up linuxbrew on Linux (additional distro dependent
+# dependencies might need to be installed independently).
 # https://github.com/Homebrew/linuxbrew
 
 set +x
-if [[ ! -e ~/.linuxbrew ]]; then 
+if [[ ! -e ~/.linuxbrew ]]; then
     git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew || { echo "${RED}error: git-clone failed${RESET}" >&2; exit 1; }
 fi
 
 # update environment to include linuxbrew paths
 source ~/.config/env
-
-# tap taps and install formulae
-# taps
-here="$(dirname "$(readlink -f $0)")"
-errored=false
-while read -r tap; do
-    [[ $tap == \#* ]] && continue # skip comments
-    echo "${BOLD}${BLUE}brew tap $tap${RESET}" >&2
-    brew tap $tap || errored=true
-    { echo; echo; echo; } >&2
-done < "$here/taps"
-# formulae
-while read -r optstring; do
-    [[ $optstring == \#* ]] && continue # skip comments
-    echo "${BOLD}${BLUE}brew install $optstring${RESET}" >&2
-    brew install $optstring || errored=true
-done < "$here/formulae"
-[[ $errored == false ]]
