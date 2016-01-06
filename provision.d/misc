@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-function print_command { { print -nP '%B%F{blue}==> '; print -Rn $1; print -P '%f%b'; } >&2 }
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+source $here/messaging_helpers
 
 # suppress last login message upon login
 print_command "touch ~/.hushlogin"

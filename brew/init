@@ -1,12 +1,7 @@
 #!/usr/bin/env zsh
 
 here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
-
-function print_milestone { { print -nP $'\n%B%F{green}'; print -Rn $1; print -P '%f%b'; } >&2 }
-function print_progress { { print -nP $'%F{green}'; print -Rn $1; print -P '%f'; } >&2 }
-function print_note { { print -nP $'\n%B'; print -Rn $1; print -P '%b'; } >&2 }
-function print_command { { print -nP '%B%F{blue}==> '; print -Rn $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}Error: '; print -Rn $1; print -P '%f'; } >&2 }
+source $here/../provision.d/messaging_helpers
 
 errored=false
 

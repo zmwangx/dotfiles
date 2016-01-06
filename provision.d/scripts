@@ -2,9 +2,8 @@
 
 # This script checks out helper scripts at ~/dev/scripts.
 
-function print_progress { { print -nP $'%F{green}'; print -Rn $1; print -P '%f'; } >&2 }
-function print_command { { print -nP '%B%F{blue}==> '; print -Rn $1; print -P '%f%b'; } >&2 }
-function print_error { { print -nP '%F{red}Error: '; print -Rn $1; print -P '%f'; } >&2 }
+here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+source $here/messaging_helpers
 
 if [[ -d ~/dev/scripts ]]; then
     print_progress "'~/dev/scripts' already exists"

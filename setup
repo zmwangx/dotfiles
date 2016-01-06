@@ -6,10 +6,7 @@ setopt NULL_GLOB
 
 here="$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")"
 source $here/env
-
-function print_progress { { print -nP $'%F{green}'; print -Rn $1; print -P '%f'; } >&2 }
-function print_warning { { print -nP $'%F{yellow}Warning: '; print -Rn $1; print -P '%f'; } >&2 }
-function print_error { { print -nP '%F{red}Error: '; print -Rn $1; print -P '%f'; } >&2 }
+source $here/provision.d/messaging_helpers
 
 # Create data and cache dirs (some programs are not smart enough to create
 # directories themselves, and nonexistent directories are silently ignored).
