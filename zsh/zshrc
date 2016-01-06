@@ -14,6 +14,7 @@ zstyle ':prezto:module:prompt' theme 'zmwangx'
 zstyle ':prezto:load' pmodule \
        environment editor history directory utility colors git completion prompt \
        autoenv z homebrew osx diskutil acdcli rm_guard \
+       haskell \
        local
 source ~/.zprezto/init.zsh
 
