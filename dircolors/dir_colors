@@ -208,6 +208,7 @@ EXEC 01;32
 .ogx 00;35
 .srt 00;35
 .ass 00;35
+.ttml 00;35
 # audio formats
 .aac 00;32
 .au 00;32
