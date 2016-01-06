@@ -107,6 +107,8 @@ EXEC 01;32
 # archives or compressed
 .iso 00;31
 .dmg 00;31
+.img 00;31
+.cdr 00;31
 .tar 00;31
 .tgz 00;31
 .arc 00;31
