@@ -85,8 +85,7 @@ set -A optional \
 #
 # Note that src should either be an absolute path or relative to dst. Absolute
 # path is recommended.
-function backup_and_symlink
-{
+backup_and_symlink () {
     src=$1
     dst=$2
     [[ -e $src ]] || { print_error "'$src' does not exist"; return 1; }

@@ -48,8 +48,7 @@ sudo /bin/sh -c "echo '%admin  ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers" || { prin
 
 # restore_sudoers takes 1 positional argument, which is the signal name
 # (without SIG prefix)
-function restore_sudoers_and_exit
-{
+restore_sudoers_and_exit () {
     [[ $1 != EXIT ]] && print_error "SIG$1 received."
     print_milestone "Restoring /etc/sudoers..."
     print_command "sudo mv -f /etc/sudoers.bak /etc/sudoers"
@@ -64,8 +63,7 @@ function restore_sudoers_and_exit
 
 # set_up_traps sets up traps for HUP, INT, TERM and STOP to run
 # restore_sudoers_and_exit with the respective signal name.
-function set_up_traps
-{
+set_up_traps () {
     for sig in HUP INT TERM STOP; do
         trap "restore_sudoers_and_exit $sig" $sig
     done

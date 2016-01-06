@@ -20,8 +20,7 @@ alias l='ls -1A --color=auto'
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # prompt
-function _prompt_command
-{
+_prompt_command () {
     local last_status="$?"
     local hostseg='\[\e[1m\]\[\e[34m\]${SSH_CONNECTION:+\H }\[\e[0m\]'
     local bashseg='\[\e[35m\]bash-${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}\[\e[0m\]'

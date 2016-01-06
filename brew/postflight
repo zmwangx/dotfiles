@@ -35,7 +35,7 @@ installed=$here/installed
 
 # run postflight for a formula if --all is specified and the formula is installed,
 # or if the formula is one of the formulae specified on the command line
-function should_run_postflight_for { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
+should_run_postflight_for () { (( $all )) && $installed $1 || (( $newly_installed[(I)$1] )); }
 
 errored=false
 
