@@ -160,8 +160,9 @@ fi
 # vagrant plugins
 if should_run_postflight_for vagrant; then
     print_progress "Installing vagrant plugins..."
-    print_command "vagrant plugin install vagrant-scp vagrant-timezone"
-    vagrant plugin install vagrant-scp vagrant-timezone || { print_error "Failed to install vagrant plugins"; errored=true; }
+    print_command "vagrant plugin install vagrant-scp vagrant-timezone vagrant-reload"
+    vagrant plugin install vagrant-scp vagrant-timezone vagrant-reload || \
+        { print_error "Failed to install vagrant plugins"; errored=true; }
 fi
 
 # VirtualBox settings
