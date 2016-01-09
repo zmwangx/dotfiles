@@ -37,6 +37,7 @@ gnu-tar --with-default-names
 gnupg2
 go
 grep --with-default-names
+haskell-stack
 htop-osx
 hub
 imagemagick --with-fontconfig --with-librsvg --with-webp
