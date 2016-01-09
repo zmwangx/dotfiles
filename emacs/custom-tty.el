@@ -29,6 +29,7 @@
  '(font-lock-type-face ((t (:foreground "cyan"))))
  '(font-lock-variable-name-face ((t (:foreground "brightred"))))
  '(js2-external-variable ((t (:foreground "magenta"))))
+ '(magit-blame-heading ((t (:background "grey25" :foreground "brightwhite"))))
  '(makefile-space ((t (:background "magenta"))))
  '(markdown-markup-face ((t (:foreground "cyan"))))
  '(markup-meta-face ((t (:foreground "green"))))
