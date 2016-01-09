@@ -42,6 +42,7 @@
 (bind-key "C-x C-k" 'server-edit)
 (bind-key "M-s" 'shell-command)
 (bind-key "C--" 'undo)
+(bind-key "C-o" 'system-open)
 
 ;;; enable
 (put 'downcase-region 'disabled nil)
@@ -90,6 +91,12 @@
   (interactive (progn (barf-if-buffer-read-only) '(t)))
   (let ((fill-column (point-max)))
     (fill-paragraph nil region)))
+
+(defun system-open ()
+  "Open the file in the current buffer with the system `open' command."
+  (interactive)
+  (if buffer-file-name
+      (shell-command-to-string (concat "open " (shell-quote-argument buffer-file-name) " &"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASIC MAJOR MODES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
