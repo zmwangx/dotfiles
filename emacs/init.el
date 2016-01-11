@@ -35,15 +35,6 @@
 (setq-default inhibit-startup-screen t)
 (column-number-mode)
 
-;;; global keybindings
-(bind-key "C-c ;" 'comment-or-uncomment-region)
-(bind-key "C-\\" 'delete-trailing-whitespace)
-(bind-key "C-x C-r" 'revert-buffer)
-(bind-key "C-x C-k" 'server-edit)
-(bind-key "M-s" 'shell-command)
-(bind-key "C--" 'undo)
-(bind-key "C-o" 'system-open)
-
 ;;; enable
 (put 'downcase-region 'disabled nil)
 
@@ -97,6 +88,16 @@
   (interactive)
   (if buffer-file-name
       (shell-command-to-string (concat "open " (shell-quote-argument buffer-file-name) " &"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL KEYBINDINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(bind-key "C-c ;" 'comment-or-uncomment-region)
+(bind-key "C-\\" 'delete-trailing-whitespace)
+(bind-key "C-x C-r" 'revert-buffer)
+(bind-key "C-x C-k" 'server-edit)
+(bind-key "M-s" 'shell-command)
+(bind-key "C--" 'undo)
+(bind-key "C-o" 'system-open)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASIC MAJOR MODES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
