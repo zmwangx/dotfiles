@@ -2,9 +2,11 @@ compiz-1/
 configstore/
 dconf/
 fish/
+git-annex/
 gtk-2.0/
 htop/
 inkscape/
+inoreader/
 keybase/
 nautilus/
 rss/
@@ -12,6 +14,7 @@ subversion/
 transmission-daemon/
 transmission/
 twitter/
+wireshark/
 xauth/
 user-dirs.dirs
 user-dirs.locale
