@@ -13,7 +13,7 @@
 # arguments passed on the command line, then the rest of the arguments will be
 # treated as Python versions understood by pyenv, and passed to `pyenv shell`.
 
-here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+here=${0:A:h}
 source $here/messaging_helpers
 
 errored=false

@@ -4,7 +4,7 @@
 
 setopt NULL_GLOB
 
-here="$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")"
+here=${0:A:h}
 source $here/env
 source $here/provision.d/messaging_helpers
 

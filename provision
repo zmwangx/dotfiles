@@ -10,7 +10,7 @@
 # provisioning a new machine (say Homebrew is already installed), your machine
 # won't explode. You'll get a few error messages at most.
 
-here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+here=${0:A:h}
 provisioner_dir=$here/provision.d
 
 source $provisioner_dir/messaging_helpers

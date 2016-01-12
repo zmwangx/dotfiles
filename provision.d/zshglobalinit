@@ -3,7 +3,7 @@
 # This provisioner makes the necessary adjustments to the stock Zsh global init
 # files shipped with OS X.
 
-here=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
+here=${0:A:h}
 source $here/messaging_helpers
 
 # detect OS X version

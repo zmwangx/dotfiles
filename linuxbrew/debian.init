@@ -7,5 +7,5 @@ set -x
 sudo apt-get install -y build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev || { echo "${RED}error: apt-get install failed${RESET}" >&2; exit 1; }
 
 # general setup 
-here="$(dirname "$(readlink -f $0)")"
+here=${0:A:h}
 $here/general.init
