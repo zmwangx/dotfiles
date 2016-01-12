@@ -261,7 +261,18 @@
 
 (use-package go-mode :ensure t :mode "\\.go\\'")
 
-(use-package haskell-mode :ensure t :mode "\\.hs\\'")
+(use-package haskell-mode :ensure t :mode "\\.hs\\'"
+  :preface
+  (defun my-haskell-mode-hook ()
+    (setq haskell-indentation-layout-offset 4
+          haskell-indentation-starter-offset 4
+          haskell-indentation-left-offset 4
+          haskell-indentation-ifte-offset 4
+          haskell-indentation-where-pre-offset 2
+          haskell-indentation-where-post-offset 2))
+
+  :config
+  (add-hook 'haskell-mode-hook 'my-haskell-mode-hook))
 
 (use-package jedi :ensure t :defer t)
 
