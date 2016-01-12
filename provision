@@ -111,6 +111,9 @@ $provisioner_dir/python || errored=true
 print_milestone "Setting up RVM..."
 $provisioner_dir/rvm || errored=true
 
+print_milestone "Installing gems..."
+$provisioner_dir/gem || errored=true
+
 print_milestone "Setting up cron schedule..."
 $provisioner_dir/cron || errored=true
 
