@@ -1,11 +1,42 @@
 #!/usr/bin/env zsh
 
+# Generate the opt prefix of a formula. Replaces brew --prefix formula
+# (hopefullly).
+#
+# We take matters into our own hands because brew --prefix is slow,
+# taking ~0.18s on my mid-2015 rMBP 15'', which accounts for most of the
+# execution time of brew/installed. Replacing brew --prefix with
+# brew_gen_prefix cuts down the typical execution time of brew/installed
+# to ~0.02s or lower.
+brew_gen_prefix () {
+    local formula alias realname
+    formula=$1
+
+    # If tapped formula, do not resolve alias and print opt prefix
+    # directly. (The assumption is that aliases are not supported in
+    # taps. Indeed I've never heard aliases in taps.)
+    [[ $formula == */* ]] && {
+        print -R /usr/local/opt/${formula:t}
+        return
+    }
+
+    # Resolve formula alias
+    alias=/usr/local/Library/Aliases/$formula
+    if [[ -f $alias ]]; then
+        realname=${alias:A:t:r}
+    else
+        realname=$formula
+    fi
+
+    print -R /usr/local/opt/$formula
+}
+
 # Return values: See brew_formula_installed_exact (except 0 means installed and
 # 1 is not applicable).
 brew_formula_installed () {
     local formula prefix
     formula=$1
-    prefix=$(brew --prefix $formula 2>/dev/null) || return 3
+    prefix=$(brew_gen_prefix $formula 2>/dev/null) || return 3
     [[ ! -d $prefix ]] && return 2 || return 0
 }
 
@@ -21,7 +52,7 @@ brew_formula_installed_exact () {
     formula=$opts[1]
     shift 1 opts
 
-    prefix=$(brew --prefix $formula 2>/dev/null) || return 3
+    prefix=$(brew_gen_prefix $formula 2>/dev/null) || return 3
     [[ -d $prefix ]] || return 2
     receipt=$prefix/INSTALL_RECEIPT.json
     [[ -f $receipt ]] || return 3 # keg exists but no receipt found
