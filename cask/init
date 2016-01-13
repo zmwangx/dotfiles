@@ -16,8 +16,12 @@ formula_installed=$here/../brew/installed
 # install base system, if not already there
 [[ -f $brew ]] || { print_error "/usr/local/bin/brew not found; please install Homebrew first"; exit 1; }
 print_milestone "Installing Homebrew Cask base system..."
-print_command "brew tap caskroom/cask"
-$brew tap caskroom/cask || { print_error "Failed to tap caskroom/cask"; exit 1; }
+if brew tap 2>/dev/null | grep -q caskroom/cask; then
+    print_progress "Tap 'caskroom/cask' already tapped"
+else
+    print_command "brew tap caskroom/cask"
+    $brew tap caskroom/cask || { print_error "Failed to tap caskroom/cask"; exit 1; }
+fi
 
 export HOMEBREW_CASK_OPTS='--appdir=/Applications --verbose'
 
@@ -28,7 +32,7 @@ newly_installed=()
     [[ $cask == \#* ]] && continue # skip comments
 
     if $installed $cask; then
-        print_progress "cask '$cask' already installed"
+        print_progress "Cask '$cask' already installed"
     else
         print_command "brew cask install $cask"
         $brew cask install $cask || {
