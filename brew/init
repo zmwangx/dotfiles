@@ -45,8 +45,16 @@ tapped_taps=( $($brew tap) )
     $brew tap $tap || { errored=true; print_error "Failed to tap '$tap'"; }
 done
 
-# some formulae depend on X11 and JRE
-print_milestone "Installing prelimary dependencies..."
+# some formulae depend on X11 and JRE, and ./installed depends on jq
+print_milestone "Installing preliminary dependencies..."
+for formula in jq; do
+    if [[ ! -f /usr/local/opt/$formula/INSTALL_RECEIPT.json ]]; then
+        print_command "brew install $formula"
+        $brew install $formula || { errored=true; print_error "Failed to install formula $formula"; }
+    else
+        print_progress "Formula '$formula' already installed"
+    fi
+done
 for cask in xquartz java; do
     if ! $cask_installed $cask; then
         print_command "brew cask install $cask"
