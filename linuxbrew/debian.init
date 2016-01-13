@@ -4,7 +4,7 @@
 # https://github.com/Homebrew/linuxbrew
 
 set -x
-sudo apt-get install -y build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev || { echo "${RED}error: apt-get install failed${RESET}" >&2; exit 1; }
+sudo apt-get install -y build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev libreadline6-dev libssl-dev libxml2-dev libxslt1-dev python-dev zlib1g-dev || { echo "${RED}error: apt-get install failed${RESET}" >&2; exit 1; }
 
 # general setup 
 here=${0:A:h}
