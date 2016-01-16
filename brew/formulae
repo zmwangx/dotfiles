@@ -80,7 +80,7 @@ tree
 vim --override-system-vi
 zmwangx/tap/vobcopy
 wdiff
-wget
+wget --with-debug --with-iri --with-pcre
 xpdf
 xz
 youtube-dl
