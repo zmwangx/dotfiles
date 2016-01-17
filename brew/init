@@ -35,6 +35,10 @@ cask_installed=$here/../cask/installed
 
 export HOMEBREW_VERBOSE=true
 
+# update first
+print_milestone "Updating base system..."
+$brew update || { errored=true; print_error "'brew update' failed"; }
+
 # taps
 print_milestone "Tapping taps..."
 tapped_taps=( $($brew tap) )
