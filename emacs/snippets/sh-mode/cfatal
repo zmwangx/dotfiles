@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: cfatal
-# key: cfatal
-# contributor: Zhiming Wang <zmwangx@gmail.com>
-# --
-echo "\${BOLD}\${RED}fatal error: $1\${RESET}" >&2$0

@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: clause
-# key: cl
-# contributor: Zhiming Wang <zmwangx@gmail.com>
-# --
-$1) $0;;
