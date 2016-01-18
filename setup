@@ -12,7 +12,7 @@ source $here/provision.d/messaging_helpers
 # directories themselves, and nonexistent directories are silently ignored).
 
 print_progress "Creating program-specific data and cache directories..."
-data_dirs=(aspell bash fasd ipython iterm2 less mail pry pylint wget zsh)
+data_dirs=(aspell bash fasd ipython iterm2 less mail node pry pylint wget zsh)
 cache_dirs=(cron fontconfig gem grip matplotlib npm)
 for dir in $data_dirs; do
     [[ -d $XDG_DATA_HOME/$dir ]] && continue
