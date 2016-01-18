@@ -28,7 +28,7 @@ brew_gen_prefix () {
         realname=$formula
     fi
 
-    print -R /usr/local/opt/$formula
+    print -R /usr/local/opt/$realname
 }
 
 # Return values: See brew_formula_installed_exact (except 0 means installed and
@@ -88,7 +88,7 @@ if [[ $1 == --exact ]]; then
     shift
     brew_formula_installed_exact $@
 else
-    (( $# > 1 )) || {
+    (( $# > 1 )) && {
         print 'Error: Wrong number of arguments.' >&2
         exit 3
     }
