@@ -48,6 +48,7 @@ libass --with-fontconfig
 libksba
 libmagic
 libyaml
+logrotate
 lsdvd --with-libdvdcss
 mercurial
 most
