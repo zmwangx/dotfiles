@@ -363,6 +363,12 @@ $0")
   ;; Probably a little bit risky though.
   (put 'auto-insert-alist 'safe-local-variable (lambda (var) t))
 
+  ;; HTML5
+  (define-auto-insert "\\.html\\'" "html5.html")
+
+  ;; Javascript
+  (define-auto-insert "\\.user.js\\'" "userscript.user.js")
+
   ;; LaTeX
   (setq my-amsart-preamble-file
         (substitute-in-file-name "$HOME/.emacs.d/templates/latex/amsart-preamble.tex"))
@@ -391,22 +397,14 @@ $0")
        "\\end{document}")))
 
   ;; Perl
-  (define-auto-insert '("\\.pl\\'" . "Perl skeleton") '(nil "#!/usr/bin/env perl" \n _ ))
+  (define-auto-insert "\\.pl\\'" "perl.pl")
 
   ;; Python
-  (define-auto-insert '("\\.py\\'" . "Python skeleton") '(nil "#!/usr/bin/env python3" \n _ ))
+  (define-auto-insert "\\.py\\'" "python.py")
 
   ;; Ruby
-  (define-auto-insert '("\\.rb\\'" . "Ruby skeleton") '(nil "#!/usr/bin/env ruby" \n _ ))
+  (define-auto-insert "\\.rb\\'" "ruby.rb")
 
   ;; shell script
-  (define-auto-insert '("\\.\\(ba\\)?sh\\'" . "Bash skeleton") '(nil "#!/usr/bin/env bash" \n _ ))
-  (define-auto-insert '("\\.zsh\\'" . "Zsh skeleton") '(nil "#!/usr/bin/env zsh" \n _ ))
-
-  ;; HTML5
-  (define-auto-insert '("\\.html\\'" . "HTML5 skeleton")
-    '(nil
-      "<!DOCTYPE html>" \n
-      "<html>" \n
-      "<head>" \n
-      _)))
+  (define-auto-insert "\\.z?sh\\'" "zsh.sh")
+  (define-auto-insert "\\.bash\\'" "bash.sh"))
