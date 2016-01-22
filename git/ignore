@@ -78,6 +78,7 @@ dist
 node_modules
 
 # Haskell
+.ghci
 .stack-work
 
 # Emacs
