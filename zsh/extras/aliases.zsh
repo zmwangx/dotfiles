@@ -14,7 +14,7 @@ alias empty_trash='rm -rf ~/.Trash && mkdir -m 700 ~/.Trash'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias dev='cd ~/dev/src'
-alias tmp='cd /tmp'
+alias tmp='cd $TMPDIR'
 
 alias finance='hdiutil attach -stdinpass ~/confidential/finance.sparsebundle'
 alias identity='hdiutil attach -stdinpass ~/confidential/identity.sparsebundle'
@@ -61,6 +61,12 @@ alias visudo='VISUAL=vi sudo visudo'
 command wget --help | grep -q -e --hsts-file \
     && alias wget='wget --hsts-file=${XDG_DATA_HOME:-$HOME/.local/share}/wget/wget-hsts'
 alias zap='zap-DS_Store'
+
+################################### SUFFIXES ###################################
+alias -s markdown='grip'
+alias -s md='grip'
+alias -s rst='restview'
+alias -s text='grip'
 
 ################################### OVERRIDE ###################################
 (( $+commands[gpg2] )) && alias gpg='gpg2'
