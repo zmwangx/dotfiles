@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: css
+# key: css
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+<link href="$1" media="all" rel="stylesheet" type="text/css"/>

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: utf8-html5
+# key: utf8
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+<meta charset="UTF-8"/>
