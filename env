@@ -30,7 +30,14 @@ unset devpath
 export PATH
 export MANPATH
 
-export TMPDIR=/tmp
+for ramdisk in "/Volumes/ramdisk" "/mnt/ramdisk" "/tmp/ramdisk"; do
+    [ -d "$ramdisk" ] && mount | grep -q "$ramdisk" && { TMPDIR="$ramdisk"; break; }
+done
+unset ramdisk
+[ -n "$TMPDIR" ] || TMPDIR=/tmp
+export TMPDIR
+export TMP=$TMPDIR
+export TEMP=$TMPDIR
 
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
