@@ -38,14 +38,14 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 # set default editor
 if [ -f "$HOME/scripts/editor" ]; then
-    export EDITOR="$HOME/scripts/editor"
+    EDITOR="$HOME/scripts/editor"
 elif command -v emacs >/dev/null && [ -z "$(emacs --batch --eval '(if (version< emacs-version "24.4") (message "Emacs is 24.3 or earlier"))' 2>&1)" ]; then
     # only use Emacs as default editor when we have Emacs 24.4 or later
-    export EDITOR="emacs"
+    EDITOR="emacs"
 elif command -v vi >/dev/null; then
-    export EDITOR="vi"
+    EDITOR="vi"
 fi
-[ -n "$EDITOR" ] && export VISUAL="$EDITOR"
+[ -n "$EDITOR" ] && export EDITOR && export VISUAL="$EDITOR"
 
 export LC_ALL=en_US.UTF-8
 
