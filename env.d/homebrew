@@ -1,2 +1,3 @@
 # -*- mode: sh; -*-
 export HOMEBREW_VERBOSE=true
+export HOMEBREW_TEMP=$TMPDIR
