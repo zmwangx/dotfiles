@@ -89,6 +89,11 @@
   (if buffer-file-name
       (shell-command-to-string (concat "open " (shell-quote-argument buffer-file-name) " &"))))
 
+(defun cancel-edit ()
+  "Immediately exit Emacsclient with nonzero exit status."
+  (interactive)
+  (server-send-string (car server-buffer-clients) "-error die"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL KEYBINDINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (bind-key "C-c ;" 'comment-or-uncomment-region)
@@ -98,6 +103,7 @@
 (bind-key "M-s" 'shell-command)
 (bind-key "C--" 'undo)
 (bind-key "C-o" 'system-open)
+(bind-key "C-c C-k" 'cancel-edit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASIC MAJOR MODES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
