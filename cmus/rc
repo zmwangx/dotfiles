@@ -4,6 +4,8 @@ vol 90%
 
 # Key bindings
 bind -f common q shell screen -d cmus
+bind -f common space player-pause
+bind -f common l win-toggle
 
 # Color
 #
