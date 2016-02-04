@@ -96,14 +96,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL KEYBINDINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(bind-key "C-c C-k" 'cancel-edit)
 (bind-key "C-c ;" 'comment-or-uncomment-region)
 (bind-key "C-\\" 'delete-trailing-whitespace)
 (bind-key "C-x C-r" 'revert-buffer)
 (bind-key "C-x C-k" 'server-edit)
 (bind-key "M-s" 'shell-command)
-(bind-key "C--" 'undo)
 (bind-key "C-o" 'system-open)
-(bind-key "C-c C-k" 'cancel-edit)
+(bind-key "C--" 'undo)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BASIC MAJOR MODES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
