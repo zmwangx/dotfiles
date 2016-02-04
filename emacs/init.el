@@ -82,6 +82,13 @@
   (indent-for-tab-command)
   (newline-and-indent))
 
+(defun smart-revert-buffer ()
+  "Like revert-buffer, but do not ask for confirmation if buffer is not modified."
+  (interactive)
+  (if (buffer-modified-p)
+      (revert-buffer)
+    (revert-buffer :ignore-auto :noconfirm)))
+
 (defun system-open ()
   "Open the file in the current buffer with the system `open' command."
   (interactive)
@@ -99,7 +106,7 @@
 (bind-key "C-c C-k" 'cancel-edit)
 (bind-key "C-c ;" 'comment-or-uncomment-region)
 (bind-key "C-\\" 'delete-trailing-whitespace)
-(bind-key "C-x C-r" 'revert-buffer)
+(bind-key "C-x C-r" 'smart-revert-buffer)
 (bind-key "C-x C-k" 'server-edit)
 (bind-key "M-s" 'shell-command)
 (bind-key "C-o" 'system-open)
