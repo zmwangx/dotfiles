@@ -71,17 +71,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun cancel-edit ()
+  "Immediately exit Emacsclient with nonzero exit status."
+  (interactive)
+  (server-send-string (car server-buffer-clients) "-error die"))
+
 (defun indent-and-newline-and-indent ()
   "Correct indentation of current line, insert newline, and indent the new line."
   (interactive)
   (indent-for-tab-command)
   (newline-and-indent))
-
-(defun unfill-paragraph (&optional region)
-  "Takes a multi-line paragraph and makes it into a single line of text."
-  (interactive (progn (barf-if-buffer-read-only) '(t)))
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil region)))
 
 (defun system-open ()
   "Open the file in the current buffer with the system `open' command."
@@ -89,10 +88,11 @@
   (if buffer-file-name
       (shell-command-to-string (concat "open " (shell-quote-argument buffer-file-name) " &"))))
 
-(defun cancel-edit ()
-  "Immediately exit Emacsclient with nonzero exit status."
-  (interactive)
-  (server-send-string (car server-buffer-clients) "-error die"))
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil region)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL KEYBINDINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
