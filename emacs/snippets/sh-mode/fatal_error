@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fatal error
+# key: fatal
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+print_fatal_error () print -R $'\e[31;1m'"Fatal error: \$1"$'\e[0m' >&2$0

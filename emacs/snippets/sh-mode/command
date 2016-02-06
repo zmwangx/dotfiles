@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: command
+# key: command
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+print_command () print -R $'\e[34;1m'"==> \$1"$'\e[0m' >&2$0

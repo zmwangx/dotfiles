@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: note
+# key: note
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+print_note () print -R $'\n\e[1m'"\$1"$'\e[0m' >&2$0

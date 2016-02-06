@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: progress
+# key: progress
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+print_progress () print -R $'\e[32m'"\$1"$'\e[0m' >&2$0
