@@ -28,6 +28,10 @@
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<true/>
+	<key>ClosingTmuxTabKillsTmuxWindows</key>
+	<true/>
+	<key>ClosingTmuxTabKillsTmuxWindows_selection</key>
+	<integer>0</integer>
 	<key>ClosingTmuxWindowKillsTmuxWindows</key>
 	<true/>
 	<key>ClosingTmuxWindowKillsTmuxWindows_selection</key>
@@ -620,17 +624,17 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>850 37 445 77 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>467 418 796 473 0 0 1440 900 </string>
+	<string>467 435 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>760 714 400 129 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>610 344 700 622 0 0 1920 1080 </string>
+	<string>370 209 700 622 0 0 1440 900 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
-	<string>154 473 592 584 0 0 1920 1080 </string>
+	<string>98 301 592 584 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>697 4 790 1076 0 0 1920 1080 </string>
+	<string>576 4 790 896 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -3317,7 +3321,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-12-19T04:56:00Z</date>
+	<date>2016-02-10T18:38:26Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -3355,7 +3359,7 @@
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<true/>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1445680512</real>
+	<real>1451295360</real>
 	<key>URLCharacterSet</key>
 	<string>.?\/:;%=&amp;_-,+~#@!*()|[]</string>
 	<key>URLHandlersByGuid</key>
@@ -3381,7 +3385,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20151213-nightly</string>
+	<string>2.9.20160209-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
