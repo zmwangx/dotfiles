@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark))
  '(menu-bar-mode nil)
+ '(safe-local-variable-values (quote ((sgml-basic-offset . 4))))
  '(user-mail-address "zmwangx@gmail.com"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
