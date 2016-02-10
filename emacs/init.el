@@ -162,7 +162,6 @@
     (yas-minor-mode 1))
 
   :config
-  (message "hello world")
   (add-hook 'html-mode-hook 'my-html-mode-hook))
 
 (use-package ido-mode :defer 0
@@ -375,48 +374,24 @@ $0")
   ;; Probably a little bit risky though.
   (put 'auto-insert-alist 'safe-local-variable (lambda (var) t))
 
-  ;; HTML5
-  (define-auto-insert "\\.html\\'" "html5.html")
+  (defun read-skeleton-from-file (filename)
+    "Read a skeleton from a file in `auto-insert-directory'."
+    (with-temp-buffer
+      (insert-file-contents (concat (file-name-as-directory auto-insert-directory) filename))
+      (car (read-from-string (buffer-string)))))
 
-  ;; Javascript
-  (define-auto-insert "\\.user.js\\'" "userscript.user.js")
+  (defun define-auto-insert-from-skeleton-file (condition skeleton-filename)
+    "Define auto insert for CONDITION from skeleton file.
 
-  ;; LaTeX
-  (setq my-amsart-preamble-file
-        (substitute-in-file-name "$HOME/.emacs.d/templates/latex/amsart-preamble.tex"))
-  (define-auto-insert '("\.tex\\'" . "LaTeX skeleton")
-    '(nil
-      "% " (file-name-nondirectory (buffer-file-name)) \n
-      "%" \n
-      "% Created by " (user-full-name) " on " (format-time-string "%B %d, %Y.") \n \n
-      "\\documentclass{amsart}" \n \n
-      "\\input{" my-amsart-preamble-file "}" \n \n
-      "\\title{" (read-string "title (if empty, do not make title): ") & ; if title is nonempty
-      (nil
-       "}" \n
-       "\\author{" (user-full-name) "}" \n
-       "\\date{\\today}" \n \n
-       "\\begin{document}" \n \n
-       "\\maketitle" \n \n
-       _ \n \n
-       "\\end{document}"
-       )
-      | ; if title is empty
-      (nil
-       '(kill-whole-line -1) \n
-       "\\begin{document}" \n \n
-       _ \n \n
-       "\\end{document}")))
+The skeleton file used is SKELETON-FILENAME in `auto-insert-directory'."
+    (define-auto-insert condition (read-skeleton-from-file skeleton-filename)))
 
-  ;; Perl
-  (define-auto-insert "\\.pl\\'" "perl.pl")
-
-  ;; Python
-  (define-auto-insert "\\.py\\'" "python.py")
-
-  ;; Ruby
-  (define-auto-insert "\\.rb\\'" "ruby.rb")
-
-  ;; shell script
-  (define-auto-insert "\\.z?sh\\'" "zsh.sh")
-  (define-auto-insert "\\.bash\\'" "bash.sh"))
+  (define-auto-insert-from-skeleton-file "\\.bash\\'" "bash.el")
+  (define-auto-insert-from-skeleton-file "\\.c\\'" "c.el")
+  (define-auto-insert-from-skeleton-file "\\.html\\'" "html5.el")
+  (define-auto-insert-from-skeleton-file "\\.tex\\'" "latex/latex.el")
+  (define-auto-insert-from-skeleton-file "\\.pl\\'" "perl.el")
+  (define-auto-insert-from-skeleton-file "\\.py\\'" "python.el")
+  (define-auto-insert-from-skeleton-file "\\.rb\\'" "ruby.el")
+  (define-auto-insert-from-skeleton-file "\\.user.js\\'" "userscript.el")
+  (define-auto-insert-from-skeleton-file "\\.z?sh\\'" "zsh.el"))

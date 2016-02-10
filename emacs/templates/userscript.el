@@ -1,0 +1,15 @@
+'(nil
+  "// ==UserScript==\n"
+  "// @name         " _ "\n"
+  "// @namespace    https://github.com/zmwangx\n"
+  "// @version      0.1\n"
+  "// @description  short description\n"
+  "// @author       Zhiming Wang\n"
+  "// @match        *://example.com/*\n"
+  "// @grant        none\n"
+  "// ==/UserScript==\n"
+  "\n"
+  "// Long description.\n"
+  "//\n"
+  "// This script uses feross/standard style: https://github.com/feross/standard.\n"
+  "\n\n")
