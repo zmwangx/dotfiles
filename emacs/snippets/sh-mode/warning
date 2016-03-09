@@ -3,4 +3,4 @@
 # key: warning
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-print_warning () print -R $'\e[33m'"Warning: \$1"$'\e[0m' >&2$0
+print_warning () print -R $'\e[33m'"Warning: \$*"$'\e[0m' >&2$0

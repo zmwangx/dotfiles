@@ -3,4 +3,4 @@
 # key: milestone
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-print_milestone () print -R $'\n\e[32;1m'"\$1"$'\e[0m' >&2$0
+print_milestone () print -R $'\n\e[32;1m'"\$*"$'\e[0m' >&2$0

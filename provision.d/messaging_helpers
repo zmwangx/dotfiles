@@ -1,8 +1,8 @@
 # -*- mode: sh -*-
-print_command () print -R $'\e[34;1m'"==> $1"$'\e[0m' >&2
-print_error () print -R $'\e[31m'"Error: $1"$'\e[0m' >&2
-print_fatal_error () print -R $'\e[31;1m'"Fatal error: $1"$'\e[0m' >&2
-print_milestone () print -R $'\n\e[32;1m'"$1"$'\e[0m' >&2
-print_note () print -R $'\n\e[1m'"$1"$'\e[0m' >&2
-print_progress () print -R $'\e[32m'"$1"$'\e[0m' >&2
-print_warning () print -R $'\e[33m'"Warning: $1"$'\e[0m' >&2
+print_command () print -R $'\e[34;1m'"==> $*"$'\e[0m' >&2
+print_error () print -R $'\e[31m'"Error: $*"$'\e[0m' >&2
+print_fatal_error () print -R $'\e[31;1m'"Fatal error: $*"$'\e[0m' >&2
+print_milestone () print -R $'\n\e[32;1m'"$*"$'\e[0m' >&2
+print_note () print -R $'\n\e[1m'"$*"$'\e[0m' >&2
+print_progress () print -R $'\e[32m'"$*"$'\e[0m' >&2
+print_warning () print -R $'\e[33m'"Warning: $*"$'\e[0m' >&2

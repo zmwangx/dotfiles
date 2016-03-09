@@ -3,4 +3,4 @@
 # key: fatal
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-print_fatal_error () print -R $'\e[31;1m'"Fatal error: \$1"$'\e[0m' >&2$0
+print_fatal_error () print -R $'\e[31;1m'"Fatal error: \$*"$'\e[0m' >&2$0

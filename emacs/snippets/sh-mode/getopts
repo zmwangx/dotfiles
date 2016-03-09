@@ -3,7 +3,7 @@
 # key: getopts
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-print_error () { { print -nP '%F{red}Error: '; print -Rn \$1; print -P '%f'; } >&2 }
+print_error () { { print -nP '%F{red}Error: '; print -Rn \$*; print -P '%f'; } >&2 }
 
 setopt localoptions typesetsilent
 local opt OPTARG OPTIND

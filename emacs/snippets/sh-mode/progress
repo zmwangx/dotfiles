@@ -3,4 +3,4 @@
 # key: progress
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
-print_progress () print -R $'\e[32m'"\$1"$'\e[0m' >&2$0
+print_progress () print -R $'\e[32m'"\$*"$'\e[0m' >&2$0
