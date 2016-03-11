@@ -322,6 +322,11 @@
 
 (use-package simple :diminish visual-line-mode)
 
+(use-package sr-speedbar :bind ("M-o" . sr-speedbar-toggle) :config
+  (setq sr-speedbar-right-side nil
+        sr-speedbar-width 35
+        speedbar-show-unknown-files t))
+
 (use-package web-beautify :ensure t :defer 3)
 
 (use-package yaml-mode :ensure t :mode "\\.yml\\'")

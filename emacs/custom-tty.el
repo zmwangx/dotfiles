@@ -45,4 +45,7 @@
  '(region ((t (:background "brightcyan" :foreground "black"))))
  '(sh-heredoc ((t (:foreground "brightyellow" :weight regular))))
  '(sh-quoted-exec ((t (:foreground "red"))))
+ '(speedbar-directory-face ((t (:foreground "blue"))))
+ '(speedbar-file-face ((t (:foreground "cyan"))))
+ '(speedbar-selected-face ((t (:foreground "green"))))
  '(warning ((t (:foreground "yellow" :weight bold)))))
