@@ -54,7 +54,6 @@ alias plx='parallel --xapply'
 alias plxk='parallel --xapply --keep-order'
 alias spellcheck='aspell check'
 alias ss='date +%Y%m%d%H%M%S'
-alias syncacd='while ! acdcli -v sync; do :; done'
 alias tn='tmux new-window'
 alias visudo='VISUAL=vi sudo visudo'
 # Alias wget with redirected HSTS database only if the --hsts-file option is available
