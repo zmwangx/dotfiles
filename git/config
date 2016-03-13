@@ -5,6 +5,8 @@
 	editor = emacsclient -cqta=
 	pager = less -+F -+X
 	whitespace = blank-at-eof,blank-at-eol
+	precomposeunicode = true
+	quotepath = false
 [init]
 	templatedir = ~/.config/git/template
 [push]
