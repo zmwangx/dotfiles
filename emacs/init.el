@@ -226,10 +226,12 @@
   (defun my-TeX-mode-hook ()
     (TeX-fold-mode 1)
     (auto-fill-mode 1)
-    (setq-default TeX-PDF-mode t)
-    (setq-default TeX-auto-local "~/.cache/auctex/auto")
-    (setq-default TeX-auto-save t)
-    (setq-default TeX-parse-self t)
+    (setq-default LaTeX-begin-regexp "begin\\b"
+                  LaTeX-end-regexp "end\\b"
+                  TeX-PDF-mode t
+                  TeX-auto-local "~/.cache/auctex/auto"
+                  TeX-auto-save t
+                  TeX-parse-self t)
     (bind-key "RET" 'indent-and-newline-and-indent TeX-mode-map))
 
   (defun my-LaTeX-mode-hook ()
