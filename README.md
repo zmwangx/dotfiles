@@ -1,5 +1,16 @@
 This repository contains most of my vital config files.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+## Table of contents
+
+- [Getting started](#getting-started)
+- [XDG offenders](#xdg-offenders)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Getting started
 
 ```zsh
