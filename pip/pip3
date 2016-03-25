@@ -23,5 +23,6 @@ tox
 tweepy
 twine
 virtualenvwrapper
+wcwidth
 wheel
 you-get
