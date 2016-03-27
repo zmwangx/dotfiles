@@ -127,9 +127,10 @@
   :config
   (add-hook 'prog-mode-hook 'my-prog-mode-hook))
 
-;;; text-mode (which doesn't a feature, so can't use use-package with it)
+;;; text-mode (which doesn't provide a feature, so can't use use-package with it)
 (defun my-text-mode-hook ()
-  (abbrev-mode 1))
+  (abbrev-mode 1)
+  (visual-line-mode 1))
 (add-hook 'text-mode-hook 'my-text-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; BUILTIN PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
