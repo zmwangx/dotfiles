@@ -325,7 +325,7 @@
 
 (use-package simple :diminish visual-line-mode)
 
-(use-package sr-speedbar :bind ("M-o" . sr-speedbar-toggle) :config
+(use-package sr-speedbar :ensure t :bind ("M-o" . sr-speedbar-toggle) :config
   (setq sr-speedbar-right-side nil
         sr-speedbar-width 35
         speedbar-show-unknown-files t))
