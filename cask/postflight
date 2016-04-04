@@ -157,7 +157,7 @@ fi
 if should_run_postflight_for vagrant; then
     print_progress "Installing vagrant plugins..."
     print_command "vagrant plugin install vagrant-scp vagrant-timezone vagrant-reload"
-    vagrant plugin install vagrant-reload vagrant-rsync-back vagrant-scp vagrant-timezone || \
+    vagrant plugin install vagrant-reload vagrant-scp vagrant-timezone || \
         { print_error "Failed to install vagrant plugins"; errored=true; }
 fi
 
