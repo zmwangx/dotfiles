@@ -169,8 +169,9 @@
   :init
   (ido-mode)
   (ido-everywhere 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-enable-last-directory-history nil))
+  (setq ido-enable-flex-matching t
+        ido-enable-last-directory-history nil
+        ido-show-dot-for-dired t))
 
 (use-package make-mode :mode ("\\Makefile\\'" . makefile-mode))
 
