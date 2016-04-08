@@ -27,3 +27,5 @@
 	program = gpg2
 [diff]
 	submodule = log
+[commit]
+	gpgsign = true

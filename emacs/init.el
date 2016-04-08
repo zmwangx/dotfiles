@@ -306,16 +306,6 @@
   (setq-default magit-revert-buffers t)
   (setq magit-push-always-verify nil)
 
-  ;; add --gpg-sign switch to magit-commit by default, and provide the --no-gpg-sign switch in popup
-  (defun magit-commit-insert-gpg-sign-switch (args)
-    "Insert the --gpg-sign switch as the first option to `magit-commit'."
-    (setcar args (cons "--gpg-sign" (car args)))
-    args)
-  (advice-add 'magit-commit :filter-args #'magit-commit-insert-gpg-sign-switch)
-  (advice-add 'magit-commit-amend :filter-args #'magit-commit-insert-gpg-sign-switch)
-  (advice-add 'magit-commit-extend :filter-args #'magit-commit-insert-gpg-sign-switch)
-  (advice-add 'magit-commit-reword :filter-args #'magit-commit-insert-gpg-sign-switch)
-
   (magit-define-popup-switch 'magit-commit-popup ?N "Do NOT GPG-sign commit" "--no-gpg-sign"))
 
 (use-package markdown-mode :ensure t :mode "\\.md\\'" :config
