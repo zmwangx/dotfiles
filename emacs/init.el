@@ -301,7 +301,10 @@
   (setq-default js-indent-level 2)
   (setq-default json-reformat:indent-width 2))
 
-(use-package magit :ensure t :defer 0 :bind ("M-m" . magit-status) :config
+(use-package magit :ensure t :defer 0
+  :bind (("M-m" . magit-status)
+         ("M-l" . magit-blame))
+  :config
   (add-hook 'magit-mode-hook 'visual-line-mode)
   (setq-default magit-diff-refine-hunk t)
   (setq-default magit-revert-buffers t)
