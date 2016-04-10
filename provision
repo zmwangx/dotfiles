@@ -22,6 +22,36 @@ errored=false
     exit 1
 }
 
+# argument processing
+skipped_provisioners=()
+while [[ $1 == -* ]]; do
+    case $1 in
+        -h|--help)
+            cat >&2 <<EOF
+Usage: ${0:t} [OPTIONS]
+
+Options:
+    -h, --help
+        Print this help and exit.
+    --no-PROVISIONER
+        Skip provisioner PROVISIONER. PROVISIONER should be one of the names
+        under provision.d, e.g., cask.
+    --private
+        Run provisioners that require access to private repositories of
+        @zmwangx, e.g., scripts. Not recommended by anyone other than @zmwangx.
+EOF
+            exit 1
+            ;;
+        --no-*)
+            skipped_provisioners+=${1#--no-}
+            ;;
+        --private)
+            private=1
+            ;;
+    esac
+    shift
+done
+
 # Our provisioner requires sudo here and there, so we temporarily modify
 # /etc/sudoers so that the timestamp does not expire. Remember to revert
 # /etc/sudoers after we are done!
@@ -87,37 +117,48 @@ elif [[ -d /Applications/Xcode.app ]]; then
     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 fi
 
-print_milestone "Inspecting Zsh global init files..."
-$provisioner_dir/zshglobalinit || errored=true
+# Provisioner executor.
+#
+# Usage:
+#
+#     run_provisioner PROVISIONER MESSAGE [ATTRS]
+#
+# PROVISIONER is a name under $provisioner_dir, MESSAGE is a milestone message,
+# ATTRS are special attributes associated to the provisioner.
+#
+# When an attribute ATTR is in the list of attributes, the provisioner is only
+# executed if the --ATTR flag is present (which leads to the variable named
+# ATTR being set to 1 during argument processing).
+#
+# Currently the only attribute is 'private'.
+#
+# This function also takes into account the --no-PROVISIONER flags (such
+# provisioners are saved in the array skipped_provisioners during argument
+# processing).
+run_provisioner () {
+    provisioner=$1
+    message=$2
+    shift 2
+    # check if this provisioner should be skipped
+    [[ -z $skipped_provisioners[(r)$provisioner] ]] || return 0;
+    # check if all attributes are met
+    for attr; do
+        (( ${(P)attr} )) || return 0;
+    done
+    print_milestone $message
+    $provisioner_dir/$provisioner || errored=true
+}
 
-print_milestone "Setting up dotfiles..."
-$provisioner_dir/dotfiles || errored=true
-
-print_milestone "Provisioning Homebrew..."
-$provisioner_dir/brew || errored=true
-
-print_milestone "Provisioning Homebrew Cask..."
-$provisioner_dir/cask || errored=true
-
-print_milestone "Installing Emacs packages..."
-$provisioner_dir/emacs || errored=true
-
-print_milestone "Installing helper scripts..."
-$provisioner_dir/scripts || errored=true
-
-print_milestone "Setting up Python development environment..."
-$provisioner_dir/python || errored=true
-
-print_milestone "Setting up RVM..."
-$provisioner_dir/rvm || errored=true
-
-print_milestone "Installing gems..."
-$provisioner_dir/gem || errored=true
-
-print_milestone "Setting up cron schedule..."
-$provisioner_dir/cron || errored=true
-
-print_milestone "Final touches (miscellaneous)..."
-$provisioner_dir/misc || errored=true
+run_provisioner zshglobalinit "Inspecting Zsh global init files..."
+run_provisioner dotfiles "Setting up dotfiles..."
+run_provisioner brew "Provisioning Homebrew..."
+run_provisioner scripts "Installing personal scripts..." private
+run_provisioner cask "Provisioning Homebrew Cask..."
+run_provisioner emacs "Installing Emacs packages..."
+run_provisioner python "Setting up Python development environment..."
+run_provisioner rvm "Setting up RVM..."
+run_provisioner gem "Installing gems..."
+run_provisioner cron "Setting up cron schedule..." private
+run_provisioner misc "Final touches (miscellaneous)..."
 
 [[ $errored == false ]]

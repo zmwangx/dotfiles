@@ -20,7 +20,8 @@ git clone --recursive git@github.com:zmwangx/dotfiles.git ~/.config
 ```
 
 To provision a new OS X install, do `~/.config/provision` instead (requires
-Xcode and CLT).
+Xcode and CLT). Note that `provision` supports various options; please refer to
+`~/.config/provision --help`.
 
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv` (done for you
 when you run `~/.config/setup`, which sets up `.bashrc` and `.zshenv` in your
