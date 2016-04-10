@@ -7,20 +7,22 @@ errored=false
 
 # install Homebrew base system
 if [[ ! -d /usr/local/.git ]]; then
+    homebrew_prefix=/usr/local
+    homebrew_repo=git@github.com:Homebrew/brew
     print_milestone "Installing Homebrew base system..."
-    install_script_url='https://raw.githubusercontent.com/Homebrew/install/master/install'
-    install_script_tmp_path=$(mktemp) || {
-        print_error "Failed to generate temporary path for Homebrew install script with mktemp"
+    print_command "sudo chown ${USER}:admin $homebrew_prefix"
+    sudo chown ${USER}:admin $homebrew_prefix || {
+        print_error "Failed to change owner and group of $homebrew_prefix"
         exit 1
     }
-    trap "rm -f ${(qq)install_script_tmp_path}" EXIT
-    curl -fsSL $install_script_url >$install_script_tmp_path || {
-        print_error "Failed to curl Homebrew install script from $install_script_url"
-        exit 1
-    }
-    # redirect stdin to /dev/null to perform a noninteractive install
-    ruby $install_script_tmp_path </dev/null || {
-        print_error "Failed to install Homebrew base system"
+    print_progress "Cloning the Homebrew repo into $homebrew_prefix"
+    {
+        git -C $homebrew_prefix init
+        git -C $homebrew_prefix remote add origin $homebrew_repo
+        git -C $homebrew_prefix fetch origin
+        git -C $homebrew_prefix reset --hard origin/master
+    } || {
+        print_error "Failed to clone the Homebrew repo into $homebrew_prefix"
         exit 1
     }
 fi
