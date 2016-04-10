@@ -13,6 +13,7 @@
 here=${0:A:h}
 provisioner_dir=$here/provision.d
 
+source $here/env # source env just to be sure
 source $provisioner_dir/messaging_helpers
 
 errored=false
