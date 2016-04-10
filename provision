@@ -39,7 +39,8 @@ Options:
         under provision.d, e.g., cask.
     --private
         Run provisioners that require access to private repositories of
-        @zmwangx, e.g., scripts. Not recommended by anyone other than @zmwangx.
+        @zmwangx, e.g., scripts. Not recommended for anyone other than
+        @zmwangx.
 EOF
             exit 1
             ;;
