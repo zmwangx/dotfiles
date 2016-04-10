@@ -5,14 +5,19 @@
 here=${0:A:h}
 source $here/messaging_helpers
 
-if [[ -d ~/dev/scripts ]]; then
-    print_progress "'~/dev/scripts' already exists"
+if [[ -d ~/dev/src/scripts ]]; then
+    print_progress "'~/dev/src/scripts' already exists"
 else
-    print_command "mkdir -p ~/dev/scripts"
-    mkdir -p ~/dev/scripts
-    print_command "git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts"
-    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/scripts || {
-        print_error "Failed to clone repository 'git@gitlab.com:zmwangx/scripts.git' to '~/dev/scripts'"
+    print_command "mkdir -p ~/dev/src/scripts"
+    mkdir -p ~/dev/src/scripts
+    print_command "git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/src/scripts"
+    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/src/scripts || {
+        print_error "Failed to clone repository 'git@gitlab.com:zmwangx/scripts.git' to '~/dev/src/scripts'"
+        exit 1
+    }
+    print_command "ln -sf dev/src/scripts ~"
+    ln -sf dev/src/scripts ~ || {
+        print_error "Failed to symlink '~/dev/src/scripts' to HOME"
         exit 1
     }
 fi
