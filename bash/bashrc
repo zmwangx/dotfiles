@@ -49,3 +49,5 @@ _Z_EXCLUDE_DIRS=(
 for z in /usr/local/etc/profile.d/z.sh ~/.linuxbrew/etc/profile.d/z.sh /etc/profile.d/z.sh; do
     [[ -f $z ]] && source "$z" && unset z && break
 done
+
+:
