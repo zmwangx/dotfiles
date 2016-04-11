@@ -30,7 +30,7 @@ fpp
 freetype
 gawk
 ghc
-git
+git --without-completions
 gnu-getopt
 gnu-sed --with-default-names
 gnu-tar --with-default-names
