@@ -22,10 +22,11 @@
 (require 'diminish nil t)
 
 ;;; editing and saving
-(setq-default auto-save-default nil)
-(setq-default indent-tabs-mode nil)
-(setq-default make-backup-files nil)
-(setq-default require-final-newline t)
+(setq-default auto-save-default nil
+              indent-tabs-mode nil
+              make-backup-files nil
+              require-final-newline t
+              show-trailing-whitespace t)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 ;;; interaction
