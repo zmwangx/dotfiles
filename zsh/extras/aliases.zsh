@@ -25,10 +25,12 @@ alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias m='mpv-launcher'
 alias mp='mpv-launcher --playlist'
+alias yf='youtube-dl -F'
+alias you-get='you-get --debug'
+alias youku-dl='youku-dl --debug'
 alias yt='youtube-dl'
 # "ytp" for "YouTube-dl Portable" (limit to DASH MP4/H.264 and M4A/AAC if at all possible)
 alias ytp='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best/best"'
-alias yf='youtube-dl -F'
 
 #################################### PYTHON ####################################
 alias p='pmodload python'
