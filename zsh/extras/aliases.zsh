@@ -52,6 +52,11 @@ alias grip='grip --browser'
 alias hb='hub browse'
 alias muttd='mutt && rm -f ${TMPDIR:-/tmp}/.new_mail_notification_sent'
 alias notify='terminal-notifier -message'
+[[ $OSTYPE == darwin* ]] && {
+    # Ignore case on OS X (some OS X process names are capitalized, e.g., Python)
+    alias pgrep='pgrep -i'
+    alias pkill='pkill -i'
+}
 alias pl='parallel'
 alias pld='parallel --dry-run --keep-order'
 alias pldx='parallel --dry-run --xapply --keep-order'
