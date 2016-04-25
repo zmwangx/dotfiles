@@ -1,4 +1,4 @@
 # -*- mode: sh; -*-
-export HOMEBREW_VERBOSE=true
+export HOMEBREW_VERBOSE=1
 export HOMEBREW_TEMP=$TMPDIR
-export HOMEBREW_NO_ANALYTICS=true
+export HOMEBREW_NO_ANALYTICS=1
