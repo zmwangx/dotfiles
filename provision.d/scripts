@@ -10,9 +10,9 @@ if [[ -d ~/dev/src/scripts ]]; then
 else
     print_command "mkdir -p ~/dev/src/scripts"
     mkdir -p ~/dev/src/scripts
-    print_command "git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/src/scripts"
-    git clone --recursive git@gitlab.com:zmwangx/scripts.git ~/dev/src/scripts || {
-        print_error "Failed to clone repository 'git@gitlab.com:zmwangx/scripts.git' to '~/dev/src/scripts'"
+    print_command "git clone --recursive git@github.com:zmwangx/scripts.git ~/dev/src/scripts"
+    git clone --recursive git@github.com:zmwangx/scripts.git ~/dev/src/scripts || {
+        print_error "Failed to clone repository 'git@github.com:zmwangx/scripts.git' to '~/dev/src/scripts'"
         exit 1
     }
     print_command "ln -sf dev/src/scripts ~"

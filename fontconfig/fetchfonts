@@ -8,4 +8,4 @@ set -x
     mv ~/.fonts ~/.fonts.bak
     echo "${YELLOW}warning: existing ~/.fonts backed up to ~/.fonts.bak${RESET}" >&2
 }
-git clone git@gitlab.com:zmwangx/fonts.git ~/.fonts
+git clone git@github.com:zmwangx/fonts.git ~/.fonts

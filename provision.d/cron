@@ -5,7 +5,7 @@ source $here/messaging_helpers
 
 print_progress "Cloning cron configurations and scripts..."
 repo_path="$HOME/.cron"
-url="git@gitlab.com:zmwangx/cron.git"
+url="git@github.com:zmwangx/cron.git"
 if [[ -d $repo_path ]]; then
     print_progress "Repository '$repo_path' already exists"
 else
