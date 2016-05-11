@@ -29,3 +29,5 @@
 	submodule = log
 [commit]
 	gpgsign = true
+[github]
+	user = zmwangx
