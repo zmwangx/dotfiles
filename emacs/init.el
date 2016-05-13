@@ -39,6 +39,12 @@
 ;;; enable
 (put 'downcase-region 'disabled nil)
 
+;;; environment
+
+;; unset GPG_TTY so that pinentry-curses fail automatically when attempted from
+;; within Emacs (otherwise it could mess up everything)
+(setenv "GPG_TTY")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL THEMING ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'color)
