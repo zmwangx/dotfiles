@@ -12,4 +12,7 @@
   "// Long description.\n"
   "//\n"
   "// This script uses feross/standard style: https://github.com/feross/standard.\n"
-  "\n\n")
+  "\n"
+  "(function () {\n"
+  "\n"
+  "})()\n")
