@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: main
+# key: main
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+def main():
+    $0pass
+
+if __name__ == '__main__':
+    main()
