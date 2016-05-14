@@ -3,9 +3,6 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias reload='exec zsh -l'
 alias sudo='sudo '
 
-################################### OVERRIDE ###################################
-(( $+commands[gpg2] )) && alias gpg='gpg2'
-
 ################################## FILESYSTEM ##################################
 alias ...='cd ../..'
 alias ....='cd ../../..'

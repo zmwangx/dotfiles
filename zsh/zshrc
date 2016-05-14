@@ -13,7 +13,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:prompt' theme 'zmwangx'
 zstyle ':prezto:load' pmodule \
        environment editor history directory utility colors git completion prompt \
-       autoenv z homebrew osx diskutil acdcli rm_guard gpg \
+       autoenv z homebrew osx diskutil acdcli rm_guard gpg2 \
        haskell \
        local
 source ~/.zprezto/init.zsh
