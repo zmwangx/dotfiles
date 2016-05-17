@@ -1,31 +1,31 @@
 [color]
 	ui = true
+[commit]
+	gpgsign = true
 [core]
 	autocrlf = input
 	editor = emacsclient -cqta=
 	pager = less -+F -+X
-	whitespace = blank-at-eof,blank-at-eol
 	precomposeunicode = true
 	quotepath = false
+	whitespace = blank-at-eof,blank-at-eol
+[diff]
+	submodule = log
+[filter "lfs"]
+	clean = git lfs clean %f
+	required = true
+	smudge = git lfs smudge %f
+[github]
+	user = zmwangx
+[gpg]
+	program = gpg2
 [init]
 	templatedir = ~/.config/git/template
+[rebase]
+	autosquash = true
 [push]
 	default = simple
 [user]
 	email = zmwangx@gmail.com
 	name = Zhiming Wang
 	signingkey = 110044B8
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
-[rebase]
-	autosquash = true
-[gpg]
-	program = gpg2
-[diff]
-	submodule = log
-[commit]
-	gpgsign = true
-[github]
-	user = zmwangx
