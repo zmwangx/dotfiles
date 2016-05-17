@@ -3,6 +3,9 @@
 # if local override exists, source the override instead
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshrc_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshrc_override && return; }
 
+# augment fpath
+fpath=(${XDG_DATA_HOME:-$HOME/.local/share}/zsh/site-functions $fpath)
+
 # path for zcompdump
 ZCOMPDUMP=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/compdump
 
