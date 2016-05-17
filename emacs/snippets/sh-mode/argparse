@@ -1,0 +1,33 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: argparse
+# key: argparse
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+print_error () print -R \$'\e[31m'"Error: \$*"\$'\e[0m' >&2
+
+while [[ \$1 == -* ]]; do
+    case \$1 in
+        -h|--help)
+            cat >&2 <<EOF
+Usage: \$0:t [options]
+
+$1
+
+Options:
+    -h, --help
+        Print this help and exit.
+EOF
+            exit 1
+            ;;
+        $0
+        --)
+            shift
+            break
+            ;;
+        *)
+            print_error "Unknown option \${(q-)1}."
+            exit 1
+            ;;
+    esac
+    shift
+done
