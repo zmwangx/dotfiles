@@ -1,3 +1,5 @@
+[alias]
+	fp = format-patch --stdout
 [color]
 	ui = true
 [commit]
