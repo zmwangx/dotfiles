@@ -19,6 +19,19 @@ git clone --recursive git@github.com:zmwangx/dotfiles.git ~/.config
 ~/.config/setup
 ```
 
+If `~/.config` already exists and is nonempty, then one should instead run the
+following:
+
+```zsh
+cd ~/.config
+git init
+git remote add origin git@github.com:zmwangx/dotfiles.git
+git fetch --all
+git reset --hard origin/master
+git submodule update --init --recursive
+~/.config/setup
+```
+
 To provision a new OS X install, do `~/.config/provision` instead (requires
 Xcode and CLT). Note that `provision` supports various options; please refer to
 `~/.config/provision --help`.
