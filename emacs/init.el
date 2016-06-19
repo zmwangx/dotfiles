@@ -199,7 +199,13 @@
   :config
   (add-hook 'python-mode-hook 'my-python-mode-hook))
 
-(use-package ruby-mode :mode "\\.rb\\'" :interpreter "ruby")
+(use-package ruby-mode :mode "\\.rb\\'" :interpreter "ruby"
+  :preface
+  (defun my-ruby-mode-hook ()
+    (setq-default ruby-insert-encoding-magic-comment nil))
+
+  :config
+  (add-hook 'ruby-mode-hook 'my-ruby-mode-hook))
 
 (use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\|/.env\\)\\'" . sh-mode)
   :preface
