@@ -626,7 +626,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>850 37 445 77 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>467 435 606 456 0 0 1440 900 </string>
+	<string>467 439 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>652 663 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -636,7 +636,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>98 301 592 584 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>416 4 790 896 0 0 1440 900 </string>
+	<string>0 0 1440 900 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -4058,12 +4058,18 @@
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
+	<key>NoSyncInstallationId</key>
+	<string>92B0F884-76D0-432F-A96D-554152A2D349</string>
 	<key>NoSyncLastTipTime</key>
-	<real>464227929.75096297</real>
+	<real>487565325.35976702</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4078,6 +4084,8 @@
 	<true/>
 	<key>NoSyncSuppressCaptureOutputToolNotVisibleWarning</key>
 	<true/>
+	<key>NoSyncTimeOfFirstLaunchForIncompatibilityWarnings</key>
+	<real>485167147.39783901</real>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>464517399.08829898</real>
 	<key>NoSyncTimeOfLastPromo</key>
@@ -4152,6 +4160,8 @@
 		<string>0062</string>
 		<string>0063</string>
 		<string>0064</string>
+		<string>0065</string>
+		<string>0065</string>
 		<string>0065</string>
 	</array>
 	<key>NumberOfSpacesPerTab</key>
@@ -4228,11 +4238,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=33</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-04-07T00:15:36Z</date>
+	<date>2016-06-19T19:30:15Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -4294,9 +4304,9 @@
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findRegex_iTerm</key>
-	<false/>
+	<true/>
 	<key>iTerm Version</key>
-	<string>2.9.20160405-nightly</string>
+	<string>3.0.20160607-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
