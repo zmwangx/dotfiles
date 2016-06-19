@@ -344,7 +344,8 @@
 (use-package yasnippet :ensure t :diminish yas-minor-mode
   :commands (yas-minor-mode)
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
-  :bind (("C-c y s" . yas-insert-snippet) ("C-c y n" . yas-new-snippet) ("C-c y v" . yas-visit-snippet-file))
+  :bind (("C-c TAB" . yas-expand) ("C-c y s" . yas-insert-snippet)
+         ("C-c y n" . yas-new-snippet) ("C-c y v" . yas-visit-snippet-file))
   :preface
   (setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
   (setq yas-new-snippet-default "\
