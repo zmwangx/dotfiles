@@ -1,6 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: other-parameters
 # key: op
+# condition: 'force-in-comment
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
 Other Parameters

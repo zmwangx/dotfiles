@@ -1,6 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: raises
 # key: e
+# condition: 'force-in-comment
 # contributor: Zhiming Wang <zmwangx@gmail.com>
 # --
 Raises
