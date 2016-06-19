@@ -23,6 +23,7 @@ enscript
 exiftool
 fdupes
 ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libbluray --with-libcaca --with-libvidstab --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265
+fileicon
 findutils --with-default-names
 flac --with-libogg
 fontconfig
