@@ -411,3 +411,38 @@ The skeleton file used is SKELETON-FILENAME in `auto-insert-directory'."
   (define-auto-insert-from-skeleton-file "\\.rb\\'" "ruby.el")
   (define-auto-insert-from-skeleton-file "\\.user.js\\'" "userscript.el")
   (define-auto-insert-from-skeleton-file "\\.z?sh\\'" "zsh.el"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; OTHER SKELETONS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-skeleton wtfpl
+  "Insert the WTFPL boilerplate."
+  "Ignored prompt."
+  "Copyright (c) " (shell-command-to-string "echo -n $(date +%Y)") " "
+  user-full-name " <" user-mail-address ">\n\n"
+  "This work is free. You can redistribute it and/or modify it under the\n"
+  "terms of the Do What The Fuck You Want To Public License, Version 2,\n"
+  "as published by Sam Hocevar.")
+
+(define-skeleton mit
+  "Insert the MIT license boilerplate."
+  "Ignored prompt."
+  "Copyright (c) " (shell-command-to-string "echo -n $(date +%Y)") " "
+  user-full-name " <" user-mail-address ">\n\n"
+  "Permission is hereby granted, free of charge, to any person obtaining\n"
+  "a copy of this software and associated documentation files (the\n"
+  "\"Software\"), to deal in the Software without restriction, including\n"
+  "without limitation the rights to use, copy, modify, merge, publish,\n"
+  "distribute, sublicense, and/or sell copies of the Software, and to\n"
+  "permit persons to whom the Software is furnished to do so, subject to\n"
+  "the following conditions:\n"
+  "\n"
+  "The above copyright notice and this permission notice shall be\n"
+  "included in all copies or substantial portions of the Software.\n"
+  "\n"
+  "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n"
+  "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n"
+  "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n"
+  "NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\n"
+  "LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\n"
+  "OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\n"
+  "WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n")
