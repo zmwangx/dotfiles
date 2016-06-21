@@ -22,7 +22,7 @@ fi
 unset homebrew_root subdir
 
 # personal dev paths
-for devpath in "$HOME/dev/bin" "$HOME/dev/go/bin" "$HOME/scripts" "$HOME/bin"; do
+for devpath in "$HOME/dev/bin" "$HOME/dev/go/bin" "$HOME/scripts" "$HOME/bin" "$HOME/.local/bin"; do
     [ -d "$devpath" ] && PATH="$devpath:$PATH"
 done
 unset devpath
