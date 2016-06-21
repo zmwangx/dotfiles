@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: methods
+# key: m
+# condition: 'force-in-comment
+# contributor: Zhiming Wang <zmwangx@gmail.com>
+# --
+Methods
+-------
+$1
+$0
