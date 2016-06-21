@@ -33,3 +33,7 @@
 	email = zmwangx@gmail.com
 	name = Zhiming Wang
 	signingkey = 110044B8
+
+# Host-local overrides not managed by version control
+[include]
+	path = config.local
