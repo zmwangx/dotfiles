@@ -1,2 +1,0 @@
-# -*- mode: sh; -*-
-export XAUTHORITY=$XDG_CONFIG_HOME/xauth/Xauthority
