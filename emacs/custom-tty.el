@@ -5,6 +5,9 @@
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark))
  '(menu-bar-mode nil)
+ '(package-selected-packages
+   (quote
+    (editorconfig yasnippet yaml-mode web-beautify sr-speedbar solarized-theme markdown-mode magit json-mode js2-mode jedi haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode flycheck fish-mode fiplr diminish crontab-mode auctex apples-mode adoc-mode ace-jump-mode)))
  '(safe-local-variable-values (quote ((sgml-basic-offset . 4))))
  '(user-mail-address "zmwangx@gmail.com"))
 (custom-set-faces
