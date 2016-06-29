@@ -8,6 +8,7 @@ docutils
 grip
 ipython
 lxml
+peewee
 Pillow
 pip
 pipdeptree
@@ -19,6 +20,7 @@ python-magic
 PyYAML
 requests
 restview
+scrapy
 Sphinx
 tox
 tweepy
