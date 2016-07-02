@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="generator" content="pandoc"/>
+$for(author-meta)$
+    <meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+    <meta name="date" content="$date-meta$">
+$endif$
+    <title>$pagetitle$</title>
+$if(math)$
+    $math$
+$endif$
+$if(highlighting-css)$
+    <style type="text/css">
+$highlighting-css$
+    </style>
+$endif$
+    <style type="text/css">
+      body {
+        color: #000;
+        font-family: Times, "Times New Roman", serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        margin: 50px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 160%;
+        font-weight: bold;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 125%;
+        font-weight: bold;
+      }
+
+      h2.metadata {
+        font-size: 110%;
+      }
+
+      code {
+        font-family: Courier, monospace;
+        font-size: 90%;
+      }
+
+      h1 code, h2 code {
+        font-size: 95%;
+      }
+
+      pre {
+        margin: 0;
+        padding: 1em;
+        background: #fbfbfb;
+        border-left: 0.4em solid #ddd;
+      }
+
+      pre code {
+        font-size: 85%;
+        white-space: pre;
+        word-wrap: normal;
+      }
+
+      a {
+        color: #000;
+      }
+
+      .figure {
+        text-align: center;
+      }
+
+      .footnotes {
+        font-size: 90%;
+      }
+
+      .footnotes ol {
+        padding-left: 1.4em;
+      }
+
+      .footnotes p {
+        margin: 0.6em 0;
+      }
+
+      /* Footnote backlinks */
+      a[href^="#fnref"] {
+        text-decoration: none;
+        color: #bbb;
+      }
+
+      a[href^="#fnref"]:hover {
+        background-color: #bbb;
+        color: #fff;
+      }
+    </style>
+    <style type="text/css" media="print">
+      body {
+        margin: 5% 0;
+        font-size: 12px;
+      }
+
+      pre {
+        -webkit-print-color-adjust: exact;
+      }
+    </style>
+  </head>
+  <body>
+$if(title)$
+    <header>
+      <h1 class="title">$title$</h1>
+$if(subtitle)$
+      <h1 class="subtitle">$subtitle$</h1>
+$endif$
+      <h2 class="metadata">
+$for(author)$
+        <span class="author">$author$</span>,
+$endfor$
+$if(date)$
+        <time class="date">$date$</time>
+$endif$
+      </h2>
+    </header>
+$endif$
+$body$
+  </body>
+</html>
