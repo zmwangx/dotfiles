@@ -1,5 +1,9 @@
 # -*- mode: sh; -*-
 
+# fetch remote updates to .config in a disowned process so that we can update
+# .config as quickly as possible when we want to
+git -C ${XDG_CONFIG_HOME:-$HOME/.config} fetch --all &>/dev/null &!
+
 # if local override exists, source the override instead
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshrc_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshrc_override && return; }
 
