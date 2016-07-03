@@ -1,2 +1,2 @@
 # -*- mode: sh; -*-
-export HOMEBREW_CASK_OPTS='--appdir=/Applications --verbose'
+export HOMEBREW_CASK_OPTS='--verbose'
