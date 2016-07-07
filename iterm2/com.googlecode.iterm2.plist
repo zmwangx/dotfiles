@@ -633,10 +633,12 @@
 	<string>760 714 400 129 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>370 209 700 622 0 0 1440 900 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>265 301 796 473 0 0 1440 900 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>98 301 592 584 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 900 </string>
+	<string>411 4 790 896 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>443 10 730 1048 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -877,7 +879,7 @@
 			<key>Automatically Log</key>
 			<true/>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1800,7 +1802,7 @@
 			<key>Automatically Log</key>
 			<true/>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2580,7 +2582,7 @@
 			<key>Automatically Log</key>
 			<true/>
 			<key>BM Growl</key>
-			<true/>
+			<false/>
 			<key>Background Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -4223,6 +4225,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/zmwang/.config/iterm2</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -4242,7 +4246,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-19T19:30:15Z</date>
+	<date>2016-07-07T08:23:36Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Secure Input</key>
@@ -4306,7 +4310,7 @@
 	<key>findRegex_iTerm</key>
 	<true/>
 	<key>iTerm Version</key>
-	<string>3.0.20160607-nightly</string>
+	<string>3.0.20160707-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
