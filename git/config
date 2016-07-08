@@ -29,6 +29,8 @@
 	autosquash = true
 [push]
 	default = simple
+[submodule]
+	fetchjobs = 0
 [user]
 	email = zmwangx@gmail.com
 	name = Zhiming Wang
