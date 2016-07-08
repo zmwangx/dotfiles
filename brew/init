@@ -8,7 +8,7 @@ errored=false
 # install Homebrew base system
 if [[ ! -d /usr/local/.git ]]; then
     homebrew_prefix=/usr/local
-    homebrew_repo=git@github.com:Homebrew/brew
+    homebrew_repo=https://github.com/Homebrew/brew.git
     print_milestone "Installing Homebrew base system..."
     print_command "sudo chown ${USER}:admin $homebrew_prefix"
     sudo chown ${USER}:admin $homebrew_prefix || {
