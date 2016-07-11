@@ -67,6 +67,7 @@ pyenv
 pyenv-virtualenvwrapper
 python
 python3
+ranger
 rar
 reattach-to-user-namespace
 rsync
