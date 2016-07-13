@@ -54,8 +54,8 @@ for formula in curl gnu-getopt; do
 done
 
 # permissions
-if should_run_postflight_for htop-osx; then
-    htop="$(brew --prefix htop-osx)/bin/htop"
+if should_run_postflight_for htop; then
+    htop="$(brew --prefix htop)/bin/htop"
     print_command "sudo chown root:wheel '$htop'"
     sudo chown root:wheel $htop || errored=true
     print_command "sudo chmod u+s '$htop'"

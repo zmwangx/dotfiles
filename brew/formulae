@@ -39,7 +39,7 @@ gnupg2
 go
 grep --with-default-names
 haskell-stack
-htop-osx
+htop
 hub
 imagemagick --with-fontconfig --with-librsvg --with-webp
 jpeg
