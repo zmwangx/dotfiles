@@ -9,9 +9,9 @@ cabal-install
 cb2bib
 chrome-cli
 cmake
+cmark
 cmus
 colordiff
-commonmark
 coreutils
 curl --with-gssapi --with-libidn --with-libssh2 --with-rtmpdump
 daemonize
