@@ -66,8 +66,8 @@ parallel
 pv
 pyenv
 pyenv-virtualenvwrapper
-python
-python3
+python --with-sphinx-doc
+python3 --with-sphinx-doc
 ranger
 rar
 reattach-to-user-namespace
