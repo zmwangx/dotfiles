@@ -90,4 +90,4 @@ xpdf
 xz
 youtube-dl
 z
-zsh
+zsh --with-texi2html
