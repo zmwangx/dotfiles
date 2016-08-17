@@ -101,7 +101,7 @@ print_progress "Symlinking dotfiles and dot directories..."
 success_count=0
 failure_count=0
 skipped_count=0
-for src in ${(k)destination}; do echo $src; done | sort | while read -r src; do
+for src in ${(ko)destination}; do
     # skip if src is optional and does not exist
     if (( optional[$src] )) && [[ ! -e $XDG_CONFIG_HOME/$src ]]; then
         ((skipped_count++))
