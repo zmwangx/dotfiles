@@ -212,8 +212,10 @@ EXEC 01;32
 .ttml 00;35
 # audio formats
 .aac 00;32
-.au 00;32
 .aiff 00;32
+.ape 00;32
+.au 00;32
+.axa 00;32
 .flac 00;32
 .m4a 00;32
 .mid 00;32
@@ -221,10 +223,9 @@ EXEC 01;32
 .mka 00;32
 .mp3 00;32
 .mpc 00;32
+.oga 00;32
 .ogg 00;32
 .ra 00;32
-.wav 00;32
-.axa 00;32
-.oga 00;32
 .spx 00;32
+.wav 00;32
 .xspf 00;32
