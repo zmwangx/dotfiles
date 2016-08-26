@@ -5,6 +5,7 @@ chardet
 colorama
 coverage
 docutils
+eventlet
 ipython
 lxml
 peewee
