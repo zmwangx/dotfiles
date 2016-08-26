@@ -357,6 +357,7 @@
 $0")
 
   :config
+  (setq yas-indent-line 'fixed)
   (yas-load-directory (expand-file-name "snippets" user-emacs-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; LOCAL PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
