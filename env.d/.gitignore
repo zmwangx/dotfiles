@@ -1,0 +1,3 @@
+# BINTRAY_USER and BINTRAY_KEY are necessary for me as a Homebrew maintainer,
+# but obviously they should not be public
+bintray
