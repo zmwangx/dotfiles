@@ -30,7 +30,6 @@ fontconfig
 fpp
 freetype
 gawk
-ghc
 git --without-completions
 gnu-getopt
 gnu-sed --with-default-names
@@ -39,7 +38,6 @@ gnupg2
 go
 grep --with-default-names
 grip
-haskell-stack
 htop
 hub
 imagemagick --with-fontconfig --with-librsvg --with-webp
