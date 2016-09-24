@@ -71,7 +71,6 @@ rar
 reattach-to-user-namespace
 rsync
 ruby
-shellcheck
 speedtest-cli
 sponge
 tccutil
