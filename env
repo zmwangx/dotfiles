@@ -15,7 +15,7 @@ if [ -n "$homebrew_root" ]; then
     for subdir in bin sbin opt/coreutils/libexec/gnubin; do
         [ -d "$homebrew_root/$subdir" ] && PATH="$homebrew_root/$subdir:$PATH"
     done
-    for subdir in man opt/coreutils/libexec/gnuman; do
+    for subdir in share/man opt/coreutils/libexec/gnuman; do
         [ -d "$homebrew_root/$subdir" ] && MANPATH="$homebrew_root/$subdir:$MANPATH"
     done
 fi
