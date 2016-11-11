@@ -158,7 +158,6 @@ run_provisioner scripts "Installing personal scripts..." private
 run_provisioner cask "Provisioning Homebrew Cask..."
 run_provisioner emacs "Installing Emacs packages..."
 run_provisioner python "Setting up Python development environment..."
-run_provisioner rvm "Setting up RVM..."
 run_provisioner gem "Installing gems..."
 run_provisioner cron "Setting up cron schedule..." private
 run_provisioner misc "Final touches (miscellaneous)..."
