@@ -36,6 +36,9 @@ To provision a new OS X install, do `~/.config/provision` instead (requires
 Xcode and CLT). Note that `provision` supports various options; please refer to
 `~/.config/provision --help`.
 
+_**Warning**. I haven't gone through the provision process for a long time, so
+the provision script might be outdated._
+
 Also, `source ~/.config/env` should go into `.bashrc`, `.zshenv` (done for you
 when you run `~/.config/setup`, which sets up `.bashrc` and `.zshenv` in your
 home directory), and its equivalent should go into the runcoms of other
