@@ -6,25 +6,21 @@ source $here/../provision.d/messaging_helpers
 errored=false
 
 # install Homebrew base system
-if [[ ! -d /usr/local/.git ]]; then
-    homebrew_prefix=/usr/local
+homebrew_repo_path=/usr/local/Homebrew
+if [[ ! -d $homebrew_repo_path/.git ]]; then
     homebrew_repo=https://github.com/Homebrew/brew.git
     print_milestone "Installing Homebrew base system..."
-    print_command "sudo chown ${USER}:admin $homebrew_prefix"
-    sudo chown ${USER}:admin $homebrew_prefix || {
-        print_error "Failed to change owner and group of $homebrew_prefix"
-        exit 1
+    [[ -d $homebrew_repo_path ]] || {
+        print_command "sudo mkdir $homebrew_repo_path"
+        sudo mkdir $homebrew_repo_path
+        print_command "sudo chown $USER:admin $homebrew_repo_path"
+        sudo chown $USER:admin $homebrew_repo_path
     }
-    print_progress "Cloning the Homebrew repo into $homebrew_prefix"
-    {
-        git -C $homebrew_prefix init
-        git -C $homebrew_prefix remote add origin $homebrew_repo
-        git -C $homebrew_prefix fetch origin
-        git -C $homebrew_prefix reset --hard origin/master
-    } || {
-        print_error "Failed to clone the Homebrew repo into $homebrew_prefix"
-        exit 1
-    }
+    print_progress "Cloning the Homebrew repo into $homebrew_repo_path"
+    git -C $homebrew_repo_path init
+    git -C $homebrew_repo_path remote add origin $homebrew_repo
+    git -C $homebrew_repo_path fetch origin
+    git -C $homebrew_repo_path reset --hard origin/master
 fi
 
 # abstract away paths
