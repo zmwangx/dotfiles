@@ -1,0 +1,3 @@
+# -*- mode: sh; -*-
+export ACD_CLI_SETTINGS_PATH=$XDG_CONFIG_HOME/acd_cli
+export ACD_CLI_CACHE_PATH=$XDG_CACHE_HOME/acd_cli
