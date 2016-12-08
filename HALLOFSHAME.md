@@ -9,6 +9,7 @@ Shame on them:
 
 * [CUPS](#cups)
 * [Dropbox](#dropbox)
+* [ghci](#ghci)
 * [gist](#gist)
 * [Heroku toolbelt](#heroku-toolbelt)
 * [Keybase installer](#keybase-installer)
@@ -66,6 +67,10 @@ See the `FILES` section of `man 1 cups`: `~/.cups/client.conf` and
 Okay, Dropbox is used by hundreds of millions of dummies so I won't expect
 customizability on this front, but can't you move `~/.dropbox` to
 `~/Library/Caches`?
+
+### ghci
+
+Ticket: [GHC#6077](https://ghc.haskell.org/trac/ghc/ticket/6077).
 
 ### gist
 
