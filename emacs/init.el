@@ -207,7 +207,7 @@
   :config
   (add-hook 'ruby-mode-hook 'my-ruby-mode-hook))
 
-(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/]*\\|/.env\\)\\'" . sh-mode)
+(use-package sh-script :mode ("\\(\\.zsh\\|/_[^/.]*\\|/.env\\)\\'" . sh-mode)
   :preface
   (defun my-sh-mode-hook ()
     (yas-minor-mode 1))
