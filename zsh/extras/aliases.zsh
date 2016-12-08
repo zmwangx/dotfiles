@@ -75,3 +75,6 @@ alias -s markdown='grip'
 alias -s md='grip'
 alias -s rst='restview'
 alias -s text='grip'
+
+################################### UNALIAS ####################################
+unalias gdm
