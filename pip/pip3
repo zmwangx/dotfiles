@@ -6,6 +6,7 @@ colorama
 coverage
 docutils
 eventlet
+github3.py
 ipython
 lxml
 peewee
