@@ -19,6 +19,17 @@ shopt -s autocd checkjobs checkwinsize direxpand failglob globstar no_empty_cmd_
 alias l='ls -1A --color=auto'
 alias path='echo $PATH | tr -s ":" "\n"'
 
+_git_head_position () {
+    [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == true ]] || return 1
+    local symbolic_ref=$(git symbolic-ref HEAD 2>/dev/null)
+    local branch=${symbolic_ref#refs/heads/}
+    [[ -n $branch ]] && echo "$branch" && return
+    local position="$(git describe --contains --all HEAD 2>/dev/null)"
+    [[ -n $position ]] && echo "$position" && return
+    local commit="$(git rev-parse HEAD 2>/dev/null)"
+    echo "$commit"
+}
+
 # prompt
 _prompt_command () {
     local last_status="$?"
@@ -26,9 +37,12 @@ _prompt_command () {
     local bashseg='\[\e[35m\]bash-${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}\[\e[0m\]'
     local timeseg='\[\e[33m\]\t\[\e[0m\]'
     local pathseg='\[\e[36m\][\w]\[\e[0m\]'
+    local git_head_position="$(_git_head_position)"
+    local gitseg
+    [[ -n $git_head_position ]] && gitseg='\[\e[32m\]'"$git_head_position"'\[\e[0m\] ' || gitseg=''
     local jobseg
     (( last_status )) && jobseg='\[\e[31m\]>>>\[\e[0m\]' || jobseg='\[\e[32m\]>>>\[\e[0m\]'
-    PS1="$hostseg$bashseg $timeseg $pathseg $jobseg"$'\n'
+    PS1="$hostseg$bashseg $timeseg $pathseg $gitseg$jobseg"$'\n'
 }
 
 # CAUTION:
