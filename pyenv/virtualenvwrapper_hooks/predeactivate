@@ -1,2 +1,1 @@
-#!/usr/bin/env zsh
 # This hook is sourced before every virtualenv is deactivated.

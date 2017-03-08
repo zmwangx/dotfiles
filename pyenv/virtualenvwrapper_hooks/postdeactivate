@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
 # This hook is sourced after every virtualenv is deactivated.
 
+unset PYTHON
 unset VIRTUAL_ENV_PYTHON_VERSION

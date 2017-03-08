@@ -1,3 +1,6 @@
 #!/usr/bin/env zsh
 # This hook is run when the list of virtualenvs is printed so each name can include details.
 # argument: environment name
+path=$WORKON_HOME/$1
+echo $path
+$path/bin/python --version
