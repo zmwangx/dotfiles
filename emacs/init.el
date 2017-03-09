@@ -315,6 +315,7 @@
 (use-package js2-mode :ensure t :mode "\\.js\\'" :interpreter "node"
   :init
   (setq-default js2-basic-offset 2)
+  (setq-default js-switch-indent-offset 2)
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-skip-preprocessor-directives t))
 
