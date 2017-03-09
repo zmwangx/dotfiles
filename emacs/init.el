@@ -108,10 +108,18 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil region)))
 
+(defun insert-datetime ()
+  "Insert current datetime in ISO 8601 format."
+  (interactive)
+  (insert (concat (format-time-string "%FT%T")
+                  ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
+                   (format-time-string "%z")))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL KEYBINDINGS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (bind-key "C-c C-k" 'cancel-edit)
 (bind-key "C-c ;" 'comment-or-uncomment-region)
+(bind-key "C-c d" 'insert-datetime)
 (bind-key "C-\\" 'delete-trailing-whitespace)
 (bind-key "C-x C-r" 'smart-revert-buffer)
 (bind-key "C-x C-k" 'server-edit)
