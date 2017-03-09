@@ -17,11 +17,12 @@ daemonize
 diceware
 dos2unix
 duti
-emacs --with-cocoa --with-dbus --with-gnutls --with-imagemagick
+emacs
+emojify
 enscript
 exiftool
 fdupes
-ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libbluray --with-libcaca --with-libvidstab --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265
+ffmpeg --with-fdk-aac --with-freetype --with-libass --with-libvorbis --with-libvpx --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-sdl2 --with-theora --with-x265
 fileicon
 findutils --with-default-names
 flac --with-libogg
@@ -44,15 +45,15 @@ jpeg
 jq
 keybase
 libass --with-fontconfig
-libksba
 libmagic
 libyaml
 logrotate
 lsdvd --with-libdvdcss
 mercurial
 most
-mpv --with-bundle --with-libaacs --with-libbluray --with-libcaca --with-libdvdnav --with-libdvdread --with-vapoursynth
+mpv --with-libdvdnav --with-libdvdread --with-vapoursynth
 mutt --with-s-lang
+mypy
 nmap
 node
 ohcount
@@ -70,6 +71,7 @@ rar
 reattach-to-user-namespace
 rsync
 ruby
+screenresolution
 speedtest-cli
 sponge
 tccutil
@@ -86,4 +88,5 @@ xpdf
 xz
 youtube-dl
 z
+zopfli
 zsh --with-texi2html
