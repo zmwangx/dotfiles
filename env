@@ -39,9 +39,9 @@ export TMPDIR
 export TMP=$TMPDIR
 export TEMP=$TMPDIR
 
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
+[ -n "$XDG_CACHE_HOME" ] || export XDG_CACHE_HOME=$HOME/.cache
+[ -n "$XDG_CONFIG_HOME" ] || export XDG_CONFIG_HOME=$HOME/.config
+[ -n "$XDG_DATA_HOME" ] || export XDG_DATA_HOME=$HOME/.local/share
 
 # set default editor
 if [ -f "$HOME/scripts/editor" ]; then
