@@ -320,8 +320,14 @@
   (setq-default js2-skip-preprocessor-directives t))
 
 (use-package json-mode :ensure t :mode "\\.json\\'" :init
-  (setq-default js-indent-level 2)
-  (setq-default json-reformat:indent-width 2))
+  :preface
+  (defun my-json-mode-hook ()
+    (setq-default js-indent-level 2)
+    (setq-default json-reformat:indent-width 2)
+    (flycheck-mode t))
+
+  :config
+  (add-hook 'json-mode-hook 'my-json-mode-hook))
 
 (use-package magit :ensure t :defer 0
   :bind (("M-m" . magit-status)
