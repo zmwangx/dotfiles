@@ -31,6 +31,8 @@
 	default = simple
 [submodule]
 	fetchjobs = 0
+[transfer]
+	fsckobjects = true
 [user]
 	email = zmwangx@gmail.com
 	name = Zhiming Wang
