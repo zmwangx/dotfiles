@@ -23,7 +23,7 @@ zstyle ':prezto:load' pmodule \
        autoenv z homebrew osx diskutil acdcli rm_guard gpg2 \
        haskell \
        local
-source ~/.zprezto/init.zsh
+source ${ZDOTDIR:-$HOME}/.zprezto/init.zsh
 
 function {
     local script private_path
