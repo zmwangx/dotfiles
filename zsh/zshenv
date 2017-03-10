@@ -4,7 +4,7 @@
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshenv_override ]] && { source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshenv_override && return; }
 
 # get global env
-source ~/.config/env
+source ${XDG_CONFIG_HOME:-$HOME/.config}/env
 
 # source per-host additions
 [[ -e ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostenv ]] && source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/perhostenv
