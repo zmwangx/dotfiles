@@ -12,7 +12,7 @@ cmark
 cmus
 colordiff
 coreutils
-curl --with-gssapi --with-libidn --with-libssh2 --with-rtmpdump
+curl --with-rtmpdump --with-libssh2 --with-c-ares --with-gssapi --with-libmetalink --with-nghttp2
 daemonize
 diceware
 dos2unix
