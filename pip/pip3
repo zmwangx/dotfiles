@@ -1,11 +1,13 @@
 arrow
 beautifulsoup4
 blessed
+cfscrape
 chardet
 colorama
 coverage
 docutils
 eventlet
+feedparser
 github3.py
 ipython
 lxml
@@ -22,6 +24,7 @@ PyYAML
 requests
 restview
 scrapy
+sh
 Sphinx
 tox
 tweepy
@@ -29,4 +32,3 @@ twine
 virtualenvwrapper
 wcwidth
 wheel
-you-get

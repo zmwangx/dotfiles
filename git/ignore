@@ -39,7 +39,6 @@ build/
 # OS generated files #
 ######################
 .DS_Store
-.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
@@ -47,8 +46,6 @@ build/
 .DocumentRevisions-V100
 .fseventsd
 .VolumeIcon.icns
-Icon?
-Icon
 ehthumbs.db
 Thumbs.db
 .AppleDouble
@@ -69,6 +66,7 @@ Temporary Items
 
 # Python
 venv*
+.cache
 .coverage
 .tox
 *.egg-info
