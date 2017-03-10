@@ -346,6 +346,8 @@
         sr-speedbar-width 35
         speedbar-show-unknown-files t))
 
+(use-package stylus-mode :ensure t :mode "\\.styl\\'")
+
 (use-package web-beautify :ensure t :defer 3)
 
 (use-package yaml-mode :ensure t :mode "\\.yml\\'")
