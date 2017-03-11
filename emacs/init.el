@@ -312,6 +312,8 @@
 
 (use-package jedi :ensure t :defer t)
 
+(use-package jinja2-mode :ensure t :defer t)
+
 (use-package js2-mode :ensure t :mode "\\.js\\'" :interpreter "node"
   :init
   (setq-default js2-basic-offset 2)
