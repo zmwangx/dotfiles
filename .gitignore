@@ -16,12 +16,14 @@ nautilus/
 pulse/
 rss/
 subversion/
+systemd/
 transmission-daemon/
 transmission/
 twitter/
 unity/
 wireshark/
 xauth/
+zmwangxsay/
 user-dirs.dirs
 user-dirs.locale
 hub
