@@ -42,7 +42,7 @@ _prompt_command () {
     [[ -n $git_head_position ]] && gitseg='\[\e[32m\]'"$git_head_position"'\[\e[0m\] ' || gitseg=''
     local jobseg
     (( last_status )) && jobseg='\[\e[31m\]>>>\[\e[0m\]' || jobseg='\[\e[32m\]>>>\[\e[0m\]'
-    PS1="$hostseg$bashseg $timeseg $pathseg $gitseg$jobseg"$'\n'
+    PS1="$hostseg$bashseg $timeseg $pathseg $gitseg$jobseg\n"
 }
 
 # CAUTION:
