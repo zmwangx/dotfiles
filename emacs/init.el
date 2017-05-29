@@ -314,8 +314,9 @@
 
 (use-package jinja2-mode :ensure t :defer t)
 
-(use-package js2-mode :ensure t :mode "\\.js\\'" :interpreter "node"
+(use-package js2-mode :ensure t :mode "\\.jsx?\\'" :interpreter "node"
   :init
+  (setq-default js-indent-level 2)
   (setq-default js2-basic-offset 2)
   (setq-default js-switch-indent-offset 2)
   (setq-default js2-strict-missing-semi-warning nil)
