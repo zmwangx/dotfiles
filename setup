@@ -29,6 +29,7 @@ done
 # $XDG_CACHE_HOME to 700.
 
 print_progress "Changing program-specific directory modes to 700..."
+chmod 700 $XDG_CONFIG_HOME $XDG_DATA_HOME $XDG_CACHE_HOME
 for dir in $XDG_CONFIG_HOME/*/ $XDG_DATA_HOME/*/ $XDG_CACHE_HOME/*/; do
     chmod 700 $dir
 done
