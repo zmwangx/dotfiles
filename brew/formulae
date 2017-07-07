@@ -1,6 +1,8 @@
 asciidoc --with-docbook-xsl
 asciinema
 aspell --with-lang-en
+autoconf
+automake
 bash
 bazaar
 bfg
@@ -12,9 +14,11 @@ cmark
 cmus
 colordiff
 coreutils
-curl --with-rtmpdump --with-libssh2 --with-c-ares --with-gssapi --with-libmetalink --with-nghttp2
+cpulimit
+curl
 daemonize
 diceware
+docker
 dos2unix
 duti
 emacs
@@ -22,45 +26,62 @@ emojify
 enscript
 exiftool
 fdupes
-ffmpeg --with-fdk-aac --with-freetype --with-libass --with-libvorbis --with-libvpx --with-openjpeg --with-openssl --with-opus --with-rtmpdump --with-sdl2 --with-theora --with-x265
+ffmpeg --with-fdk-aac --with-libass --with-openjpeg --with-openssl --with-rtmpdump --with-sdl2 --with-freetype --with-libvorbis --with-libvpx --with-opus --with-theora
 fileicon
 findutils --with-default-names
+fish
 flac --with-libogg
 fontconfig
-fpp
 freetype
 gawk
+gdm
+gettext
 git --without-completions
+git-cinnabar
 gnu-getopt
 gnu-sed --with-default-names
 gnu-tar --with-default-names
-gnupg2
 go
 grep --with-default-names
 grip
 htop
+httpie
+httpstat
 hub
 imagemagick --with-fontconfig --with-librsvg --with-webp
+insect
+iperf
+jp2a
 jpeg
 jq
 keybase
 libass --with-fontconfig
 libmagic
+libmemcached
+libtool
 libyaml
-logrotate
-lsdvd --with-libdvdcss
+media-info
+memcached
 mercurial
+mitmproxy
 most
-mpv --with-libdvdnav --with-libdvdread --with-vapoursynth
+mozjpeg
+mpv --with-vapoursynth
 mutt --with-s-lang
 mypy
+ncurses
 nmap
 node
 ohcount
 optipng
+osxutils-seticon
 p7zip
 pandoc
 parallel
+perl
+pkg-config
+pm
+privoxy
 pv
 pyenv
 pyenv-virtualenvwrapper
@@ -69,24 +90,32 @@ python3 --with-sphinx-doc
 ranger
 rar
 reattach-to-user-namespace
+rlwrap
 rsync
 ruby
 screenresolution
-speedtest-cli
+speedtest_cli
 sponge
-tccutil
+sqlite
+svgo
+t-completion
 terminal-notifier
 tidy-html5
 tmux
 translate-shell
+transmission
 tree
+uchardet
+unrar
 vim --override-system-vi
-zmwangx/tap/vobcopy
+w3m
+watch
 wdiff
-wget --with-debug --with-iri --with-pcre
+wget --with-debug --with-pcre
+wpscan
 xpdf
 xz
 youtube-dl
 z
 zopfli
-zsh --with-texi2html
+zsh --with-texi2html --with-unicode9

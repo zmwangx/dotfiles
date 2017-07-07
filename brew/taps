@@ -1,7 +1,5 @@
 caskroom/cask
-caskroom/fonts
-caskroom/versions
-homebrew/binary
-homebrew/dupes
-homebrew/x11
+homebrew/dev-tools
+homebrew/services
 zmwangx/tap
+zmwangx/track
