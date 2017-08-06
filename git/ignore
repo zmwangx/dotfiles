@@ -71,6 +71,7 @@ venv*
 .tox
 *.egg-info
 dist
+.mypy_cache
 
 # Node.js
 node_modules
